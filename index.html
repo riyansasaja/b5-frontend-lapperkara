@@ -162,6 +162,56 @@
         </div>
       </div>
 
+      <!-- modal start -->
+      <div class="row">
+        <div class="col">
+          <!-- button -->
+          <button type="button" class="btn bg-gradient-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Tambah Laporan
+          </button>
+
+          <!-- modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title font-weight-normal" id="exampleModalLabel">Tambah Laporan Perkara</h5>
+                  <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <!-- form start -->
+                  <form action="">
+                    <div class="input-group input-group-static my-3">
+                      <label for="bulan">Periode</label>
+                      <input id="bulan" type="month" class="form-control">
+                    </div>
+                    <div class="input-group input-group-static my-3">
+                      <label for="upload-pdf">Upload file PDF</label>
+                      <input id="upload-pdf" type="file" class="form-control">
+                    </div>
+                    <div class="input-group input-group-static my-3">
+                      <label for="upload-zip">Upload file ZIP</label>
+                      <input id="upload-zip" type="file" class="form-control">
+                    </div>
+                  </form>
+                  <!-- form end -->
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Batal</button>
+                  <button type="button" class="btn bg-gradient-primary">Simpan</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- modal -->
+
+        </div>
+      </div>
+      <!-- modal end -->
+
       <!-- table start -->
       <div class="card">
         <div class="table-responsive">
@@ -358,10 +408,7 @@
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
   </script>
-  <!-- Github buttons -->
-  <!-- <script async defer src="https://buttons.github.io/buttons.js"></script> -->
-  <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-  <!-- <script src="./assets/js/material-dashboard.min.js?v=3.0.3"></script> -->
+
 </body>
 
 </html>

@@ -235,7 +235,9 @@
                                             </td>
                                             <td class="align-middle text-center">
                                                 <span class="text-success text-xs font-weight-normal">
-                                                    <i class="fas fa-clipboard"></i>
+                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#catatanModal"><i
+                                                            class="fas fa-clipboard"></i></a>
+
                                                 </span>
                                             </td>
                                             <td class="align-middle text-center">
@@ -264,6 +266,44 @@
                         <!-- table end -->
                     </div>
                 </div>
+
+                <!-- catatanModal start -->
+                <div class="modal fade" id="catatanModal" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title font-weight-normal" id="exampleModalLabel">Catatan Perbaikan</h5>
+                                <button type="button" class="btn-close text-dark" data-bs-dismiss="modal"
+                                    aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="card card-frame mb-2">
+                                    <div class="card-body">
+                                        <h6>Lipa 4</h6>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit, blanditiis.
+                                            Sequi, provident.</p>
+                                    </div>
+                                </div>
+                                <div class="card card-frame mb-2">
+                                    <div class="card-body">
+                                        <h6>Lipa 8</h6>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit, blanditiis.
+                                            Sequi, provident.</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn bg-gradient-secondary"
+                                    data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- catatan modal end -->
 
 
             </div>

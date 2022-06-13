@@ -19,37 +19,32 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="<?= base_url('assets/img/apple-icon.png') ?>">
   <link rel="icon" type="image/png" href="./assets/img/favicon.png">
   <title>
     Material Dashboard 2 by Creative Tim
   </title>
   <!--     Fonts and icons     -->
-  <link rel="stylesheet" type="text/css"
-    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
   <!-- Nucleo Icons -->
-  <link href="./assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="<?= base_url('assets/css/nucleo-icons.css') ?>" rel="stylesheet" />
   <link href="./assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/f8c43fa68d.js" crossorigin="anonymous"></script>
   <!-- Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <!-- CSS Files -->
-  <link id="pagestyle" href="./assets/css/material-dashboard.css?v=3.0.3" rel="stylesheet" />
+  <link id="pagestyle" href="<?= base_url('assets/css/material-dashboard.css?v=3.0.3') ?>" rel="stylesheet" />
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
 
   <!-- sidebar -->
-  <aside
-    class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark"
-    id="sidenav-main">
+  <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
     <div class="sidenav-header">
-      <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
-        aria-hidden="true" id="iconSidenav"></i>
-      <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard "
-        target="_blank">
-        <img src="./assets/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
+      <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+      <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard " target="_blank">
+        <img src="<?= base_url('assets/img/logo-ct.png') ?>" class="navbar-brand-img h-100" alt="main_logo">
         <span class="ms-1 font-weight-bold text-white">Laporan Perkara</span>
       </a>
     </div>
@@ -97,7 +92,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="./pages/rtl.html">
+          <a class="nav-link text-white " href="<?= base_url('auth/logout'); ?>">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="fa fa-sign-out"></i>
             </div>
@@ -112,8 +107,7 @@
 
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
     <!-- Navbar -->
-    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur"
-      data-scroll="true">
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="true">
       <div class="container-fluid py-1 px-3">
         <nav aria-label="breadcrumb">
           <h3 class="font-weight-bolder mb-0">Dashboard Laporan Perkara</h3>
@@ -147,8 +141,7 @@
           <!-- dropdown start -->
           <div class="d-flex justify-content-center">
             <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
-                data-bs-toggle="dropdown" aria-expanded="false">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 Pilih Tahun
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -171,8 +164,7 @@
           </button>
 
           <!-- modal -->
-          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -258,20 +250,16 @@
                   </span>
                 </td>
                 <td class="align-middle">
-                  <a href="javascript:;" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip"
-                    data-original-title="Upload">
+                  <a href="javascript:;" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Upload">
                     <i class="fas fa-upload"></i>
                   </a> |
-                  <a href="javascript:;" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip"
-                    data-original-title="Edit">
+                  <a href="javascript:;" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Edit">
                     <i class="fa fa-edit"></i>
                   </a> |
-                  <a href="javascript:;" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip"
-                    data-original-title="Download">
+                  <a href="javascript:;" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Download">
                     <i class="fas fa-download"></i>
                   </a> |
-                  <a href="actionview.html" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip"
-                    data-original-title="Lihat">
+                  <a href="actionview.html" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Lihat">
                     <i class="fa fa-eye"></i>
                   </a>
                 </td>
@@ -302,20 +290,16 @@
                   </span>
                 </td>
                 <td class="align-middle">
-                  <a href="javascript:;" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip"
-                    data-original-title="Upload">
+                  <a href="javascript:;" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Upload">
                     <i class="fas fa-upload"></i>
                   </a> |
-                  <a href="javascript:;" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip"
-                    data-original-title="Edit">
+                  <a href="javascript:;" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Edit">
                     <i class="fa fa-edit"></i>
                   </a> |
-                  <a href="javascript:;" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip"
-                    data-original-title="Download">
+                  <a href="javascript:;" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Download">
                     <i class="fas fa-download"></i>
                   </a> |
-                  <a href="javascript:;" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip"
-                    data-original-title="Lihat">
+                  <a href="javascript:;" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Lihat">
                     <i class="fa fa-eye"></i>
                   </a>
                 </td>
@@ -346,20 +330,16 @@
                   </span>
                 </td>
                 <td class="align-middle">
-                  <a href="javascript:;" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip"
-                    data-original-title="Upload">
+                  <a href="javascript:;" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Upload">
                     <i class="fas fa-upload"></i>
                   </a> |
-                  <a href="javascript:;" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip"
-                    data-original-title="Edit">
+                  <a href="javascript:;" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Edit">
                     <i class="fa fa-edit"></i>
                   </a> |
-                  <a href="javascript:;" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip"
-                    data-original-title="Download">
+                  <a href="javascript:;" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Download">
                     <i class="fas fa-download"></i>
                   </a> |
-                  <a href="javascript:;" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip"
-                    data-original-title="Lihat">
+                  <a href="javascript:;" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Lihat">
                     <i class="fa fa-eye"></i>
                   </a>
                 </td>
@@ -394,11 +374,11 @@
   </main>
 
   <!--   Core JS Files   -->
-  <script src="./assets/js/core/popper.min.js"></script>
-  <script src="./assets/js/core/bootstrap.min.js"></script>
-  <script src="./assets/js/plugins/perfect-scrollbar.min.js"></script>
-  <script src="./assets/js/plugins/smooth-scrollbar.min.js"></script>
-  <script src="./assets/js/plugins/chartjs.min.js"></script>
+  <script src="<?= base_url('assets/js/core/popper.min.js') ?>"></script>
+  <script src="<?= base_url('assets/js/core/bootstrap.min.js') ?>"></script>
+  <script src="<?= base_url('assets/js/plugins/perfect-scrollbar.min.js') ?>"></script>
+  <script src="<?= base_url('assets/js/plugins/smooth-scrollbar.min.js') ?>"></script>
+  <script src="<?= base_url('assets/js/plugins/chartjs.min.js') ?>"></script>
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {

@@ -175,26 +175,27 @@
                 </div>
                 <div class="modal-body">
                   <!-- form start -->
-                  <form action="">
+                  <form method="POST" action="<?php echo base_url('PA_laper/add_laporan_perkara'); ?>" enctype="multipart/form-data">
                     <div class="input-group input-group-static my-3">
                       <label for="bulan">Periode</label>
-                      <input id="bulan" type="month" class="form-control">
+                      <input id="bulan" type="month" name="periode" class="form-control">
                     </div>
                     <div class="input-group input-group-static my-3">
                       <label for="upload-pdf">Upload file PDF</label>
-                      <input id="upload-pdf" type="file" class="form-control">
+                      <input id="upload-pdf" type="file" name = "file1" class="form-control">
                     </div>
                     <div class="input-group input-group-static my-3">
-                      <label for="upload-zip">Upload file ZIP</label>
-                      <input id="upload-zip" type="file" class="form-control">
+                      <label for="upload-zip">Upload file XLS</label>
+                      <input id="upload-zip" type="file" name = "file2" class="form-control">
                     </div>
-                  </form>
-                  <!-- form end -->
+                  
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Batal</button>
-                  <button type="button" class="btn bg-gradient-primary">Simpan</button>
+                  <button type="submit" class="btn bg-gradient-primary">Simpan</button>
                 </div>
+                </form>
+                  <!-- form end -->
               </div>
             </div>
           </div>

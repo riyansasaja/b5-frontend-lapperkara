@@ -42,7 +42,6 @@
   <!-- sidebar -->
   <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
     <div class="sidenav-header">
-      <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard " target="_blank">
         <img src="<?= base_url('assets/img/logo-ct.png') ?>" class="navbar-brand-img h-100" alt="main_logo">
         <span class="ms-1 font-weight-bold text-white">Laporan Perkara</span>
@@ -59,7 +58,7 @@
             <span class="nav-link-text ms-1">Beranda </span>
           </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item">S
           <a class="nav-link text-white " href="./pages/tables.html">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="fas fa-file-contract fa-1x"></i>
@@ -182,20 +181,20 @@
                     </div>
                     <div class="input-group input-group-static my-3">
                       <label for="upload-pdf">Upload file PDF</label>
-                      <input id="upload-pdf" type="file" name = "file1" class="form-control">
+                      <input id="upload-pdf" type="file" name="file1" class="form-control">
                     </div>
                     <div class="input-group input-group-static my-3">
                       <label for="upload-zip">Upload file XLS</label>
-                      <input id="upload-zip" type="file" name = "file2" class="form-control">
+                      <input id="upload-zip" type="file" name="file2" class="form-control">
                     </div>
-                  
+
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Batal</button>
                   <button type="submit" class="btn bg-gradient-primary">Simpan</button>
                 </div>
                 </form>
-                  <!-- form end -->
+                <!-- form end -->
               </div>
             </div>
           </div>

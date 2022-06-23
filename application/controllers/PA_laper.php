@@ -3,21 +3,34 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class PA_laper extends CI_Controller
 {
-    public function index()
+
+     public function __construct()
     {
-        $this->load->view('PA/index');
+        parent::__construct();
+
+        //usir user yang ga punya session
+        if (!$this->session->userdata('id') || $this->session->userdata('role_id') != 2) {
+            redirect('auth');
+        }
     }
 
-    public function get_data()
+    public function index()
     {
-        $data = $this->m_laper->get_data();
-        $result = [
-            'response' => 'success',
-            'code' => '600',
-            'data' => $data
-        ];
-        echo json_encode($result);
+        $data['laporan'] = $this->m_laper->get_data();
+
+        $this->load->view('PA/index', $data);
     }
+
+    // public function get_data()
+    // {
+    //     $data = $this->m_laper->get_data();
+    //     $result = [
+    //         'response' => 'success',
+    //         'code' => '600',
+    //         'data' => $data
+    //     ];
+    //     echo json_encode($result);
+    // }
 
     public function add_laporan_perkara()
     {
@@ -25,6 +38,7 @@ class PA_laper extends CI_Controller
 
         $periode = $this->input->post('periode', true);
         $tanggal = date('Y-m-d');
+        $berkas = "Lap Per $periode";
         $satker = $this->session->userdata('kode_pa');
         $folder = "$satker $periode";
         $path = "./assets/files/$folder";
@@ -66,6 +80,7 @@ class PA_laper extends CI_Controller
         $data = [
             'id' => '',
             'id_user' => $this->session->userdata('id'),
+            'berkas_laporan' => $berkas,
             'tgl_upload' => $tanggal,
             'periode' => $periode,
             'laper_pdf' => $laper_pdf,

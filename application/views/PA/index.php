@@ -22,7 +22,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="<?= base_url('assets/img/apple-icon.png') ?>">
   <link rel="icon" type="image/png" href="./assets/img/favicon.png">
   <title>
-    Material Dashboard 2 by Creative Tim
+    Laporan Perkara
   </title>
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
@@ -58,7 +58,7 @@
             <span class="nav-link-text ms-1">Beranda </span>
           </a>
         </li>
-        <li class="nav-item">S
+        <li class="nav-item">
           <a class="nav-link text-white " href="./pages/tables.html">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="fas fa-file-contract fa-1x"></i>
@@ -136,7 +136,9 @@
     <div class="container-fluid py-4">
       <div class="row">
         <div class="col text-center">
-          <h6 class="d-block">Laporan Perkara Tahun 2022</h6>
+          <h6 class="d-block">Laporan Perkara Tahun <script>
+                  document.write(new Date().getFullYear())
+                </script></h6>
           <!-- dropdown start -->
           <div class="d-flex justify-content-center">
             <div class="dropdown">
@@ -207,7 +209,7 @@
       <!-- table start -->
       <div class="card">
         <div class="table-responsive">
-          <table class="table align-items-center mb-0">
+          <table class="table align-items-center mb-0" id="laporan_perkara">
             <thead>
               <tr>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
@@ -226,23 +228,25 @@
               <!-- looping data start -->
 
               <!-- first loop -->
+              <?php $i = 1; ?>
+              <?php foreach ($laporan as $lhs) : ?>
               <tr>
                 <td>
                   <div class="d-flex flex-column justify-content-center">
-                    <p class="text-xs text-secondary mb-0 ms-3">1</p>
+                    <p class="text-xs text-secondary mb-0 ms-3"><?php echo $i++; ?></p>
                   </div>
                 </td>
                 <td>
                   <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-xs">Januari</h6>
-                    <p class="text-xs text-secondary mb-0">Lap Per Jan 21</p>
+                    <h6 class="mb-0 text-xs"><?php echo $lhs['periode']; ?></h6>
+                    <p class="text-xs text-secondary mb-0"><?php echo $lhs['berkas_laporan']; ?></p>
                   </div>
                 </td>
                 <td class="align-middle text-center">
-                  <span class="text-secondary text-xs font-weight-normal">23/04/18</span>
+                  <span class="text-secondary text-xs font-weight-normal"><?php echo $lhs['tgl_upload']; ?></span>
                 </td>
                 <td class="align-middle text-center">
-                  <span class="text-secondary text-xs font-weight-normal">23/04/18</span>
+                  <span class="text-secondary text-xs font-weight-normal"><?php echo $lhs['tgl_terakhir_rev']; ?></span>
                 </td>
                 <td class="align-middle text-center">
                   <span class="text-success text-xs font-weight-normal">
@@ -250,7 +254,7 @@
                   </span>
                 </td>
                 <td class="align-middle">
-                  <a href="javascript:;" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Upload">
+                 <!--  <a href="javascript:;" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Upload">
                     <i class="fas fa-upload"></i>
                   </a> |
                   <a href="javascript:;" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Edit">
@@ -258,92 +262,13 @@
                   </a> |
                   <a href="javascript:;" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Download">
                     <i class="fas fa-download"></i>
-                  </a> |
-                  <a href="actionview.html" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Lihat">
+                  </a> | -->
+                  <a href="javascript:;" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Lihat" title="Lihat Berkas">
                     <i class="fa fa-eye"></i>
                   </a>
                 </td>
               </tr>
-
-              <!-- secend loop -->
-              <tr>
-                <td>
-                  <div class="d-flex flex-column justify-content-center">
-                    <p class="text-xs text-secondary mb-0 ms-3">1</p>
-                  </div>
-                </td>
-                <td>
-                  <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-xs">Februari</h6>
-                    <p class="text-xs text-secondary mb-0">Lap Per Feb 21</p>
-                  </div>
-                </td>
-                <td class="align-middle text-center">
-                  <span class="text-secondary text-xs font-weight-normal">23/04/18</span>
-                </td>
-                <td class="align-middle text-center">
-                  <span class="text-secondary text-xs font-weight-normal">23/04/18</span>
-                </td>
-                <td class="align-middle text-center">
-                  <span class="text-primary text-xs font-weight-normal">
-                    <i class="fas fa-check-circle"></i>
-                  </span>
-                </td>
-                <td class="align-middle">
-                  <a href="javascript:;" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Upload">
-                    <i class="fas fa-upload"></i>
-                  </a> |
-                  <a href="javascript:;" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Edit">
-                    <i class="fa fa-edit"></i>
-                  </a> |
-                  <a href="javascript:;" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Download">
-                    <i class="fas fa-download"></i>
-                  </a> |
-                  <a href="javascript:;" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Lihat">
-                    <i class="fa fa-eye"></i>
-                  </a>
-                </td>
-              </tr>
-
-              <!-- thrid loop -->
-              <tr>
-                <td>
-                  <div class="d-flex flex-column justify-content-center">
-                    <p class="text-xs text-secondary mb-0 ms-3">1</p>
-                  </div>
-                </td>
-                <td>
-                  <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-xs">Maret</h6>
-                    <p class="text-xs text-secondary mb-0">Lap Per Mar 21</p>
-                  </div>
-                </td>
-                <td class="align-middle text-center">
-                  <span class="text-secondary text-xs font-weight-normal">23/04/18</span>
-                </td>
-                <td class="align-middle text-center">
-                  <span class="text-secondary text-xs font-weight-normal">23/04/18</span>
-                </td>
-                <td class="align-middle text-center">
-                  <span class="text-success text-xs font-weight-normal">
-                    <i class="fas fa-check-circle"></i>
-                  </span>
-                </td>
-                <td class="align-middle">
-                  <a href="javascript:;" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Upload">
-                    <i class="fas fa-upload"></i>
-                  </a> |
-                  <a href="javascript:;" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Edit">
-                    <i class="fa fa-edit"></i>
-                  </a> |
-                  <a href="javascript:;" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Download">
-                    <i class="fas fa-download"></i>
-                  </a> |
-                  <a href="javascript:;" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Lihat">
-                    <i class="fa fa-eye"></i>
-                  </a>
-                </td>
-              </tr>
+            <?php endforeach; ?>
 
               <!-- looping data end -->
 
@@ -363,8 +288,7 @@
                 <script>
                   document.write(new Date().getFullYear())
                 </script>,
-                made with <i class="fa fa-heart"></i> and Free by
-                Sasaja
+                made with <i class="fa fa-heart"></i> by Tim IT PTA Manado
               </div>
             </div>
           </div>

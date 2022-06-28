@@ -1,20 +1,29 @@
 $(document).ready(function () {
-	const prapath = window.location.origin;
-	const path = `../../PA_laper/`;
+	// const prapath = window.location.origin;
+	// const path = `../../PA_laper/`;
+
+	const path = window.location.origin + '/b5-frontend-lapperkara/';
 	console.log(path);
+	
+	$('#modalPdf').on('show.bs.modal', function (e) {
+        let getdata = $(e.relatedTarget).data('id');
+        console.log(getdata);
+        let tampil = `<embed src="${path}/assets/files/${getdata}" type="application/pdf" width="100%" height="100%">`
+        $('#tampil').html(tampil);
+    })
 
-	let url = window.location.href;
+	// let url = window.location.href;
 
-	let status;
+	// let status;
 
-	$.ajax({
-		type: "GET",
-		url: `${path}/PA_laper/get_status`,
-		dataType: "json",
-		success: function (e) {
-			console.log(e);
-		}
-	}).responseText;
+	// $.ajax({
+	// 	type: "GET",
+	// 	url: `${path}/PA_laper/get_status`,
+	// 	dataType: "json",
+	// 	success: function (e) {
+	// 		console.log(e);
+	// 	}
+	// }).responseText;
 
 	// if (status != value) {
 	// 	//rubah tampilan modal jadi full

@@ -34,7 +34,8 @@ class PA_laper extends CI_Controller
 
     public function view_laporan($id)
     {
-        // $data['js'] = 'user_pa.js';
+        $data['js'] = 'user_pa.js';
+        $data['user'] = $this->m_laper->get_user_laporan();
         $data['laporan'] = $this->m_laper->get_user_laporan();
 
         //user id tidak sesuai
@@ -42,6 +43,23 @@ class PA_laper extends CI_Controller
             redirect('PA_laper');
         } else {
             $this->load->view('PA/actionview', $data);
+        }
+    }
+
+    public function download_xls() {
+
+        $data['laporan'] = $this->m_laper->get_data();
+        $satker = $this->session->userdata('kode_pa');
+        $periode = $data['laporan'][0]['periode'];
+        $folder = "$satker $periode";
+
+        
+
+        if ($data['laporan'][0]['laper_xls'] != null) {
+            force_download("assets/files/$folder" . $data['laporan'][0]['laper_xls'], null);
+        } else {
+            $this->session->set_flashdata('msg', 'Belum ada laporan');
+            redirect('PA_laper/view_laporan');
         }
     }
 

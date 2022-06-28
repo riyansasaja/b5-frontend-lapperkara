@@ -134,7 +134,7 @@
             <!-- contonet start -->
 
             <div class="container">
-                <?php foreach ($laporan as $lp) : ?>
+                <?php foreach ($user as $lp) : ?>
                     <div class="row bg-gray-400 justify-content-start">
 
                         <div class="row mt-3">
@@ -217,8 +217,8 @@
                                                 </td>
                                                 <td class="align-middle text-center">
                                                     <span class="text-secondary text-xs font-weight-normal">
-                                                        <i class="fas fa-file-pdf"></i> |
-                                                        <i class="fas fa-file-excel"></i>
+                                                        <i href="#!" data-bs-toggle="modal" data-bs-target="#modalPdf" data-id="<?= $laporan['0']['kode_pa']?> <?=$laporan['0']['periode']?>/<?= $laporan['0']['laper_pdf']?>" class="fas fa-file-pdf"></i> |
+                                                        <a href="<?php echo base_url()?>index.php/PA_laper/download_xls/<?=$laporan['0']['id']?>" class="fas fa-file-excel"><?php echo $lhs['id']; ?></a>
                                                     </span>
                                                 </td>
                                                 <td class="align-middle text-center">
@@ -290,6 +290,28 @@
                 </div>
                 <!-- catatan modal end -->
 
+                <!-- //modal tampil pdf -->
+
+      <div class="modal fade" id="modalPdf" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Berkas Perkara</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="tampil">
+                   
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary mx-auto" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- end modal tampil pdf -->
+
 
             </div>
 
@@ -326,8 +348,10 @@
     <script src="<?= base_url('assets/js/plugins/perfect-scrollbar.min.js') ?>"></script>
     <script src="<?= base_url('assets/js/plugins/smooth-scrollbar.min.js') ?>"></script>
     <script src="<?= base_url('assets/js/plugins/chartjs.min.js') ?>"></script>
-    <!-- <script src="<?= base_url('assets/js/') . $js ?>"></script> -->
-    <script>
+    <!-- javascript -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="<?= base_url('assets/js/') . $js ?>"></script>
+   <!--  <script>
         $(document).ready(function() {
             loadstatus();
         });
@@ -343,7 +367,7 @@
                 }
             });
         }
-    </script>
+    </script> -->
     <script>
         var win = navigator.platform.indexOf('Win') > -1;
         if (win && document.querySelector('#sidenav-scrollbar')) {

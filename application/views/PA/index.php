@@ -51,7 +51,7 @@
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link text-white active bg-gradient-primary" href="./pages/dashboard.html">
+          <a class="nav-link text-white" href="./pages/dashboard.html">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="fa fa-tachometer"></i>
             </div>
@@ -67,7 +67,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="./pages/billing.html">
+          <a class="nav-link text-white active bg-gradient-primary" href="./pages/billing.html">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="fas fa-calendar"></i>
             </div>
@@ -137,8 +137,9 @@
       <div class="row">
         <div class="col text-center">
           <h6 class="d-block">Laporan Perkara Tahun <script>
-                  document.write(new Date().getFullYear())
-                </script></h6>
+              document.write(new Date().getFullYear())
+            </script>
+          </h6>
           <!-- dropdown start -->
           <div class="d-flex justify-content-center">
             <div class="dropdown">
@@ -230,31 +231,31 @@
               <!-- first loop -->
               <?php $i = 1; ?>
               <?php foreach ($laporan as $lhs) : ?>
-              <tr>
-                <td>
-                  <div class="d-flex flex-column justify-content-center">
-                    <p class="text-xs text-secondary mb-0 ms-3"><?php echo $i++; ?></p>
-                  </div>
-                </td>
-                <td>
-                  <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-xs"><?php echo $lhs['periode']; ?></h6>
-                    <p class="text-xs text-secondary mb-0"><?php echo $lhs['berkas_laporan']; ?></p>
-                  </div>
-                </td>
-                <td class="align-middle text-center">
-                  <span class="text-secondary text-xs font-weight-normal"><?php echo $lhs['tgl_upload']; ?></span>
-                </td>
-                <td class="align-middle text-center">
-                  <span class="text-secondary text-xs font-weight-normal"><?php echo $lhs['tgl_terakhir_rev']; ?></span>
-                </td>
-                <td class="align-middle text-center">
-                  <span class="text-success text-xs font-weight-normal">
-                    <i class="fas fa-check-circle"></i>
-                  </span>
-                </td>
-                <td class="align-middle">
-                 <!--  <a href="javascript:;" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Upload">
+                <tr>
+                  <td>
+                    <div class="d-flex flex-column justify-content-center">
+                      <p class="text-xs text-secondary mb-0 ms-3"><?php echo $i++; ?></p>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="d-flex flex-column justify-content-center">
+                      <h6 class="mb-0 text-xs"><?php echo $lhs['periode']; ?></h6>
+                      <p class="text-xs text-secondary mb-0"><?php echo $lhs['berkas_laporan']; ?></p>
+                    </div>
+                  </td>
+                  <td class="align-middle text-center">
+                    <span class="text-secondary text-xs font-weight-normal"><?php echo $lhs['tgl_upload']; ?></span>
+                  </td>
+                  <td class="align-middle text-center">
+                    <span class="text-secondary text-xs font-weight-normal"><?php echo $lhs['tgl_terakhir_rev']; ?></span>
+                  </td>
+                  <td class="align-middle text-center">
+                    <span class="text-success text-xs font-weight-normal">
+                      <i class="fas fa-check-circle"></i>
+                    </span>
+                  </td>
+                  <td class="align-middle">
+                    <!--  <a href="javascript:;" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Upload">
                     <i class="fas fa-upload"></i>
                   </a> |
                   <a href="javascript:;" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Edit">
@@ -263,12 +264,12 @@
                   <a href="javascript:;" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Download">
                     <i class="fas fa-download"></i>
                   </a> | -->
-                  <a href="javascript:;" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Lihat" title="Lihat Berkas">
-                    <i class="fa fa-eye"></i>
-                  </a>
-                </td>
-              </tr>
-            <?php endforeach; ?>
+                    <a href="<?= base_url('PA_laper/view_laporan/') . $lhs['id'] ?>" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Lihat" title="Detail">
+                      <i class="fa fa-eye"></i>
+                    </a>
+                  </td>
+                </tr>
+              <?php endforeach; ?>
 
               <!-- looping data end -->
 

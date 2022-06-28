@@ -22,34 +22,29 @@
     <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="./assets/img/favicon.png">
     <title>
-        Material Dashboard 2 by Creative Tim
+        Laporan Perkara
     </title>
     <!--     Fonts and icons     -->
-    <link rel="stylesheet" type="text/css"
-        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
     <!-- Nucleo Icons -->
-    <link href="./assets/css/nucleo-icons.css" rel="stylesheet" />
-    <link href="./assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link href="<?= base_url('assets/css/nucleo-icons.css') ?>" rel="stylesheet" />
+    <link href="<?= base_url('assets/css/nucleo-svg.css') ?>" rel="stylesheet" />
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/f8c43fa68d.js" crossorigin="anonymous"></script>
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <!-- CSS Files -->
-    <link id="pagestyle" href="./assets/css/material-dashboard.css?v=3.0.3" rel="stylesheet" />
+    <link id="pagestyle" href="<?= base_url('assets/css/material-dashboard.css?v=3.0.3') ?>" rel="stylesheet" />
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
 
     <!-- sidebar -->
-    <aside
-        class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark"
-        id="sidenav-main">
+    <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
         <div class="sidenav-header">
-            <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
-                aria-hidden="true" id="iconSidenav"></i>
-            <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard "
-                target="_blank">
-                <img src="./assets/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
+            <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+            <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard " target="_blank">
+                <img src="<?= base_url('assets/img/logo-ct.png') ?>" class="navbar-brand-img h-100" alt="main_logo">
                 <span class="ms-1 font-weight-bold text-white">Laporan Perkara</span>
             </a>
         </div>
@@ -112,8 +107,7 @@
 
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
         <!-- Navbar -->
-        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur"
-            data-scroll="true">
+        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="true">
             <div class="container-fluid py-1 px-3">
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -140,32 +134,33 @@
             <!-- contonet start -->
 
             <div class="container">
-                <div class="row bg-gray-400 justify-content-start">
+                <?php foreach ($laporan as $lp) : ?>
+                    <div class="row bg-gray-400 justify-content-start">
 
-                    <div class="row mt-3">
-                        <div class="col-md-2">
-                            <p class="fw-bold">Satker</p>
+                        <div class="row mt-3">
+                            <div class="col-md-2">
+                                <p class="fw-bold">Satker</p>
+                            </div>
+                            <div class="col-md-auto">
+                                <p>:</p>
+                            </div>
+                            <div class="col-md-auto">
+                                <p><?php echo $lp['nama']; ?></p>
+                            </div>
                         </div>
-                        <div class="col-md-auto">
-                            <p>:</p>
-                        </div>
-                        <div class="col-md-auto">
-                            <p>Pengadilan Agama Kuta</p>
+                        <div class="row mt-n3">
+                            <div class="col-md-2">
+                                <p class="fw-bold">Periode Laporan</p>
+                            </div>
+                            <div class="col-md-auto">
+                                <p>:</p>
+                            </div>
+                            <div class="col-md-auto">
+                                <p><?php echo $lp['periode']; ?></p>
+                            </div>
                         </div>
                     </div>
-                    <div class="row mt-n3">
-                        <div class="col-md-2">
-                            <p class="fw-bold">Periode Laporan</p>
-                        </div>
-                        <div class="col-md-auto">
-                            <p>:</p>
-                        </div>
-                        <div class="col-md-auto">
-                            <p>Juni 2022</p>
-                        </div>
-                    </div>
-                </div>
-
+                <?php endforeach; ?>
 
                 <div class="row mt-5">
                     <div class="col">
@@ -175,34 +170,26 @@
                                 <table class="table align-items-center mb-0">
                                     <thead>
                                         <tr>
-                                            <th
-                                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 No</th>
-                                            <th
-                                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                                 Laporan</th>
-                                            <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Tgl Kirim
                                             </th>
-                                            <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 File
                                             </th>
-                                            <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Catatan
                                             </th>
-                                            <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 revisi
                                             </th>
-                                            <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Tgl Revisi
                                             </th>
-                                            <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Validasi
                                             </th>
                                         </tr>
@@ -211,52 +198,53 @@
                                         <!-- looping data start -->
 
                                         <!-- first loop -->
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex flex-column justify-content-center">
-                                                    <p class="text-xs text-secondary mb-0 ms-3">1</p>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex flex-column justify-content-center">
-                                                    <h6 class="mb-0 text-xs">Januari</h6>
-                                                    <p class="text-xs text-secondary mb-0">Lap Per Jan 21</p>
-                                                </div>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-normal">23/04/18
-                                                    10:30am</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-normal">
-                                                    <i class="fas fa-file-pdf"></i> |
-                                                    <i class="fas fa-file-excel"></i>
-                                                </span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-success text-xs font-weight-normal">
-                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#catatanModal"><i
-                                                            class="fas fa-clipboard"></i></a>
+                                        <?php $i = 1; ?>
+                                        <?php foreach ($laporan as $lhs) : ?>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <p class="text-xs text-secondary mb-0 ms-3"><?php echo $i++; ?></p>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <h6 class="mb-0 text-xs"><?php echo $lhs['periode']; ?></h6>
+                                                        <p class="text-xs text-secondary mb-0"><?php echo $lhs['berkas_laporan']; ?></p>
+                                                    </div>
+                                                </td>
+                                                <td class="align-middle text-center">
+                                                    <span class="text-secondary text-xs font-weight-normal"><?php echo $lhs['tgl_upload']; ?></span>
+                                                </td>
+                                                <td class="align-middle text-center">
+                                                    <span class="text-secondary text-xs font-weight-normal">
+                                                        <i class="fas fa-file-pdf"></i> |
+                                                        <i class="fas fa-file-excel"></i>
+                                                    </span>
+                                                </td>
+                                                <td class="align-middle text-center">
+                                                    <span class="text-success text-xs font-weight-normal">
+                                                        <a href="#" data-bs-toggle="modal" data-bs-target="#catatanModal"><i class="fas fa-clipboard"></i></a>
 
-                                                </span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-normal">
-                                                    <i class="fas fa-upload"></i> | <i class="fas fa-download"></i>
-                                                </span>
+                                                    </span>
+                                                </td>
+                                                <td class="align-middle text-center">
+                                                    <span class="text-secondary text-xs font-weight-normal">
+                                                        <i class="fas fa-upload"></i> | <i class="fas fa-download"></i>
+                                                    </span>
 
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-normal">
-                                                    28/04/18 10:30am
-                                                </span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-white bg-gradient-success text-xs font-weight-normal">
-                                                    Tervalidasi
-                                                </span>
-                                            </td>
-                                        </tr>
+                                                </td>
+                                                <td class="align-middle text-center">
+                                                    <span class="text-secondary text-xs font-weight-normal">
+                                                        <?php echo $lhs['tgl_terakhir_rev']; ?>
+                                                    </span>
+                                                </td>
+                                                <td class="align-middle text-center">
+                                                    <span id="validate" class="text-white bg-gradient-success text-xs font-weight-normal">
+                                                        <?php echo $lhs['status']; ?>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
                                         <!-- looping data end -->
 
                                     </tbody>
@@ -268,14 +256,12 @@
                 </div>
 
                 <!-- catatanModal start -->
-                <div class="modal fade" id="catatanModal" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="catatanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title font-weight-normal" id="exampleModalLabel">Catatan Perbaikan</h5>
-                                <button type="button" class="btn-close text-dark" data-bs-dismiss="modal"
-                                    aria-label="Close">
+                                <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
@@ -297,8 +283,7 @@
 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn bg-gradient-secondary"
-                                    data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
@@ -336,11 +321,29 @@
     </main>
 
     <!--   Core JS Files   -->
-    <script src="./assets/js/core/popper.min.js"></script>
-    <script src="./assets/js/core/bootstrap.min.js"></script>
-    <script src="./assets/js/plugins/perfect-scrollbar.min.js"></script>
-    <script src="./assets/js/plugins/smooth-scrollbar.min.js"></script>
-    <script src="./assets/js/plugins/chartjs.min.js"></script>
+    <script src="<?= base_url('assets/js/core/popper.min.js') ?>"></script>
+    <script src="<?= base_url('assets/js/core/bootstrap.min.js') ?>"></script>
+    <script src="<?= base_url('assets/js/plugins/perfect-scrollbar.min.js') ?>"></script>
+    <script src="<?= base_url('assets/js/plugins/smooth-scrollbar.min.js') ?>"></script>
+    <script src="<?= base_url('assets/js/plugins/chartjs.min.js') ?>"></script>
+    <!-- <script src="<?= base_url('assets/js/') . $js ?>"></script> -->
+    <script>
+        $(document).ready(function() {
+            loadstatus();
+        });
+
+        function loadstatus() {
+            $.ajax({
+                type: "GET",
+                url: "/PA_laper/get_status",
+                // data: "data",
+                // dataType: "dataType",
+                success: function(response) {
+                    console.log(response.laporan);
+                }
+            });
+        }
+    </script>
     <script>
         var win = navigator.platform.indexOf('Win') > -1;
         if (win && document.querySelector('#sidenav-scrollbar')) {

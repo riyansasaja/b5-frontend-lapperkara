@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 21, 2022 at 08:38 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: Jun 28, 2022 at 07:15 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 7.4.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,102 +24,52 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `catatan_laporan`
+--
+
+CREATE TABLE `catatan_laporan` (
+  `id` int(11) NOT NULL,
+  `laper_id` int(11) DEFAULT NULL,
+  `tgl_catatan` date DEFAULT NULL,
+  `catatan` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `laporan_perkara`
 --
 
 CREATE TABLE `laporan_perkara` (
   `id` int(11) NOT NULL,
   `id_user` int(11) DEFAULT NULL,
+  `periode` varchar(20) DEFAULT NULL,
+  `berkas_laporan` varchar(100) DEFAULT NULL,
   `laper_pdf` varchar(100) DEFAULT NULL,
   `laper_xls` varchar(100) DEFAULT NULL,
-  `periode` varchar(20) DEFAULT NULL,
   `tgl_upload` date DEFAULT NULL,
-  `status` varchar(50) DEFAULT NULL,
-  `comment` longtext DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `rev_laporan_perkara`
---
-
-CREATE TABLE `rev_laporan_perkara` (
-  `id` int(11) NOT NULL,
-  `laper_id` int(11) DEFAULT NULL,
   `tgl_terakhir_rev` date DEFAULT NULL,
-  `rev_pdf` varchar(100) DEFAULT NULL,
-  `rev_xls` varchar(100) DEFAULT NULL
+  `status` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `laporan_perkara`
+--
+
+INSERT INTO `laporan_perkara` (`id`, `id_user`, `periode`, `berkas_laporan`, `laper_pdf`, `laper_xls`, `tgl_upload`, `tgl_terakhir_rev`, `status`) VALUES
+(1, 3, '2022-06', 'Lap Per 2022-06', 'IKM_IPK_TERBARU2.pdf', 'REGISTER_PONEK_VK1.xlsx', '2022-06-17', NULL, 'Tervalidasi');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rev_triwulan_laporan`
+-- Table structure for table `revisi_laporan`
 --
 
-CREATE TABLE `rev_triwulan_laporan` (
-  `id` int(11) NOT NULL,
-  `triwulan_id` int(11) DEFAULT NULL,
-  `rev_keuangan_pdf` varchar(11) DEFAULT NULL,
-  `rev_keuangan_xls` varchar(11) DEFAULT NULL,
-  `rev_mejainformasi_pdf` varchar(11) DEFAULT NULL,
-  `rev_mejainformasi_xls` varchar(11) DEFAULT NULL,
-  `rev_pengaduan_pdf` varchar(11) DEFAULT NULL,
-  `rev_pengaduan_xls` varchar(11) DEFAULT NULL,
-  `tgl_rev_triwulan` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `rktriwulan_lap_perkara`
---
-
-CREATE TABLE `rktriwulan_lap_perkara` (
-  `id` int(11) NOT NULL,
-  `rk_id` int(11) DEFAULT NULL,
-  `rk_keuangan_pdf` varchar(100) DEFAULT NULL,
-  `rk_keuangan_xls` varchar(100) DEFAULT NULL,
-  `rk_mejainformasi_pdf` varchar(100) DEFAULT NULL,
-  `rk_mejainformasi_xls` varchar(100) DEFAULT NULL,
-  `rk_pengaduan_pdf` varchar(100) DEFAULT NULL,
-  `rk_pengaduan_xls` varchar(100) DEFAULT NULL,
-  `rk_penilaianbanding_pdf` varchar(100) DEFAULT NULL,
-  `rk_penilaianbanding_xls` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `rk_lap_perkara`
---
-
-CREATE TABLE `rk_lap_perkara` (
-  `id` int(11) NOT NULL,
-  `id_user` int(11) DEFAULT NULL,
-  `bulan` varchar(20) DEFAULT NULL,
-  `rk_pdf` varchar(100) DEFAULT NULL,
-  `rk_xls` varchar(100) DEFAULT NULL,
-  `tgl_upload` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `triwulan_lap_perkara`
---
-
-CREATE TABLE `triwulan_lap_perkara` (
+CREATE TABLE `revisi_laporan` (
   `id` int(11) NOT NULL,
   `laper_id` int(11) DEFAULT NULL,
-  `lap_keuangan_pdf` varchar(100) DEFAULT NULL,
-  `lap_keuangan_xls` varchar(100) DEFAULT NULL,
-  `lap_mejainformasi_pdf` varchar(100) DEFAULT NULL,
-  `lap_mejainformasi_xls` varchar(100) DEFAULT NULL,
-  `lap_pengaduan_pdf` varchar(100) DEFAULT NULL,
-  `lap_pengaduan_xls` varchar(100) DEFAULT NULL,
-  `tgl_upload` date DEFAULT NULL
+  `rev_pdf` varchar(250) DEFAULT NULL,
+  `rev_xls` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -157,7 +107,7 @@ INSERT INTO `users` (`id`, `nama`, `email`, `username`, `password`, `role_id`, `
 (10, 'Pengadilan Agama Tahuna', 'patahuna3@gmail.com', 'pa-tahuna', '$2y$10$R80xcFUpZPXovPrrZuNpi.Yz5O.w3WxIz4NP6iIri0XtQvNLveB76', 2, 'PA.Thn', 1, '2021-05-27'),
 (11, 'Pengadilan Agama Bitung', '', 'pa-bitung', '$2y$10$zKNxC63heZCgpGadi9mWVO9.zBp5FcUE/mjdJjMrDBj/z/6IctVue', 2, 'PA.Btg', 1, '2021-05-27'),
 (22, 'Drs. H. Abdul Hakim, M.HI.', '', 'ht-hakim', '$2y$10$Iqkt35Uui8ZrhmrPJPwlVOKawxfckxMdcRyQ/ybhU1VqHbsWzARR.', 3, '', 1, NULL),
-(25, 'Riyan', 'riyanboyuhu@gmail.com', 'riyan', '$2y$10$zBqkwdXsGc5dNraCKR5ucepPHX5znT6UlGhIJM7dqv0rXbFzISLw6', 1, '', 1, NULL),
+(25, 'Riyan', 'riyanboyuhu@gmail.com', 'riyan', '$2y$10$AuEU9Y6Fovtx7cqa78YHse7jWdjP0qIWABfgR6mKCZ3UbvQMewcym', 3, '', 1, NULL),
 (26, 'Dedy', 'papah.dika@gmail.com', 'dedy', '$2y$10$kvHN/pCmOg27OaahgAmrb.1d0leqCuHxUOgYjx.Rz1y8/3s25/Zr6', 1, '', 1, NULL),
 (28, ' Drs.H. Muhamad Camuda, M.H.', '', 'ht-camuda', '$2y$10$oFjGVOMKpRFLb05R/QV5WuaSQihQb.iiyhEa/AYeaV9WWda97zYKO', 3, '', 1, NULL),
 (29, 'Dr. H. Barmawi, M.H.', '', 'ht-barmawi', '$2y$10$OH7hcK0u64ACNdWhjMsCFeK60b/7lOQNrrL2WohYd.b/ABSwDwnAW', 3, '', 1, NULL),
@@ -165,19 +115,12 @@ INSERT INTO `users` (`id`, `nama`, `email`, `username`, `password`, `role_id`, `
 (31, ' Drs. H. Wachid Ridwan, M.H.', '', 'ht-wachid', '$2y$10$oPHSMZQSH3kmnanurlFjKeR/5T0CQ.M1pTd5ktRlarcMVKRDRjLFa', 3, '', 1, NULL),
 (32, 'Drs. Faizal Kamil,S.H.,M.H.', '', 'ht-faizal', '$2y$10$6Rb2U0acG23hoZoahMFUfuS/.h0Y2VSLQdLEE9KSOal2FGFhkpmpe', 3, '', 1, NULL),
 (34, 'Iskandar Paputungan', 'iskandar@.com', 'ht-iskandar', '$2y$10$i8Jgi54G1Op9620XgoOcsOeYSC9EvFWJjCwMKs./lu361yc.7hyz6', 3, '', 1, NULL),
-(35, 'Damsir', 'damsir@gmail.com', 'wk-damsir', '$2y$10$FJE03Bkzei.azZGZm/9PSO6cifuFVINWQ8t6CCsbjoMVBXrjRIQ4e', 3, '', 1, NULL),
+(35, 'Muhammad Alwi', 'alwi@gmail.com', 'ht-alwi', '$2y$10$ykJ7H3kTChw1UeXDlXP4Y.aGoRavkP.iRcKAaWZlSxT7YIG7d5E1C', 3, '', 1, NULL),
 (36, 'Pengadilan Agama Percobaan', '', 'pa-percobaan', '$2y$10$JPTNRHK/FEP0akWoVeoXUeELQdfZYrMkFg2YwX2EBSCp8rAwF4rjy', 2, 'PA.Per', 1, NULL),
 (37, 'Hasbiah', '', 'pm-hasbiah', '$2y$10$0zIjxIJCI9ITIKDSJCUXqe8Y9GJMxFetU.LLOyL3/XmvktXiCqvD6', 4, '', 1, NULL),
 (38, 'Hakim Percobaan', '', 'ht-percobaan', '$2y$10$yN4U93XVthSP9j4.g/mocOR36k6Chvlm93eJZGresXUFRx2VTiNwi', 3, '', 1, NULL),
-(39, 'Bambang Suroso', '', 'pp-bambang', '$2y$10$teMlwxqq4uWcH6epgK21teqpqNvVx./.Ry5eugltGQyfvKJ5db4LC', 5, '', 1, NULL),
-(40, 'Dra.Hj.Sa\'i Sumaila', '', 'pp-sai', '$2y$10$5VjXU0.3/meWjLSObwx4iOC5jqtHTq56rPtRnog.jn1cPsG8rKNpW', 5, '', 1, NULL),
-(41, 'Musa Antu, S.H.', '', 'pp-musa', '$2y$10$IJKUdS58DCtoIL42enDqYudohdUyzjoAiHyMlAkNOnfuru8LkAqJC', 5, '', 1, NULL),
-(42, 'Hj. Rusna Poli, S.H., M.H.', '', 'pp-rusna', '$2y$10$dxQFHOFaB7rZyrXMf2p.d.jXNjFGEFL2aURggzwNdYc5H/rKfNA/q', 5, '', 1, NULL),
-(43, ' Masita Mayang, S.Ag.', '', 'pp-masita', '$2y$10$xsyRCZ7YDQ98AWEYsM.xbuldyaHvyFlocPi1gyFX5CnQ1CRdlP25e', 5, '', 1, NULL),
-(44, 'Rosna Ali, S.Ag.', '', 'pp-rosna', '$2y$10$EdTrXbcCGDko54Q64WiSbOncXHkgRZxduHqyQszlBDtvMn8VBnntO', 5, '', 1, NULL),
-(45, 'Drs. Abdul Haris Makaminan', '', 'pp-haris', '$2y$10$CpqojFYJbtcfWeUWwCodz.F/sGXFPtZ.T1LetIFeayDs3iEqnzYfa', 5, '', 1, NULL),
-(46, 'Drs. H. DAMSIR, S.H., M.H.', 'damsir.md@gmail.com', 'Damsir', '$2y$10$I7Uh/QnkSru0ie9ts0blqu0zyTLAh1fvOe9SR9DMCT4HQYwSBDsdm', 3, '', 1, NULL),
-(47, 'naja', '', 'st-naja', '$2y$10$BQyz2mPttNfhsatZVm4QbevO397HMm0ld2HSvvCzcaO630uXxssCC', 1, '', 1, NULL);
+(39, 'Bambang Suroso', '', 'pp-bambang', '$2y$10$uAhZZTwlmLOfsx0mPVYjzOQVJeWcX2oMbfzdqj7a/v7yDwMOtS02e', 5, '', 1, NULL),
+(40, 'Musa Antu', '', 'pp-musa', 'pta123', 5, '', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -197,45 +140,23 @@ CREATE TABLE `user_token` (
 --
 
 --
+-- Indexes for table `catatan_laporan`
+--
+ALTER TABLE `catatan_laporan`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `laper_id` (`laper_id`);
+
+--
 -- Indexes for table `laporan_perkara`
 --
 ALTER TABLE `laporan_perkara`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `rev_laporan_perkara`
+-- Indexes for table `revisi_laporan`
 --
-ALTER TABLE `rev_laporan_perkara`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `laper_id` (`laper_id`);
-
---
--- Indexes for table `rev_triwulan_laporan`
---
-ALTER TABLE `rev_triwulan_laporan`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `triwulan_id` (`triwulan_id`);
-
---
--- Indexes for table `rktriwulan_lap_perkara`
---
-ALTER TABLE `rktriwulan_lap_perkara`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `rk_id` (`rk_id`);
-
---
--- Indexes for table `rk_lap_perkara`
---
-ALTER TABLE `rk_lap_perkara`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_user` (`id_user`);
-
---
--- Indexes for table `triwulan_lap_perkara`
---
-ALTER TABLE `triwulan_lap_perkara`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `laper_id` (`laper_id`);
+ALTER TABLE `revisi_laporan`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -254,86 +175,44 @@ ALTER TABLE `user_token`
 --
 
 --
+-- AUTO_INCREMENT for table `catatan_laporan`
+--
+ALTER TABLE `catatan_laporan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `laporan_perkara`
 --
 ALTER TABLE `laporan_perkara`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `rev_laporan_perkara`
+-- AUTO_INCREMENT for table `revisi_laporan`
 --
-ALTER TABLE `rev_laporan_perkara`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `rev_triwulan_laporan`
---
-ALTER TABLE `rev_triwulan_laporan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `rktriwulan_lap_perkara`
---
-ALTER TABLE `rktriwulan_lap_perkara`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `rk_lap_perkara`
---
-ALTER TABLE `rk_lap_perkara`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `triwulan_lap_perkara`
---
-ALTER TABLE `triwulan_lap_perkara`
+ALTER TABLE `revisi_laporan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `user_token`
 --
 ALTER TABLE `user_token`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `rev_laporan_perkara`
+-- Constraints for table `catatan_laporan`
 --
-ALTER TABLE `rev_laporan_perkara`
-  ADD CONSTRAINT `rev_laporan_perkara_ibfk_1` FOREIGN KEY (`laper_id`) REFERENCES `laporan_perkara` (`id`);
-
---
--- Constraints for table `rev_triwulan_laporan`
---
-ALTER TABLE `rev_triwulan_laporan`
-  ADD CONSTRAINT `rev_triwulan_laporan_ibfk_1` FOREIGN KEY (`triwulan_id`) REFERENCES `triwulan_lap_perkara` (`id`);
-
---
--- Constraints for table `rktriwulan_lap_perkara`
---
-ALTER TABLE `rktriwulan_lap_perkara`
-  ADD CONSTRAINT `rktriwulan_lap_perkara_ibfk_1` FOREIGN KEY (`rk_id`) REFERENCES `rk_lap_perkara` (`id`);
-
---
--- Constraints for table `rk_lap_perkara`
---
-ALTER TABLE `rk_lap_perkara`
-  ADD CONSTRAINT `rk_lap_perkara_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);
-
---
--- Constraints for table `triwulan_lap_perkara`
---
-ALTER TABLE `triwulan_lap_perkara`
-  ADD CONSTRAINT `triwulan_lap_perkara_ibfk_1` FOREIGN KEY (`laper_id`) REFERENCES `laporan_perkara` (`id`);
+ALTER TABLE `catatan_laporan`
+  ADD CONSTRAINT `catatan_laporan_ibfk_1` FOREIGN KEY (`laper_id`) REFERENCES `laporan_perkara` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

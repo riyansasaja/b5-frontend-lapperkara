@@ -4,7 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class PA_laper extends CI_Controller
 {
 
-     public function __construct()
+    public function __construct()
     {
         parent::__construct();
 
@@ -31,6 +31,26 @@ class PA_laper extends CI_Controller
     //     ];
     //     echo json_encode($result);
     // }
+
+    public function view_laporan($id)
+    {
+        // $data['js'] = 'user_pa.js';
+        $data['laporan'] = $this->m_laper->get_user_laporan();
+
+        //user id tidak sesuai
+        if ($this->session->userdata('id') != $data['laporan'][0]['id_user']) {
+            redirect('PA_laper');
+        } else {
+            $this->load->view('PA/actionview', $data);
+        }
+    }
+
+    public function get_status()
+    {
+        // $id = $this->input->post('id');
+        $data['laporan'] = $this->m_laper->get_data();
+        echo json_encode($data);
+    }
 
     public function add_laporan_perkara()
     {

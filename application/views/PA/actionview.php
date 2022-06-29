@@ -134,7 +134,7 @@
             <!-- contonet start -->
 
             <div class="container">
-                <?php foreach ($user as $lp) : ?>
+                <?php foreach ($laporan as $lp) : ?>
                     <div class="row bg-gray-400 justify-content-start">
 
                         <div class="row mt-3">
@@ -217,8 +217,8 @@
                                                 </td>
                                                 <td class="align-middle text-center">
                                                     <span class="text-secondary text-xs font-weight-normal">
-                                                        <i href="#!" data-bs-toggle="modal" data-bs-target="#modalPdf" data-id="<?= $laporan['0']['kode_pa']?> <?=$laporan['0']['periode']?>/<?= $laporan['0']['laper_pdf']?>" class="fas fa-file-pdf"></i> |
-                                                        <a href="<?php echo base_url()?>index.php/PA_laper/download_xls/<?=$laporan['0']['id']?>" class="fas fa-file-excel"><?php echo $lhs['id']; ?></a>
+                                                        <a href="#!" data-bs-toggle="modal" data-bs-target="#modalPdf" data-id="<?= $laporan['0']['kode_pa'] ?> <?= $laporan['0']['periode'] ?>/<?= $laporan['0']['laper_pdf'] ?>" class="fas fa-file-pdf"></a> |
+                                                        <a href="<?php echo base_url() ?>index.php/PA_laper/download_xls/<?= $laporan['0']['id'] ?>" class="fas fa-file-excel"></a>
                                                     </span>
                                                 </td>
                                                 <td class="align-middle text-center">
@@ -229,7 +229,7 @@
                                                 </td>
                                                 <td class="align-middle text-center">
                                                     <span class="text-secondary text-xs font-weight-normal">
-                                                        <i class="fas fa-upload"></i> | <i class="fas fa-download"></i>
+                                                        <a href="#" data-bs-toggle="modal" data-bs-target="#revisiModal" class="fas fa-upload"></a> | <a href="<?php echo base_url() ?>index.php/PA_laper/zip_file/" class="fas fa-download"></a>
                                                     </span>
 
                                                 </td>
@@ -292,52 +292,96 @@
 
                 <!-- //modal tampil pdf -->
 
-      <div class="modal fade" id="modalPdf" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-fullscreen" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Berkas Perkara</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" id="tampil">
-                   
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary mx-auto" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- end modal tampil pdf -->
+                <div class="modal fade" id="modalPdf" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-fullscreen" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Berkas Perkara</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body" id="tampil">
 
 
-            </div>
-
-
-
-
-
-            <!-- content end -->
-
-
-            <footer class="footer py-4  ">
-                <div class="container-fluid">
-                    <div class="row align-items-center justify-content-lg-between">
-                        <div class="col-lg-6 mb-lg-0 mb-4">
-                            <div class="copyright text-center text-sm text-muted text-lg-start">
-                                ©
-                                <script>
-                                    document.write(new Date().getFullYear())
-                                </script>,
-                                made with <i class="fa fa-heart"></i> and Free by
-                                Sasaja
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary mx-auto" data-bs-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </footer>
+
+                <!-- end modal tampil pdf -->
+
+                <!-- modal -->
+                <div class="modal fade" id="revisiModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title font-weight-normal" id="exampleModalLabel">Revisi Laporan Perkara</h5>
+                                <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- form start -->
+                                <?php foreach ($laporan as $lp) : ?>
+                                    <form method="POST" action="<?php echo base_url('PA_laper/revisi_laporan_perkara'); ?>" enctype="multipart/form-data">
+
+                                        <input type="hidden" class="form-controll" value="<?php echo $lp['id'] ?>" name="id">
+                                        <input type="hidden" class="form-controll" value="<?php echo $lp['periode'] ?>" name="periode">
+
+                                        <div class="input-group input-group-static my-3">
+                                            <label for="upload-pdf">Upload file PDF</label>
+                                            <input id="upload-pdf" type="file" name="file1" class="form-control">
+                                        </div>
+                                        <div class="input-group input-group-static my-3">
+                                            <label for="upload-zip">Upload file XLS</label>
+                                            <input id="upload-zip" type="file" name="file2" class="form-control">
+                                        </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Batal</button>
+                                <button type="submit" class="btn bg-gradient-primary">Simpan</button>
+                            </div>
+                            </form>
+                        <?php endforeach; ?>
+                        <!-- form end -->
+                        </div>
+                    </div>
+                </div>
+                <!-- modal -->
+
+            </div>
+        </div>
+        <!-- modal end -->
+
+
+        </div>
+
+
+
+
+
+        <!-- content end -->
+
+
+        <footer class="footer py-4  ">
+            <div class="container-fluid">
+                <div class="row align-items-center justify-content-lg-between">
+                    <div class="col-lg-6 mb-lg-0 mb-4">
+                        <div class="copyright text-center text-sm text-muted text-lg-start">
+                            ©
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script>,
+                            made with <i class="fa fa-heart"></i> by
+                            Tim IT PTA Manado
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
 
         </div>
     </main>
@@ -351,7 +395,7 @@
     <!-- javascript -->
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="<?= base_url('assets/js/') . $js ?>"></script>
-   <!--  <script>
+    <!--  <script>
         $(document).ready(function() {
             loadstatus();
         });

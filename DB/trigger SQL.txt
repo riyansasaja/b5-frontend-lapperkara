@@ -1,0 +1,6 @@
+// view user laporan
+
+CREATE VIEW v_user_laporan AS
+SELECT laporan_perkara.*, users.nama, users.kode_pa from laporan_perkara JOIN users ON laporan_perkara.id_user = users.id
+
+//end

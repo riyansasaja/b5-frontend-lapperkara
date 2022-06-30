@@ -1,16 +1,16 @@
-$(document).ready(function () {
-	// const prapath = window.location.origin;
-	// const path = `../../PA_laper/`;
+// $(document).ready(function () {
+// 	// const prapath = window.location.origin;
+// 	// const path = `../../PA_laper/`;
 
-	const path = window.location.origin + '/b5-frontend-lapperkara/';
-	console.log(path);
+// 	const path = window.location.origin + '/b5-frontend-lapperkara/';
+// 	console.log(path);
 	
-	$('#modalPdf').on('show.bs.modal', function (e) {
-        let getdata = $(e.relatedTarget).data('id');
-        console.log(getdata);
-        let tampil = `<embed src="${path}/assets/files/${getdata}" type="application/pdf" width="100%" height="100%">`
-        $('#tampil').html(tampil);
-    })
+// 	$('#modalPdf').on('show.bs.modal', function (e) {
+//         let getdata = $(e.relatedTarget).data('id');
+//         console.log(getdata);
+//         let tampil = `<embed src="${path}/assets/files/${getdata}" type="application/pdf" width="100%" height="100%">`
+//         $('#tampil').html(tampil);
+//     })
 
 	// let url = window.location.href;
 
@@ -51,7 +51,7 @@ $(document).ready(function () {
 	// 		}
 	// 	]
 	// })
-});
+// });
 
 
 

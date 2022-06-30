@@ -15,14 +15,4 @@ class M_laper extends CI_model
         return $query;
     }
 
-    public function get_user_laporan()
-    {
-        $id = $this->session->userdata('id');
-        $this->db->select('*');
-        $this->db->from('laporan_perkara');
-        $this->db->where('id_user', $id);
-        $this->db->join('users', 'users.id = laporan_perkara.id_user');
-        $query = $this->db->get()->result_array();
-        return $query;
-    }
 }

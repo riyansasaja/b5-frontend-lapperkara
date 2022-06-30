@@ -8,6 +8,8 @@ class PA_laper extends CI_Controller
     {
         parent::__construct();
 
+        $this->load->library('zip');
+
         //usir user yang ga punya session
         if (!$this->session->userdata('id') || $this->session->userdata('role_id') != 2) {
             redirect('auth');
@@ -55,7 +57,7 @@ class PA_laper extends CI_Controller
 
 
         if ($data['laporan'][0]['laper_xls'] != null) {
-            force_download("assets/files/$folder/" . $data['laporan'][0]['laper_xls'], null);
+            force_download("files_laporan/$folder/" . $data['laporan'][0]['laper_xls'], null);
         } else {
             $this->session->set_flashdata('msg', 'Belum ada laporan');
             redirect('PA_laper/view_laporan');
@@ -64,30 +66,22 @@ class PA_laper extends CI_Controller
 
     public function zip_file()
     {
-        $this->load->library('zip');
-
+       
         $data['laporan'] = $this->m_laper->get_data();
         $satker = $this->session->userdata('kode_pa');
         $periode = $data['laporan'][0]['periode'];
-        $file = $data['laporan'][0]['laper_xls'];
         $folder = "$satker $periode";
 
-        $path = '/assets/files/PA.Tty 2022-06/revisi/';
-        // var_dump($path);
-        // die;
+        $path = "./files_laporan/$folder/revisi/";
 
-        $this->zip->read_dir($path);
+        if (file_exists($path)) {
+            $this->zip->read_dir($path);
 
-        // Download the file to your desktop. Name it "my_backup.zip"
-        $this->zip->download('revisi.zip');
-        // if (!file_exists($path)) {
-        //     $this->zip->read_dir($path);
-
-        //     // Download the file to your desktop. Name it "my_backup.zip"
-        //     $this->zip->download("$path.zip");
-        // } else {
-        //     $this->session->set_flashdata('msg', 'Tidak ada Revisi');
-        // }
+            // Download the file to your desktop
+            $this->zip->download("$folder-revisi.zip");
+        } else {
+            $this->session->set_flashdata('msg', 'Tidak ada Revisi');
+        }
     }
 
     public function get_status()
@@ -106,7 +100,7 @@ class PA_laper extends CI_Controller
         $berkas = "Lap Per $periode";
         $satker = $this->session->userdata('kode_pa');
         $folder = "$satker $periode";
-        $path = "./assets/files/$folder";
+        $path = "./files_laporan/$folder";
 
         if (!file_exists($path)) {
             mkdir($path);
@@ -114,7 +108,7 @@ class PA_laper extends CI_Controller
 
 
 
-        $config['upload_path']          = "./assets/files/$folder/";
+        $config['upload_path']          = "./files_laporan/$folder/";
         $config['allowed_types']        = 'pdf|xlsx';
         $config['max_size']             = 5024;
         $this->load->library('upload', $config);
@@ -171,7 +165,7 @@ class PA_laper extends CI_Controller
             mkdir($path);
         }
 
-        $config['upload_path']          = "./assets/files/$folder/revisi/";
+        $config['upload_path']          = "./files_laporan/$folder/revisi/";
         $config['allowed_types']        = 'pdf|xlsx';
         $config['max_size']             = 5024;
         $this->load->library('upload', $config);

@@ -266,21 +266,15 @@
                                 </button>
                             </div>
                             <div class="modal-body">
+                                
+                                <?php foreach ($catatan as $ct) : ?>
                                 <div class="card card-frame mb-2">
                                     <div class="card-body">
-                                        <h6>Lipa 4</h6>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit, blanditiis.
-                                            Sequi, provident.</p>
+                                        <h6><?php echo $ct['tgl_catatan']; ?></h6>
+                                        <p><?php echo $ct['catatan']; ?></p>
                                     </div>
                                 </div>
-                                <div class="card card-frame mb-2">
-                                    <div class="card-body">
-                                        <h6>Lipa 8</h6>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit, blanditiis.
-                                            Sequi, provident.</p>
-                                    </div>
-                                </div>
-
+                                <?php endforeach; ?>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>

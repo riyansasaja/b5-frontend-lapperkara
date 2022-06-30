@@ -37,7 +37,9 @@ class PA_laper extends CI_Controller
     public function view_laporan($id)
     {
         $data['js'] = 'modalpdf.js';
+        $data['js'] = 'user_pa.js';
         $data['laporan'] = $this->db->get_where('v_user_laporan', ['id' => $id])->result_array();
+        $data['catatan'] = $this->db->get_where('catatan_laporan', ['laper_id' => $id])->result_array();
 
         //user id tidak sesuai
         if ($this->session->userdata('id') != $data['laporan'][0]['id_user']) {

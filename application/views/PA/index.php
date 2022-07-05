@@ -38,6 +38,9 @@
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
+  <!-- sweetalert -->
+  <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
+  <div class="flash-data2" data-flashdata="<?= $this->session->flashdata('msg'); ?>"></div>
 
   <!-- sidebar -->
   <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
@@ -146,10 +149,10 @@
               <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 Pilih Tahun
               </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="#">2022</a></li>
-                <li><a class="dropdown-item" href="#">2023</a></li>
-                <li><a class="dropdown-item" href="#">2024</a></li>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" id="tahun">
+                <li><a class="dropdown-item" href="#" value="1">2022</a></li>
+                <li><a class="dropdown-item" href="#" value="2">2023</a></li>
+                <li><a class="dropdown-item" href="#" value="3">2024</a></li>
               </ul>
             </div>
           </div>
@@ -304,6 +307,8 @@
   <script src="<?= base_url('assets/js/plugins/perfect-scrollbar.min.js') ?>"></script>
   <script src="<?= base_url('assets/js/plugins/smooth-scrollbar.min.js') ?>"></script>
   <script src="<?= base_url('assets/js/plugins/chartjs.min.js') ?>"></script>
+  <!-- sweet alert -->
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {

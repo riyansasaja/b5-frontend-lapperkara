@@ -39,6 +39,10 @@
 
 <body class="g-sidenav-show  bg-gray-200">
 
+    <!-- sweetalert -->
+    <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
+    <div class="flash-data2" data-flashdata="<?= $this->session->flashdata('msg'); ?>"></div>
+
     <!-- sidebar -->
     <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
         <div class="sidenav-header">
@@ -239,9 +243,15 @@
                                                     </span>
                                                 </td>
                                                 <td class="align-middle text-center">
-                                                    <span id="validate" class="text-white bg-gradient-success text-xs font-weight-normal">
-                                                        <?php echo $lhs['status']; ?>
-                                                    </span>
+                                                    <?php if ($lhs['status'] == "Belum Validasi") : ?>
+                                                        <span id="validate" class="text-white bg-gradient-danger text-xs font-weight-normal">
+                                                            <?php echo $lhs['status']; ?>
+                                                        </span>
+                                                    <?php else : ?>
+                                                        <span id="validate" class="text-white bg-gradient-success text-xs font-weight-normal">
+                                                            <?php echo $lhs['status']; ?>
+                                                        </span>
+                                                    <?php endif; ?>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -266,14 +276,14 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                
+
                                 <?php foreach ($catatan as $ct) : ?>
-                                <div class="card card-frame mb-2">
-                                    <div class="card-body">
-                                        <h6><?php echo $ct['tgl_catatan']; ?></h6>
-                                        <p><?php echo $ct['catatan']; ?></p>
+                                    <div class="card card-frame mb-2">
+                                        <div class="card-body">
+                                            <h6><?php echo $ct['tgl_catatan']; ?></h6>
+                                            <p><?php echo $ct['catatan']; ?></p>
+                                        </div>
                                     </div>
-                                </div>
                                 <?php endforeach; ?>
                             </div>
                             <div class="modal-footer">
@@ -386,22 +396,25 @@
     <script src="<?= base_url('assets/js/plugins/perfect-scrollbar.min.js') ?>"></script>
     <script src="<?= base_url('assets/js/plugins/smooth-scrollbar.min.js') ?>"></script>
     <script src="<?= base_url('assets/js/plugins/chartjs.min.js') ?>"></script>
+    <!-- sweet alert -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- javascript -->
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="<?= base_url('assets/js/') . $js ?>"></script>
-    <!--  <script>
+    <script src="<?= base_url('assets/js/') . $js2 ?>"></script>
+    <!-- <script>
         $(document).ready(function() {
             loadstatus();
         });
 
         function loadstatus() {
             $.ajax({
-                type: "GET",
-                url: "/PA_laper/get_status",
+                type: "POST",
+                url: '<?php echo base_url() . "index.php/PA_laper/get_status" ?>',
                 // data: "data",
-                // dataType: "dataType",
+                dataType: "json",
                 success: function(response) {
-                    console.log(response.laporan);
+                    console.log(response);
                 }
             });
         }

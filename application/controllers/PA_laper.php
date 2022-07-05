@@ -18,28 +18,19 @@ class PA_laper extends CI_Controller
 
     public function index()
     {
+        $data['js'] = 'status.js';
         $data['laporan'] = $this->m_laper->get_data();
 
         $this->load->view('PA/index', $data);
     }
 
-    // public function get_data()
-    // {
-    //     $data = $this->m_laper->get_data();
-    //     $result = [
-    //         'response' => 'success',
-    //         'code' => '600',
-    //         'data' => $data
-    //     ];
-    //     echo json_encode($result);
-    // }
-
     public function view_laporan($id)
     {
         $data['js'] = 'modalpdf.js';
-        $data['js'] = 'user_pa.js';
+        // $data['js2'] = 'status.js';
         $data['laporan'] = $this->db->get_where('v_user_laporan', ['id' => $id])->result_array();
         $data['catatan'] = $this->db->get_where('catatan_laporan', ['laper_id' => $id])->result_array();
+
 
         //user id tidak sesuai
         if ($this->session->userdata('id') != $data['laporan'][0]['id_user']) {
@@ -68,7 +59,7 @@ class PA_laper extends CI_Controller
 
     public function zip_file()
     {
-       
+
         $data['laporan'] = $this->m_laper->get_data();
         $satker = $this->session->userdata('kode_pa');
         $periode = $data['laporan'][0]['periode'];
@@ -90,7 +81,8 @@ class PA_laper extends CI_Controller
     {
         // $id = $this->input->post('id');
         $data['laporan'] = $this->m_laper->get_data();
-        echo json_encode($data);
+        $status = $data['laporan'][0]['status'];
+        echo json_encode($status);
     }
 
     public function add_laporan_perkara()
@@ -102,6 +94,7 @@ class PA_laper extends CI_Controller
         $berkas = "Lap Per $periode";
         $satker = $this->session->userdata('kode_pa');
         $folder = "$satker $periode";
+        $status = "Belum Validasi";
         $path = "./files_laporan/$folder";
 
         if (!file_exists($path)) {
@@ -145,7 +138,8 @@ class PA_laper extends CI_Controller
             'tgl_upload' => $tanggal,
             'periode' => $periode,
             'laper_pdf' => $laper_pdf,
-            'laper_xls' => $laper_xls
+            'laper_xls' => $laper_xls,
+            'status' => $status
         ];
 
         $this->db->insert('laporan_perkara', $data);
@@ -161,7 +155,7 @@ class PA_laper extends CI_Controller
         $periode = $this->input->post('periode', true);
         $satker = $this->session->userdata('kode_pa');
         $folder = "$satker $periode";
-        $path = "./assets/files/$folder/revisi";
+        $path = "./files_laporan/$folder/revisi";
 
         if (!file_exists($path)) {
             mkdir($path);

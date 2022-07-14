@@ -21,3 +21,16 @@ END
 //end
 
 ALTER TABLE revisi_laporan add FOREIGN KEY(laper_id) REFERENCES laporan_perkara(id);
+
+//create trigger for tgl_terakhir_rev
+DELIMITER $$
+CREATE TRIGGER tgl_rev
+    AFTER INSERT 
+    ON revisi_laporan
+    FOR EACH ROW 
+BEGIN
+    update laporan_perkara set tgl_terakhir_rev = CURDATE() where id = new.laper_id;
+END$$
+DELIMITER ;
+
+// --

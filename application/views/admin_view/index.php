@@ -92,21 +92,25 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     <tbody>
                         <!-- looping data start -->
 
-                        <?php
+                        <!-- <?php
                         for ($i = 1; $i < 6; $i++) :
-                        ?>
+                        ?> -->
+                        <?php $i = 1; ?>
+                        <?php foreach ($nama_user as $nm) : ?>
 
                             <tr class="text-center">
                                 <td>
                                     <div class="d-flex flex-column justify-content-center">
-                                        <p class="text-xs text-secondary mb-0 ms-3"><?= $i + 1; ?></p>
+                                        <p class="text-xs text-secondary mb-0 ms-3"><?php echo $i++; ?></p>
                                     </div>
                                 </td>
+                                
                                 <td>
                                     <div class="d-flex flex-column justify-content-center">
-                                        <p class="text-xs text-secondary mb-0">PA. Antah Berantah</p>
+                                        <p class="text-xs text-secondary mb-0"><?php echo $nm['nama']; ?></p>
                                     </div>
                                 </td>
+                                
                                 <td>
                                     <div class="d-flex flex-column justify-content-center">
                                         <a href="<?= base_url('admin/view_document') ?>">
@@ -173,7 +177,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                 </td>
 
                             </tr>
-                        <?php endfor; ?>
+                            <?php endforeach; ?>
+
+                        <!-- <?php endfor; ?> -->
 
 
 

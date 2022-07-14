@@ -38,4 +38,18 @@ class M_laper extends CI_model
         $query = $this->db->get()->result_array();
         return $query;
     }
+
+    public function get_nama_user(){
+
+        $this->db->select('nama');
+        $this->db->from('users');
+        $this->db->order_by('id', 'ASC');
+        $this->db->where('role_id', '2');
+        $query = $this->db->get()->result_array();
+        return $query;
+    }
+
+    public function get_laper(){
+        
+    }
 }

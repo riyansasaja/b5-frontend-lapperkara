@@ -7,9 +7,16 @@ class Admin extends CI_Controller
     public function index()
     {
         $data['js'] = '';
+        $data['nama_user'] = $this->m_laper->get_nama_user();
+
+        // foreach($data['nama_user'] as $nm){
+        //     $data['laper'] = $this->m_laper->
+        // }
+
+
         $this->load->view('templates/header');
         $this->load->view('templates/sideadmin');
-        $this->load->view('admin_view/index');
+        $this->load->view('admin_view/index', $data);
         $this->load->view('templates/footer', $data);
     }
 

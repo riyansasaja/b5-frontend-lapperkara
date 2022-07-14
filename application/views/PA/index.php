@@ -70,7 +70,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white active bg-gradient-primary" href="./pages/billing.html">
+          <a class="nav-link text-white active bg-gradient-primary" href="<?php echo base_url('PA_laper'); ?>">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="fas fa-calendar"></i>
             </div>
@@ -150,9 +150,12 @@
                 Pilih Tahun
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" id="tahun">
-                <li><a class="dropdown-item" href="#" value="1">2022</a></li>
-                <li><a class="dropdown-item" href="#" value="2">2023</a></li>
-                <li><a class="dropdown-item" href="#" value="3">2024</a></li>
+                <?php foreach ($years as $y) : ?>
+
+                  <li><a class="dropdown-item" href="<?php echo base_url(); ?>laporan/<?php echo $y['year'];  ?>" value="1"><?php echo $y['year']; ?></a></li>
+
+
+                <?php endforeach; ?>
               </ul>
             </div>
           </div>

@@ -20,7 +20,15 @@ class PA_laper extends CI_Controller
     {
         $data['js'] = 'status.js';
         $data['laporan'] = $this->m_laper->get_data();
+        $data['years'] = $this->m_laper->get_years();
+        $this->load->view('PA/index', $data);
+    }
 
+    public function laporan($year)
+    {
+        $data['js'] = 'status.js';
+        $data['laporan'] = $this->m_laper->get_year($year);
+        $data['years'] = $this->m_laper->get_years();
         $this->load->view('PA/index', $data);
     }
 

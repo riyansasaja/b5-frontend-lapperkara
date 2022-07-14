@@ -4,3 +4,20 @@ CREATE VIEW v_user_laporan AS
 SELECT laporan_perkara.*, users.nama, users.kode_pa from laporan_perkara JOIN users ON laporan_perkara.id_user = users.id
 
 //end
+
+// triger update tgl_terakhir_rev
+
+DELIMITER $$
+CREATE TRIGGER insert_rev_laporan_perkara
+    AFTER INSERT 
+    ON revisi_laporan
+    FOR EACH ROW 
+BEGIN
+    UPDATE laporan_perkara
+    set tgl_terakhir_rev = date('Y-m-d')
+    WHERE id = revisi_laporan. laper_id;
+END
+
+//end
+
+ALTER TABLE revisi_laporan add FOREIGN KEY(laper_id) REFERENCES laporan_perkara(id);

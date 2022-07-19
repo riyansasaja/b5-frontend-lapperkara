@@ -62,7 +62,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     <thead>
                         <tr>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Satker/th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Satker</th>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jan
                             </th>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Feb

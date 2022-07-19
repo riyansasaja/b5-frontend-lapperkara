@@ -38,9 +38,6 @@
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
-  <!-- sweetalert -->
-  <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
-  <div class="flash-data2" data-flashdata="<?= $this->session->flashdata('msg'); ?>"></div>
 
   <!-- sidebar -->
   <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
@@ -108,6 +105,10 @@
 
 
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+  <!-- sweetalert -->
+  <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
+  <div class="flash-data2" data-flashdata="<?= $this->session->flashdata('msg'); ?>"></div>
+
     <!-- Navbar -->
     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="true">
       <div class="container-fluid py-1 px-3">
@@ -312,6 +313,29 @@
   <script src="<?= base_url('assets/js/plugins/chartjs.min.js') ?>"></script>
   <!-- sweet alert -->
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
+  <script>
+    const flashData = $('.flash-data').data('flashdata');
+    if (flashData) {
+        Swal.fire(
+
+            'Success',
+            flashData,
+            'success'
+        );
+    }
+
+    const flashMsg = $('.flash-data2').data('flashdata');
+    if (flashMsg) {
+        Swal.fire(
+            'Error',
+            flashMsg,
+            'error'
+        );
+    }
+    // Swal.fire('Any fool can use a computer')
+  </script>
+
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {

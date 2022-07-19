@@ -398,27 +398,10 @@
     <script src="<?= base_url('assets/js/plugins/chartjs.min.js') ?>"></script>
     <!-- sweet alert -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="<?= base_url('assets/js/status.js') ?>"></script>
     <!-- javascript -->
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="<?= base_url('assets/js/') . $js ?>"></script>
-    <script src="<?= base_url('assets/js/') . $js2 ?>"></script>
-    <!-- <script>
-        $(document).ready(function() {
-            loadstatus();
-        });
-
-        function loadstatus() {
-            $.ajax({
-                type: "POST",
-                url: '<?php echo base_url() . "index.php/PA_laper/get_status" ?>',
-                // data: "data",
-                dataType: "json",
-                success: function(response) {
-                    console.log(response);
-                }
-            });
-        }
-    </script> -->
     <script>
         var win = navigator.platform.indexOf('Win') > -1;
         if (win && document.querySelector('#sidenav-scrollbar')) {

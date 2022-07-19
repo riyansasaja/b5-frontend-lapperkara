@@ -45,11 +45,10 @@ class M_laper extends CI_model
         $this->db->from('users');
         $this->db->order_by('id', 'ASC');
         $this->db->where('role_id', '2');
+        $this->db->limit('10');
         $query = $this->db->get()->result_array();
         return $query;
     }
 
-    public function get_laper(){
-        
-    }
+    
 }

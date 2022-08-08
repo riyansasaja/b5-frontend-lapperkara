@@ -13,9 +13,10 @@ class Pta_user extends CI_Controller
     public function index()
     {
         $data['js'] = 'pta_user.js';
+        $data['data_laporan'] = $this->m_laper->get_laporan();
         $this->load->view('templates/header');
         $this->load->view('templates/sidepta');
-        $this->load->view('pta_user_view/index');
+        $this->load->view('pta_user_view/index', $data);
         $this->load->view('templates/footer', $data);
     }
 

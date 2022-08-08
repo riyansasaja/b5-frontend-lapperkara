@@ -39,17 +39,28 @@ class M_laper extends CI_model
         return $query;
     }
 
-    public function get_nama_user(){
+    public function get_laporan()
+    {
 
-        $this->db->select('nama');
-        $this->db->from('users');
+        $this->db->select('month(`tgl_upload`) as bulan');
+        $this->db->from('laporan_perkara');
         $this->db->order_by('id', 'ASC');
-        $this->db->where('role_id', '2');
+        // $this->db->where('role_id', '2');
+        $this->db->limit('1');
         $query = $this->db->get()->result_array();
         return $query;
     }
 
-    public function get_laper(){
-        
-    }
+    // public function get_laper_jan()
+    // {
+
+    //     $this->db->select('Month(`tgl_upload`)');
+    //     $this->db->distinct();
+    //     $this->db->from('laporan_perkara');
+    //     $this->db->order_by('id', 'ASC');
+    //     $this->db->where('Month(`tgl_upload`)', '6');
+    //     $this->db->limit('10');
+    //     $query = $this->db->get()->result_array();
+    //     return $query;
+    // }
 }

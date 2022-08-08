@@ -3,6 +3,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class M_laper extends CI_model
 {
+
+    public function get_all_data()
+    {
+       return $this->db->get('laporan_perkara')->result_array();
+    }
+
+
     public function get_data()
     {
         $id = $this->session->userdata('id');
@@ -42,6 +49,7 @@ class M_laper extends CI_model
     public function get_nama_user(){
 
         $this->db->select('nama');
+        $this->db->select('id');
         $this->db->from('users');
         $this->db->order_by('id', 'ASC');
         $this->db->where('role_id', '2');

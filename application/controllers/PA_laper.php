@@ -35,7 +35,6 @@ class PA_laper extends CI_Controller
     public function view_laporan($id)
     {
         $data['js'] = 'modalpdf.js';
-        // $data['js2'] = 'status.js';
         $data['laporan'] = $this->db->get_where('v_user_laporan', ['id' => $id])->result_array();
         $data['catatan'] = $this->db->get_where('catatan_laporan', ['laper_id' => $id])->result_array();
 
@@ -152,6 +151,7 @@ class PA_laper extends CI_Controller
 
         $this->db->insert('laporan_perkara', $data);
         $this->session->set_flashdata('flash', 'Upload file berhasil');
+    
         redirect('PA_laper/');
     }
 

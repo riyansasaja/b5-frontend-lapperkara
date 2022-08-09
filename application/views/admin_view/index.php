@@ -62,7 +62,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     <thead>
                         <tr>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Satker/th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Satker</th>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jan
                             </th>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Feb
@@ -92,9 +92,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     <tbody>
                         <!-- looping data start -->
 
-                        <!-- <?php
-                                for ($i = 1; $i < 6; $i++) :
-                                ?> -->
                         <?php $i = 1; ?>
                         <?php foreach ($nama_user as $nm) : ?>
 
@@ -115,71 +112,140 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                     <div class="d-flex flex-column justify-content-center">
                                         <a href="<?= base_url('admin/view_document') ?>">
                                             <p class="text-xs text-white mb-0 rounded bg-success">
-                                                √
+                                                <?php foreach ($all as $one) : ?>
+                                                    <?php if ($nm['id'] == $one['id_user'] and $one['periode'] == '2022-01') {
+                                                        echo "√";
+                                                    } ?>
+                                                <?php endforeach; ?>
                                             </p>
                                         </a>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="d-flex flex-column justify-content-center">
-                                        <p class="text-xs text-secondary mb-0">√</p>
+                                        <p class="text-xs text-secondary mb-0">
+                                            <?php foreach ($all as $one) : ?>
+                                                <?php if ($nm['id'] == $one['id_user'] and $one['periode'] == '2022-02') {
+                                                    echo "√";
+                                                } ?>
+                                            <?php endforeach; ?>
+                                        </p>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="d-flex flex-column justify-content-center">
-                                        <p class="text-xs text-secondary mb-0">√</p>
+                                        <p class="text-xs text-secondary mb-0">
+                                            <?php foreach ($all as $one) : ?>
+                                                <?php if ($nm['id'] == $one['id_user'] and $one['periode'] == '2022-03') {
+                                                    echo "√";
+                                                } ?>
+                                            <?php endforeach; ?>
+                                        </p>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="d-flex flex-column justify-content-center">
-                                        <p class="text-xs text-secondary mb-0">√</p>
+                                        <p class="text-xs text-secondary mb-0">
+                                            <?php foreach ($all as $one) : ?>
+                                                <?php if ($nm['id'] == $one['id_user'] and $one['periode'] == '2022-04') {
+                                                    echo "√";
+                                                } ?>
+                                            <?php endforeach; ?>
+                                        </p>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="d-flex flex-column justify-content-center">
-                                        <p class="text-xs text-secondary mb-0">√</p>
+                                        <p class="text-xs text-secondary mb-0">
+                                            <?php foreach ($all as $one) : ?>
+                                                <?php if ($nm['id'] == $one['id_user'] and $one['periode'] == '2022-05') {
+                                                    echo "√";
+                                                } ?>
+                                            <?php endforeach; ?>
+                                        </p>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="d-flex flex-column justify-content-center">
-                                        <p class="text-xs text-secondary mb-0">v</p>
+                                        <p class="text-xs text-secondary mb-0">
+                                            <?php foreach ($all as $one) : ?>
+                                                <?php if ($nm['id'] == $one['id_user'] and $one['periode'] == '2022-06') {
+                                                    echo "√";
+                                                } ?>
+                                            <?php endforeach; ?>
+                                        </p>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="d-flex flex-column justify-content-center">
-                                        <p class="text-xs text-secondary mb-0">√</p>
+                                        <p class="text-xs text-secondary mb-0">
+                                            <?php foreach ($all as $one) : ?>
+                                                <?php if ($nm['id'] == $one['id_user'] and $one['periode'] == '2022-07') {
+                                                    echo "√";
+                                                } ?>
+                                            <?php endforeach; ?>
+                                        </p>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="d-flex flex-column justify-content-center">
-                                        <p class="text-xs text-secondary mb-0">√</p>
+                                        <p class="text-xs text-secondary mb-0">
+                                            <?php foreach ($all as $one) : ?>
+                                                <?php if ($nm['id'] == $one['id_user'] and $one['periode'] == '2022-08') {
+                                                    echo "√";
+                                                } ?>
+                                            <?php endforeach; ?>
+                                        </p>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="d-flex flex-column justify-content-center">
-                                        <p class="text-xs text-secondary mb-0">√</p>
+                                        <p class="text-xs text-secondary mb-0">
+                                            <?php foreach ($all as $one) : ?>
+                                                <?php if ($nm['id'] == $one['id_user'] and $one['periode'] == '2022-09') {
+                                                    echo "√";
+                                                } ?>
+                                            <?php endforeach; ?>
+                                        </p>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="d-flex flex-column justify-content-center">
-                                        <p class="text-xs text-secondary mb-0">√</p>
+                                        <p class="text-xs text-secondary mb-0">
+                                            <?php foreach ($all as $one) : ?>
+                                                <?php if ($nm['id'] == $one['id_user'] and $one['periode'] == '2022-10') {
+                                                    echo "√";
+                                                } ?>
+                                            <?php endforeach; ?>
+                                        </p>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="d-flex flex-column justify-content-center">
-                                        <p class="text-xs text-secondary mb-0">√</p>
+                                        <p class="text-xs text-secondary mb-0">
+                                            <?php foreach ($all as $one) : ?>
+                                                <?php if ($nm['id'] == $one['id_user'] and $one['periode'] == '2022-11') {
+                                                    echo "√";
+                                                } ?>
+                                            <?php endforeach; ?>
+                                        </p>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="d-flex flex-column justify-content-center">
-                                        <p class="text-xs text-secondary mb-0">√</p>
+                                        <p class="text-xs text-secondary mb-0">
+                                            <?php foreach ($all as $one) : ?>
+                                                <?php if ($nm['id'] == $one['id_user'] and $one['periode'] == '2022-12') {
+                                                    echo "√";
+                                                } ?>
+                                            <?php endforeach; ?>
+                                        </p>
                                     </div>
                                 </td>
 
                             </tr>
                         <?php endforeach; ?>
 
-                        <!-- <?php endfor; ?> -->
 
 
 

@@ -7,8 +7,8 @@ class Admin extends CI_Controller
     public function index()
     {
         $data['js'] = '';
-        // $data['nama_user'] = $this->m_laper->get_nama_user();
-        // $data['laper_jan'] = $this->m_laper->get_laper_jan();
+        $data['nama_user'] = $this->m_laper->get_laporan();
+        $data['all'] = $this->m_laper->get_all_data();
 
         // foreach($data['nama_user'] as $nm){
         //     $data['laper'] = $this->m_laper->

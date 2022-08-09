@@ -3,6 +3,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class M_laper extends CI_model
 {
+
+    public function get_all_data()
+    {
+        return $this->db->get('laporan_perkara')->result_array();
+    }
+
+
     public function get_data()
     {
         $id = $this->session->userdata('id');
@@ -42,25 +49,13 @@ class M_laper extends CI_model
     public function get_laporan()
     {
 
-        $this->db->select('month(`tgl_upload`) as bulan');
-        $this->db->from('laporan_perkara');
+        $this->db->select('nama');
+        $this->db->select('id');
+        $this->db->from('users');
         $this->db->order_by('id', 'ASC');
-        // $this->db->where('role_id', '2');
-        $this->db->limit('1');
+        $this->db->where('role_id', '2');
+        $this->db->limit('10');
         $query = $this->db->get()->result_array();
         return $query;
     }
-
-    // public function get_laper_jan()
-    // {
-
-    //     $this->db->select('Month(`tgl_upload`)');
-    //     $this->db->distinct();
-    //     $this->db->from('laporan_perkara');
-    //     $this->db->order_by('id', 'ASC');
-    //     $this->db->where('Month(`tgl_upload`)', '6');
-    //     $this->db->limit('10');
-    //     $query = $this->db->get()->result_array();
-    //     return $query;
-    // }
 }

@@ -6,7 +6,19 @@ class M_laper extends CI_model
 
     public function get_all_data()
     {
-        return $this->db->get('laporan_perkara')->result_array();
+        // return $this->db->get('laporan_perkara')->result_array();
+        $this->db->select('id');
+        $this->db->select('id_user');
+        $this->db->select('periode');
+        $this->db->select('berkas_laporan');
+        $this->db->select('laper_pdf');
+        $this->db->select('laper_xls');
+        $this->db->select('day(`tgl_upload`) as tanggal');
+        $this->db->select('tgl_terakhir_rev');
+        $this->db->select('status');
+        $this->db->from('laporan_perkara');
+        $query = $this->db->get()->result_array();
+        return $query;
     }
 
 
@@ -46,7 +58,7 @@ class M_laper extends CI_model
         return $query;
     }
 
-    public function get_laporan()
+    public function get_nama_user()
     {
 
         $this->db->select('nama');

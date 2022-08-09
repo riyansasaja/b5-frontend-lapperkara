@@ -31,32 +31,33 @@ defined('BASEPATH') or exit('No direct script access allowed');
         <!-- contonet start -->
 
         <div class="container">
-            <div class="row bg-gray-400 justify-content-start">
+            <?php foreach ($laporan as $lp) : ?>
+                <div class="row bg-gray-400 justify-content-start">
 
-                <div class="row mt-3">
-                    <div class="col-md-2">
-                        <p class="fw-bold">Satker</p>
+                    <div class="row mt-3">
+                        <div class="col-md-2">
+                            <p class="fw-bold">Satker</p>
+                        </div>
+                        <div class="col-md-auto">
+                            <p>:</p>
+                        </div>
+                        <div class="col-md-auto">
+                            <p><?php echo $lp['nama']; ?></p>
+                        </div>
                     </div>
-                    <div class="col-md-auto">
-                        <p>:</p>
-                    </div>
-                    <div class="col-md-auto">
-                        <p>Pengadilan Agama Kuta</p>
+                    <div class="row mt-n3">
+                        <div class="col-md-2">
+                            <p class="fw-bold">Periode Laporan</p>
+                        </div>
+                        <div class="col-md-auto">
+                            <p>:</p>
+                        </div>
+                        <div class="col-md-auto">
+                            <p><?php echo $lp['periode']; ?></p>
+                        </div>
                     </div>
                 </div>
-                <div class="row mt-n3">
-                    <div class="col-md-2">
-                        <p class="fw-bold">Periode Laporan</p>
-                    </div>
-                    <div class="col-md-auto">
-                        <p>:</p>
-                    </div>
-                    <div class="col-md-auto">
-                        <p>Juni 2022</p>
-                    </div>
-                </div>
-            </div>
-
+            <?php endforeach; ?>
 
             <div class="row mt-5">
                 <div class="col">

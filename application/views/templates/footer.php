@@ -7,8 +7,7 @@
                     <script>
                         document.write(new Date().getFullYear())
                     </script>,
-                    made with <i class="fa fa-heart"></i> and Free by
-                    Sasaja
+                    made with <i class="fa fa-heart"></i> by Tim IT PTA Manado
                 </div>
             </div>
         </div>

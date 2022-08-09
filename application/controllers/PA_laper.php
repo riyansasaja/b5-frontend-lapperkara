@@ -151,7 +151,7 @@ class PA_laper extends CI_Controller
 
         $this->db->insert('laporan_perkara', $data);
         $this->session->set_flashdata('flash', 'Upload file berhasil');
-    
+
         redirect('PA_laper/');
     }
 

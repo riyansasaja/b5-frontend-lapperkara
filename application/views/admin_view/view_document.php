@@ -93,61 +93,70 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                 </thead>
                                 <tbody>
                                     <!-- looping data start -->
-
-                                    <!-- first loop -->
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex flex-column justify-content-center">
-                                                <p class="text-xs text-secondary mb-0 ms-3">1</p>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="mb-0 text-xs">Januari</h6>
-                                                <p class="text-xs text-secondary mb-0">Lap Per Jan 21</p>
-                                            </div>
-                                        </td>
-                                        <td class="align-middle text-center">
-                                            <span class="text-secondary text-xs font-weight-normal">23/04/18
-                                                10:30am</span>
-                                        </td>
-                                        <td class="align-middle text-center">
-                                            <span class="text-secondary text-xs font-weight-normal">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#viewdocumentModal">
-                                                    <i class="fas fa-file-pdf"></i> |
-                                                </a>
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#viewdocumentModal">
-                                                    <i class="fas fa-file-excel"></i>
-                                                </a>
-                                            </span>
-                                        </td>
-                                        <td class="align-middle text-center">
-                                            <span class="text-success text-xs font-weight-normal">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#catatanModal"><i class="fas fa-clipboard"></i></a>
-
-                                            </span>
-                                        </td>
-                                        <td class="align-middle text-center">
-                                            <span class="text-secondary text-xs font-weight-normal">
-                                                <i class="fas fa-eye"></i>
-                                            </span>
-
-                                        </td>
-                                        <td class="align-middle text-center">
-                                            <span class="text-secondary text-xs font-weight-normal">
-                                                28/04/18 10:30am
-                                            </span>
-                                        </td>
-                                        <td class="align-middle text-center">
-                                            <a href="#" data-bs-toggle="modal" data-bs-target="#validasiModal">
-                                                <span class="text-white bg-gradient-success text-xs font-weight-normal rounded p-1">
-                                                    Validasi
+                                    <?php $i = 1; ?>
+                                    <?php foreach ($laporan as $lhs) : ?>
+                                        <!-- first loop -->
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <p class="text-xs text-secondary mb-0 ms-3"><?php echo $i++; ?></p>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-xs"><?php echo $lhs['periode']; ?></h6>
+                                                    <p class="text-xs text-secondary mb-0"><?php echo $lhs['berkas_laporan']; ?></p>
+                                                </div>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span class="text-secondary text-xs font-weight-normal"><?php echo $lhs['tgl_upload']; ?></span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <input type="text" name="kode_pa" value="<?php echo $lhs['kode_pa'] ?>" hidden>
+                                                <span class="text-secondary text-xs font-weight-normal">
+                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#viewdocumentModal" data-id="<?= $laporan['0']['kode_pa'] ?> <?= $laporan['0']['periode'] ?>/<?= $laporan['0']['laper_pdf'] ?>">
+                                                        <i class="fas fa-file-pdf"></i> |
+                                                    </a>
+                                                    <a href="<?php echo base_url() ?>index.php/Admin/download_xls/<?= $laporan['0']['id'] ?>">
+                                                        <i class="fas fa-file-excel"></i>
+                                                    </a>
                                                 </span>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <!-- looping data end -->
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span class="text-success text-xs font-weight-normal">
+                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#catatanModal"><i class="fas fa-clipboard"></i></a>
 
+                                                </span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span class="text-secondary text-xs font-weight-normal">
+                                                    <i class="fas fa-eye"></i>
+                                                </span>
+
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span class="text-secondary text-xs font-weight-normal">
+                                                    <?php echo $lhs['tgl_terakhir_rev']; ?>
+                                                </span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <?php if ($lhs['status'] == "Belum Validasi") : ?>
+                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#validasiModal">
+                                                        <span class="text-white bg-gradient-danger text-xs font-weight-normal rounded p-1">
+                                                            <?php echo $lhs['status']; ?>
+                                                        </span>
+                                                    </a>
+                                                <?php else : ?>
+                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#validasiModal">
+                                                        <span class="text-white bg-gradient-success text-xs font-weight-normal rounded p-1">
+                                                            <?php echo $lhs['status']; ?>
+                                                        </span>
+                                                    </a>
+                                                <?php endif; ?>
+                                            </td>
+                                        </tr>
+                                        <!-- looping data end -->
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -167,15 +176,20 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div class="form-floating">
-                                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-                                <label for="floatingTextarea">Klik untuk membuat catatan</label>
-                            </div>
+                            <form method="POST" action="<?php echo base_url('Admin/add_catatan'); ?>" enctype="multipart/form-data">
+                                <div class="form-floating">
+                                    <?php foreach ($laporan as $lhs) : ?>
+                                        <input type="text" id="id_laper" name="id_laper" value="<?php echo $lhs['id'] ?>" hidden>
+                                    <?php endforeach; ?>
+                                    <textarea class="form-control" name="catatan" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                                    <label for="floatingTextarea">Klik untuk membuat catatan</label>
+                                </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Batal</button>
-                            <button type="button" class="btn bg-gradient-primary">Simpan</button>
+                            <button type="submit" class="btn bg-gradient-primary">Simpan</button>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -187,22 +201,27 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     <div class="modal-content">
 
                         <div class="modal-body">
-                            <div class="row align-items-center">
-                                <div class="col text-end">
-                                    <h3>Validasi Laporan ini</h3>
-                                </div>
-                                <div class="col">
-                                    <img class="img-fluid" src="<?= base_url('assets/ilus/') ?>tanya.png" alt="">
-                                </div>
+                            <form method="POST" action="<?php echo base_url('Admin/add_validasi'); ?>" enctype="multipart/form-data">
+                                <?php foreach ($laporan as $lhs) : ?>
+                                    <input type="text" id="id_laper" name="id_laper" value="<?php echo $lhs['id'] ?>" hidden>
+                                <?php endforeach; ?>
+                                <div class="row align-items-center">
+                                    <div class="col text-end">
+                                        <h3>Validasi Laporan ini</h3>
+                                    </div>
+                                    <div class="col">
+                                        <img class="img-fluid" src="<?= base_url('assets/ilus/') ?>tanya.png" alt="">
+                                    </div>
 
-                            </div>
+                                </div>
 
 
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Batal</button>
-                            <button type="button" class="btn bg-gradient-primary">Validasi</button>
+                            <input type="submit" name="validasi" value="Validasi" class="btn bg-gradient-primary">
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -219,12 +238,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             </button>
                         </div>
 
-                        <div class="modal-body">
+                        <div class="modal-body" id="tampil">
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Tutup</button>
                             <a href="#" data-bs-toggle="modal" data-bs-target="#catatanModal" class="text-white btn btn-primary active" role="button">Buat Catatan</a>
                         </div>
+
                     </div>
                 </div>
             </div>

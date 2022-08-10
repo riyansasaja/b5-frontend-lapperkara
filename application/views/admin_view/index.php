@@ -323,7 +323,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             </div>
                                         <?php elseif ($nm['id'] == $one['id_user'] and $one['periode'] == '2022-06' and $one['tanggal'] > '5' and $one['tanggal'] <= '10' and $one['status'] != 'Revisi') : ?>
                                             <div class="d-flex flex-column justify-content-center">
-                                                <a href="<?= base_url('admin/view_document') ?>">
+                                                <a href="<?= base_url('admin/view_document/') . $one['id'] ?>">
                                                     <p class="text-xs text-white mb-0 rounded bg-warning">
                                                         √
                                                     </p>
@@ -331,7 +331,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             </div>
                                         <?php elseif ($nm['id'] == $one['id_user'] and $one['periode'] == '2022-06' and $one['tanggal'] > '10' and $one['status'] != 'Revisi') : ?>
                                             <div class="d-flex flex-column justify-content-center">
-                                                <a href="<?= base_url('admin/view_document') ?>">
+                                                <a href="<?= base_url('admin/view_document/') . $one['id'] ?>">
                                                     <p class="text-xs text-white mb-0 rounded bg-danger">
                                                         √
                                                     </p>
@@ -339,7 +339,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             </div>
                                         <?php elseif ($nm['id'] == $one['id_user'] and $one['periode'] == '2022-06' and $one['tanggal'] >= '1' and $one['status'] == 'Revisi') : ?>
                                             <div class="d-flex flex-column justify-content-center">
-                                                <a href="<?= base_url('admin/view_document') ?>">
+                                                <a href="<?= base_url('admin/view_document/') . $one['id'] ?>">
                                                     <p class="text-xs text-white mb-0 rounded bg-dark  ">
                                                         R
                                                     </p>
@@ -355,7 +355,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                 } ?>     -->
                                         <?php if ($nm['id'] == $one['id_user'] and $one['periode'] == '2022-07' and $one['tanggal'] <= '5' and $one['status'] != 'Revisi') : ?>
                                             <div class="d-flex flex-column justify-content-center">
-                                                <a href="<?= base_url('admin/view_document') ?>">
+                                                <a href="<?= base_url('admin/view_document/') . $one['id'] ?>">
                                                     <p class="text-xs text-white mb-0 rounded bg-success">
                                                         √
                                                     </p>
@@ -363,7 +363,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             </div>
                                         <?php elseif ($nm['id'] == $one['id_user'] and $one['periode'] == '2022-07' and $one['tanggal'] > '5' and $one['tanggal'] <= '10' and $one['status'] != 'Revisi') : ?>
                                             <div class="d-flex flex-column justify-content-center">
-                                                <a href="<?= base_url('admin/view_document') ?>">
+                                                <a href="<?= base_url('admin/view_document/') . $one['id'] ?>">
                                                     <p class="text-xs text-white mb-0 rounded bg-warning">
                                                         √
                                                     </p>
@@ -371,7 +371,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             </div>
                                         <?php elseif ($nm['id'] == $one['id_user'] and $one['periode'] == '2022-07' and $one['tanggal'] > '10' and $one['status'] != 'Revisi') : ?>
                                             <div class="d-flex flex-column justify-content-center">
-                                                <a href="<?= base_url('admin/view_document') ?>">
+                                                <a href="<?= base_url('admin/view_document/') . $one['id'] ?>">
                                                     <p class="text-xs text-white mb-0 rounded bg-danger">
                                                         √
                                                     </p>
@@ -379,7 +379,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             </div>
                                         <?php elseif ($nm['id'] == $one['id_user'] and $one['periode'] == '2022-07' and $one['tanggal'] >= '1' and $one['status'] == 'Revisi') : ?>
                                             <div class="d-flex flex-column justify-content-center">
-                                                <a href="<?= base_url('admin/view_document') ?>">
+                                                <a href="<?= base_url('admin/view_document/') . $one['id'] ?>">
                                                     <p class="text-xs text-white mb-0 rounded bg-dark  ">
                                                         R
                                                     </p>
@@ -395,7 +395,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                 } ?>     -->
                                         <?php if ($nm['id'] == $one['id_user'] and $one['periode'] == '2022-08' and $one['tanggal'] <= '5' and $one['status'] != 'Revisi') : ?>
                                             <div class="d-flex flex-column justify-content-center">
-                                                <a href="<?= base_url('admin/view_document') ?>">
+                                                <a href="<?= base_url('admin/view_document/') . $one['id'] ?>">
                                                     <p class="text-xs text-white mb-0 rounded bg-success">
                                                         √
                                                     </p>
@@ -403,7 +403,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             </div>
                                         <?php elseif ($nm['id'] == $one['id_user'] and $one['periode'] == '2022-08' and $one['tanggal'] > '5' and $one['tanggal'] <= '10' and $one['status'] != 'Revisi') : ?>
                                             <div class="d-flex flex-column justify-content-center">
-                                                <a href="<?= base_url('admin/view_document') ?>">
+                                                <a href="<?= base_url('admin/view_document/') . $one['id'] ?>">
                                                     <p class="text-xs text-white mb-0 rounded bg-warning">
                                                         √
                                                     </p>
@@ -411,7 +411,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             </div>
                                         <?php elseif ($nm['id'] == $one['id_user'] and $one['periode'] == '2022-08' and $one['tanggal'] > '10' and $one['status'] != 'Revisi') : ?>
                                             <div class="d-flex flex-column justify-content-center">
-                                                <a href="<?= base_url('admin/view_document') ?>">
+                                                <a href="<?= base_url('admin/view_document/') . $one['id'] ?>">
                                                     <p class="text-xs text-white mb-0 rounded bg-danger">
                                                         √
                                                     </p>
@@ -419,7 +419,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             </div>
                                         <?php elseif ($nm['id'] == $one['id_user'] and $one['periode'] == '2022-08' and $one['tanggal'] >= '1' and $one['status'] == 'Revisi') : ?>
                                             <div class="d-flex flex-column justify-content-center">
-                                                <a href="<?= base_url('admin/view_document') ?>">
+                                                <a href="<?= base_url('admin/view_document/') . $one['id'] ?>">
                                                     <p class="text-xs text-white mb-0 rounded bg-dark  ">
                                                         R
                                                     </p>

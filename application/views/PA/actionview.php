@@ -233,7 +233,7 @@
                                                 </td>
                                                 <td class="align-middle text-center">
                                                     <span class="text-secondary text-xs font-weight-normal">
-                                                        <a href="#" data-bs-toggle="modal" data-bs-target="#revisiModal" class="fas fa-upload"></a> | <a href="<?php echo base_url() ?>index.php/PA_laper/zip_file/" class="fas fa-download"></a>
+                                                        <a href="#" data-bs-toggle="modal" data-bs-target="#revisiModal" class="fas fa-upload"></a> | <a href="<?php echo base_url() ?>index.php/PA_laper/zip_file/<?= $laporan['0']['id'] ?>" class="fas fa-download"></a>
                                                     </span>
 
                                                 </td>

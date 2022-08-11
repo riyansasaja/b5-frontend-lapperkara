@@ -16,11 +16,11 @@ class M_laper extends CI_model
         $this->db->select('day(`tgl_upload`) as tanggal');
         $this->db->select('tgl_terakhir_rev');
         $this->db->select('status');
-        $this->db->from('laporan_perkara');
+        $this->db->select('kode_pa');
+        $this->db->from('v_user_laporan');
         $query = $this->db->get()->result_array();
         return $query;
     }
-
 
     public function get_data()
     {

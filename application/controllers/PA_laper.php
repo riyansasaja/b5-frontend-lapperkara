@@ -47,10 +47,10 @@ class PA_laper extends CI_Controller
         }
     }
 
-    public function download_xls()
+    public function download_xls($id)
     {
 
-        $data['laporan'] = $this->m_laper->get_data();
+        $data['laporan'] = $this->db->get_where('v_user_laporan', ['id' => $id])->result_array();
         $satker = $this->session->userdata('kode_pa');
         $periode = $data['laporan'][0]['periode'];
         $folder = "$satker $periode";
@@ -60,14 +60,13 @@ class PA_laper extends CI_Controller
             force_download("files_laporan/$folder/" . $data['laporan'][0]['laper_xls'], null);
         } else {
             $this->session->set_flashdata('msg', 'Belum ada laporan');
-            redirect('PA_laper/view_laporan');
         }
     }
 
-    public function zip_file()
+    public function zip_file($id)
     {
 
-        $data['laporan'] = $this->m_laper->get_data();
+        $data['laporan'] = $this->db->get_where('v_user_laporan', ['id' => $id])->result_array();
         $satker = $this->session->userdata('kode_pa');
         $periode = $data['laporan'][0]['periode'];
         $folder = "$satker $periode";

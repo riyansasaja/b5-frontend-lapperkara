@@ -4,6 +4,18 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Admin extends CI_Controller
 {
 
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->load->library('zip');
+
+        //usir user yang ga punya session
+        if (!$this->session->userdata('id') || $this->session->userdata('role_id') != 1) {
+            redirect('auth');
+        }
+    }
+
     public function index()
     {
         $data['js'] = '';
@@ -27,7 +39,7 @@ class Admin extends CI_Controller
     {
         $data['js'] = 'modalpdf.js';
         $data['laporan'] = $this->db->get_where('v_user_laporan', ['id' => $id])->result_array();
-        // $data['catatan'] = $this->db->get_where('catatan_laporan', ['laper_id' => $id])->result_array();
+        $data['catatan'] = $this->db->get_where('catatan_laporan', ['laper_id' => $id])->result_array();
 
         // //user id tidak sesuai
         // if ($this->session->userdata('id') != $data['laporan'][0]['id_user']) {
@@ -45,16 +57,13 @@ class Admin extends CI_Controller
         $this->load->view('templates/footer', $data);
     }
 
-    public function download_xls()
+    public function download_xls($id)
     {
 
-        $data['laporan'] = $this->m_laper->get_data();
-        var_dump($data);
-        die;
-        $satker = $this->input->post('kode_pa');
+        $data['laporan'] = $this->db->get_where('v_user_laporan', ['id' => $id])->result_array();
+        $satker = $data['laporan'][0]['kode_pa'];
         $periode = $data['laporan'][0]['periode'];
         $folder = "$satker $periode";
-
 
         if ($data['laporan'][0]['laper_xls'] != null) {
             force_download("files_laporan/$folder/" . $data['laporan'][0]['laper_xls'], null);
@@ -94,5 +103,25 @@ class Admin extends CI_Controller
         $this->session->set_flashdata('flash', 'Validasi Laporan Berhasil');
 
         redirect('Admin');
+    }
+
+    public function zip_file($id)
+    {
+
+        $data['laporan'] = $this->db->get_where('v_user_laporan', ['id' => $id])->result_array();
+        $satker = $data['laporan'][0]['kode_pa'];
+        $periode = $data['laporan'][0]['periode'];
+        $folder = "$satker $periode";
+
+        $path = "./files_laporan/$folder/revisi/";
+
+        if (file_exists($path)) {
+            $this->zip->read_dir($path);
+
+            // Download the file to your desktop
+            $this->zip->download("$folder-revisi.zip");
+        } else {
+            $this->session->set_flashdata('msg', 'Tidak ada Revisi');
+        }
     }
 }

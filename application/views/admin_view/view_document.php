@@ -81,7 +81,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             Catatan
                                         </th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            revisi
+                                            Revisi
                                         </th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Tgl Revisi
@@ -112,9 +112,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                 <span class="text-secondary text-xs font-weight-normal"><?php echo $lhs['tgl_upload']; ?></span>
                                             </td>
                                             <td class="align-middle text-center">
-                                                <input type="text" name="kode_pa" value="<?php echo $lhs['kode_pa'] ?>" hidden>
                                                 <span class="text-secondary text-xs font-weight-normal">
-                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#viewdocumentModal" data-id="<?= $laporan['0']['kode_pa'] ?> <?= $laporan['0']['periode'] ?>/<?= $laporan['0']['laper_pdf'] ?>">
+                                                    <a href="#!" data-bs-toggle="modal" data-bs-target="#viewdocumentModal" data-id="<?= $laporan['0']['kode_pa'] ?> <?= $laporan['0']['periode'] ?>/<?= $laporan['0']['laper_pdf'] ?>">
                                                         <i class="fas fa-file-pdf"></i> |
                                                     </a>
                                                     <a href="<?php echo base_url() ?>index.php/Admin/download_xls/<?= $laporan['0']['id'] ?>">
@@ -130,7 +129,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             </td>
                                             <td class="align-middle text-center">
                                                 <span class="text-secondary text-xs font-weight-normal">
-                                                    <i class="fas fa-eye"></i>
+                                                    <a href="<?php echo base_url() ?>index.php/Admin/zip_file/<?= $laporan['0']['id'] ?>" class="fas fa-download"></a>
                                                 </span>
 
                                             </td>
@@ -143,6 +142,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                 <?php if ($lhs['status'] == "Belum Validasi") : ?>
                                                     <a href="#" data-bs-toggle="modal" data-bs-target="#validasiModal">
                                                         <span class="text-white bg-gradient-danger text-xs font-weight-normal rounded p-1">
+                                                            <?php echo $lhs['status']; ?>
+                                                        </span>
+                                                    </a>
+                                                <?php elseif ($lhs['status'] == "Revisi") : ?>
+                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#validasiModal">
+                                                        <span class="text-white bg-gradient-warning text-xs font-weight-normal rounded p-1">
                                                             <?php echo $lhs['status']; ?>
                                                         </span>
                                                     </a>
@@ -177,13 +182,27 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         </div>
                         <div class="modal-body">
                             <form method="POST" action="<?php echo base_url('Admin/add_catatan'); ?>" enctype="multipart/form-data">
-                                <div class="form-floating">
-                                    <?php foreach ($laporan as $lhs) : ?>
-                                        <input type="text" id="id_laper" name="id_laper" value="<?php echo $lhs['id'] ?>" hidden>
+                                <div class="container">
+                                    <?php foreach ($catatan as $ct) : ?>
+                                        <div class="card card-frame mb-2">
+                                            <div class="card-body">
+                                                <h6><?php echo $ct['tgl_catatan']; ?></h6>
+                                                <p><?php echo $ct['catatan']; ?></p>
+                                            </div>
+                                        </div>
                                     <?php endforeach; ?>
-                                    <textarea class="form-control" name="catatan" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-                                    <label for="floatingTextarea">Klik untuk membuat catatan</label>
                                 </div>
+
+                                <div class="container">
+                                    <div class="form-floating">
+                                        <?php foreach ($laporan as $lhs) : ?>
+                                            <input type="text" id="id_laper" name="id_laper" value="<?php echo $lhs['id'] ?>" hidden>
+                                        <?php endforeach; ?>
+                                        <textarea class="form-control" name="catatan" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                                        <label for="floatingTextarea">Klik untuk membuat catatan</label>
+                                    </div>
+                                </div>
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Batal</button>
@@ -219,7 +238,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Batal</button>
-                            <input type="submit" name="validasi" value="Validasi" class="btn bg-gradient-primary">
+                            <input type="submit" name="validasi" value="Revisi" class="btn bg-gradient-warning">
+                            <input type="submit" name="validasi" value="Validasi" class="btn bg-gradient-success">
                         </div>
                         </form>
                     </div>
@@ -238,7 +258,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             </button>
                         </div>
 
-                        <div class="modal-body" id="tampil">
+                        <div class="modal-body" id="lap_pdf">
 
                         </div>
                         <div class="modal-footer">

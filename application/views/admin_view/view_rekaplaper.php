@@ -1,6 +1,5 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-
 ?>
 
 
@@ -60,8 +59,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
         <div class="row">
             <div class="col">
                 <!-- button -->
-                <button type="button" class="btn bg-gradient-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Tambah Laporan
+                <button type="button" class="btn bg-gradient-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Tambah Rekap Laporan Perkara
                 </button>
 
                 <!-- modal -->
@@ -76,26 +75,27 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             </div>
                             <div class="modal-body">
                                 <!-- form start -->
-                                <form action="">
+                                <form method="POST" action="<?php echo base_url('Admin/add_rekap_laporan'); ?>" enctype="multipart/form-data">
                                     <div class="input-group input-group-static my-3">
                                         <label for="bulan">Periode</label>
-                                        <input id="bulan" type="month" class="form-control">
+                                        <input id="bulan" type="month" name="periode" class="form-control">
                                     </div>
                                     <div class="input-group input-group-static my-3">
                                         <label for="upload-pdf">Upload file PDF</label>
-                                        <input id="upload-pdf" type="file" class="form-control">
+                                        <input id="upload-pdf" type="file" name="file1" class="form-control">
                                     </div>
                                     <div class="input-group input-group-static my-3">
-                                        <label for="upload-zip">Upload file ZIP</label>
-                                        <input id="upload-zip" type="file" class="form-control">
+                                        <label for="upload-zip">Upload file XLS</label>
+                                        <input id="upload-zip" type="file" name="file2" class="form-control">
                                     </div>
-                                </form>
-                                <!-- form end -->
+
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Batal</button>
-                                <button type="button" class="btn bg-gradient-primary">Simpan</button>
+                                <button type="submit" class="btn bg-gradient-primary">Simpan</button>
                             </div>
+                            </form>
+                            <!-- form end -->
                         </div>
                     </div>
                 </div>
@@ -109,162 +109,146 @@ defined('BASEPATH') or exit('No direct script access allowed');
         <!-- table start -->
         <div class="card">
             <div class="table-responsive">
-                <table class="table align-items-center mb-0">
+                <table class="table align-items-center mb-3">
                     <thead>
                         <tr>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Satker/th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jan
-                            </th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Feb
-                            </th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mar
-                            </th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Apr
-                            </th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mei
-                            </th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jun
-                            </th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jul
-                            </th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Agu
-                            </th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Sept
-                            </th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Okt
-                            </th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nov
-                            </th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Des
-                            </th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jan</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Feb</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mar</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Apr</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mei</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jun</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jul</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Agu</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Sep</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Okt</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nov</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Des</th>
+
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- looping data start -->
 
-                        <?php
-                        for ($i = 1; $i < 6; $i++) :
-                        ?>
-
-                            <tr class="text-center">
-                                <td>
-                                    <div class="d-flex flex-column justify-content-center">
-                                        <p class="text-xs text-secondary mb-0 ms-3"><?= $i + 1; ?></p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex flex-column justify-content-center">
-                                        <p class="text-xs text-secondary mb-0">PA. Antah Berantah</p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex flex-column justify-content-center">
-                                        <a href="<?= base_url('admin/view_document') ?>">
-                                            <p class="text-xs text-white mb-0 rounded bg-success">
-                                                √
-                                            </p>
-                                        </a>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex flex-column justify-content-center">
-                                        <p class="text-xs text-secondary mb-0">√</p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex flex-column justify-content-center">
-                                        <p class="text-xs text-secondary mb-0">√</p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex flex-column justify-content-center">
-                                        <p class="text-xs text-secondary mb-0">√</p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex flex-column justify-content-center">
-                                        <p class="text-xs text-secondary mb-0">√</p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex flex-column justify-content-center">
-                                        <p class="text-xs text-secondary mb-0">v</p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex flex-column justify-content-center">
-                                        <p class="text-xs text-secondary mb-0">√</p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex flex-column justify-content-center">
-                                        <p class="text-xs text-secondary mb-0">√</p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex flex-column justify-content-center">
-                                        <p class="text-xs text-secondary mb-0">√</p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex flex-column justify-content-center">
-                                        <p class="text-xs text-secondary mb-0">√</p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex flex-column justify-content-center">
-                                        <p class="text-xs text-secondary mb-0">√</p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex flex-column justify-content-center">
-                                        <p class="text-xs text-secondary mb-0">√</p>
-                                    </div>
-                                </td>
-
-                            </tr>
-                        <?php endfor; ?>
+                        <tr>
+                            <td>
+                                <?php foreach ($all as $one) : ?>
+                                    <?php if ($one['periode'] == '2022-01') : ?>
+                                        <div class="d-flex flex-column justify-content-center px-3">
+                                            <a href="#!" data-bs-toggle="modal" data-bs-target="#viewdocumentModal" data-id="<?= $laporan['0']['kode_pa'] ?> <?= $laporan['0']['periode'] ?>/<?= $laporan['0']['rekap_pdf'] ?>">
+                                                <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
+                                        </div>
+                                    <?php else : ?>
+                                        <div class="d-flex flex-column justify-content-center px-3">
+                                            <p class="text-xs text-center bg-primary rounded text-white mb-0">&nbsp;</p>
+                                        </div>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
 
 
+                            </td>
+                            <td>
 
-                        <!-- looping data end -->
+                                <div class="d-flex flex-column justify-content-center px-3">
+                                    <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
+                                </div>
+
+                            </td>
+                            <td>
+                                <div class="d-flex flex-column justify-content-center px-3">
+                                    <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-column justify-content-center px-3">
+                                    <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-column justify-content-center px-3">
+                                    <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-column justify-content-center px-3">
+                                    <p class="text-xs text-center bg-primary rounded text-white mb-0">&nbsp;</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-column justify-content-center px-3">
+                                    <p class="text-xs text-center bg-primary rounded text-white mb-0">&nbsp;</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-column justify-content-center px-3">
+                                    <p class="text-xs text-center bg-primary rounded text-white mb-0">&nbsp;</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-column justify-content-center px-3">
+                                    <p class="text-xs text-center bg-primary rounded text-white mb-0">&nbsp;</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-column justify-content-center px-3">
+                                    <p class="text-xs text-center bg-primary rounded text-white mb-0">&nbsp;</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-column justify-content-center px-3">
+                                    <p class="text-xs text-center bg-primary rounded text-white mb-0">&nbsp;</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-column justify-content-center px-3">
+                                    <p class="text-xs text-center bg-primary rounded text-white mb-0">&nbsp;</p>
+                                </div>
+                            </td>
+                        </tr>
 
                     </tbody>
                 </table>
-
             </div>
         </div>
         <!-- table end -->
 
-        <div class="row mb-5">
-            <div class="col mt-2">
-                <h6>Keterangan</h6>
-                <table>
-                    <tr>
-                        <td class=>
-                            <span class="bg-success px-2 text-center">&nbsp;</span>
-                        </td>
-                        <td class="ps-2">: Pengiriman data < tgl 5</td>
-                    </tr>
-                    <tr>
-                        <td class=>
-                            <span class="bg-warning px-2 text-center">&nbsp;</span>
-                        </td>
-                        <td class="ps-2">: PENGIRIMAN DATA > TANGGAL 5 DAN <= TANGGAL 10</td>
-                    </tr>
-                    <tr>
-                        <td class=>
-                            <span class="bg-danger px-2 text-center">&nbsp;</span>
-                        </td>
-                        <td class="ps-2">: PENGIRIMAN DATA > TANGGAL 10</td>
-                    </tr>
-                    <tr>
-                        <td class=>
-                            <span class="px-2 text-center">R</span>
-                        </td>
-                        <td class="ps-2">: MASIH ADA YANG PERLU DI REVISI</td>
-                    </tr>
-
-                </table>
+        <div class="row mt-4">
+            <div class="col">
+                <div class="card card-frame">
+                    <div class="card-body">
+                        <h6 class="text-center">
+                            GRAFIK REKAP KECAPATAN & KETEPATAN <br>PENGIRIMAN PELAPORAN PERKARA
+                        </h6>
+                        <div>
+                            <canvas id="chart_satu"></canvas>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
+
+        <!-- viewdocument Modal start -->
+        <div class="modal fade" id="viewdocumentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title font-weight-normal" id="exampleModalLabel">View Document</h5>
+                        <!-- <button type="button" class="btn bg-gradient-success">
+                            Download Excel
+                        </button> -->
+                        <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body" id="lap_pdf">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Tutup</button>
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#catatanModal" class="text-white btn btn-primary active" role="button">Buat Catatan</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- viewdocument modal end -->

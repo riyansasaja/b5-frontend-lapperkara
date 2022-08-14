@@ -21,6 +21,20 @@ class M_laper extends CI_model
         $query = $this->db->get()->result_array();
         return $query;
     }
+    public function get_all_rekap()
+    {
+        return $this->db->get('rekap_laporan_perkara')->result_array();
+    }
+
+
+    public function get_data_perbulan()
+    {
+        $this->db->select('*');
+        $this->db->from('laporan_perkara');
+        $this->db->limit(1);
+        $query = $this->db->get()->result_array();
+        return $query;
+    }
 
     public function get_data()
     {

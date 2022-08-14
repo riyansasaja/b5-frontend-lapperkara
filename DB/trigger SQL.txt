@@ -34,3 +34,25 @@ END$$
 DELIMITER ;
 
 // --
+
+//table rekap laporan perkara
+
+CREATE TABLE rekap_laporan_perkara (
+	id int not null AUTO_INCREMENT,
+    id_user int(11),
+    periode_bulan varchar(20),
+    periode_tahun varchar(20),
+    rekap_pdf varchar(100),
+    rekp_xls varchar(100),
+    tgl_upload date,
+    
+    PRIMARY KEY(id),
+    FOREIGN KEY(id_user) REFERENCES users(id)
+)ENGINE=INNODB;
+
+// end
+
+//Views rekap laporan perkara
+CREATE VIEW v_rekap_laporan AS
+SELECT rekap_laporan_perkara.*, users.nama, users.kode_pa from rekap_laporan_perkara JOIN users ON rekap_laporan_perkara.id_user = users.id
+// end

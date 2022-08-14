@@ -30,7 +30,7 @@ class Auth extends CI_Controller
                 redirect('Panmud');
                 break;
             case '5':
-                redirect('Panitera_pengganti');
+                redirect('Pta_user');
                 break;
         }
 

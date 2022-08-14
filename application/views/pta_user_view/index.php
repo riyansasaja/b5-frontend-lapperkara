@@ -78,82 +78,74 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($data_laporan as $dl) : ?>
-                            <tr>
-                                <td>
-                                    <?php if ($dl['bulan'] == "7") : ?>
-                                        <div class="d-flex flex-column justify-content-center px-3">
-                                            <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
-                                        </div>
-                                    <?php else : ?>
-                                        <div class="d-flex flex-column justify-content-center px-3">
-                                            <p class="text-xs text-center bg-primary rounded text-white mb-0">&nbsp;</p>
-                                        </div>
-                                    <?php endif; ?>
-                                </td>
-                                <td>
-                                    <?php if ($dl['bulan'] == "6") : ?>
-                                        <div class="d-flex flex-column justify-content-center px-3">
-                                            <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
-                                        </div>
-                                    <?php else : ?>
-                                        <div class="d-flex flex-column justify-content-center px-3">
-                                            <p class="text-xs text-center bg-primary rounded text-white mb-0">&nbsp;</p>
-                                        </div>
-                                    <?php endif; ?>
-                                </td>
-                                <td>
-                                    <div class="d-flex flex-column justify-content-center px-3">
-                                        <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex flex-column justify-content-center px-3">
-                                        <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex flex-column justify-content-center px-3">
-                                        <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex flex-column justify-content-center px-3">
-                                        <p class="text-xs text-center bg-primary rounded text-white mb-0">&nbsp;</p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex flex-column justify-content-center px-3">
-                                        <p class="text-xs text-center bg-primary rounded text-white mb-0">&nbsp;</p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex flex-column justify-content-center px-3">
-                                        <p class="text-xs text-center bg-primary rounded text-white mb-0">&nbsp;</p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex flex-column justify-content-center px-3">
-                                        <p class="text-xs text-center bg-primary rounded text-white mb-0">&nbsp;</p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex flex-column justify-content-center px-3">
-                                        <p class="text-xs text-center bg-primary rounded text-white mb-0">&nbsp;</p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex flex-column justify-content-center px-3">
-                                        <p class="text-xs text-center bg-primary rounded text-white mb-0">&nbsp;</p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex flex-column justify-content-center px-3">
-                                        <p class="text-xs text-center bg-primary rounded text-white mb-0">&nbsp;</p>
-                                    </div>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
+
+                        <tr>
+                            <td>
+
+                                <div class="d-flex flex-column justify-content-center px-3">
+                                    <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
+                                </div>
+
+                            </td>
+                            <td>
+
+                                <div class="d-flex flex-column justify-content-center px-3">
+                                    <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
+                                </div>
+
+                            </td>
+                            <td>
+                                <div class="d-flex flex-column justify-content-center px-3">
+                                    <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-column justify-content-center px-3">
+                                    <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-column justify-content-center px-3">
+                                    <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-column justify-content-center px-3">
+                                    <p class="text-xs text-center bg-primary rounded text-white mb-0">&nbsp;</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-column justify-content-center px-3">
+                                    <p class="text-xs text-center bg-primary rounded text-white mb-0">&nbsp;</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-column justify-content-center px-3">
+                                    <p class="text-xs text-center bg-primary rounded text-white mb-0">&nbsp;</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-column justify-content-center px-3">
+                                    <p class="text-xs text-center bg-primary rounded text-white mb-0">&nbsp;</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-column justify-content-center px-3">
+                                    <p class="text-xs text-center bg-primary rounded text-white mb-0">&nbsp;</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-column justify-content-center px-3">
+                                    <p class="text-xs text-center bg-primary rounded text-white mb-0">&nbsp;</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-column justify-content-center px-3">
+                                    <p class="text-xs text-center bg-primary rounded text-white mb-0">&nbsp;</p>
+                                </div>
+                            </td>
+                        </tr>
+
                     </tbody>
                 </table>
             </div>

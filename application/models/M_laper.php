@@ -40,6 +40,7 @@ class M_laper extends CI_model
     {
         $id = $this->session->userdata('id');
         $this->db->select('*');
+        $this->db->select('day(`tgl_upload`) as tanggal');
         $this->db->from('laporan_perkara');
         $this->db->where('id_user', $id);
         $this->db->order_by('tgl_upload', 'DESC');
@@ -81,6 +82,19 @@ class M_laper extends CI_model
         $this->db->order_by('id', 'ASC');
         $this->db->where('role_id', '2');
         $this->db->limit('10');
+        $query = $this->db->get()->result_array();
+        return $query;
+    }
+
+    public function get_data_triwulan()
+    {
+        $id = $this->session->userdata('id');
+        $this->db->select('*');
+        $this->db->select('day(`tgl_upload`) as tanggal');
+        $this->db->from('laporan_triwulan');
+        $this->db->where('id_user', $id);
+        $this->db->order_by('periode_triwulan', 'ASC');
+        $this->db->limit(4);
         $query = $this->db->get()->result_array();
         return $query;
     }

@@ -11,14 +11,14 @@
         <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link text-white <?= $this->uri->segment(2, 0) === 0 ? 'active bg-gradient-secondary' : ''; ?>" href="<?= base_url() ?>">
+                    <a class="nav-link text-white <?= $this->uri->segment(2, 0) === 0 ? 'active bg-gradient-secondary' : ''; ?>" href="<?php echo base_url('PA_laper'); ?>">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         </div>
                         <span class="nav-link-text ms-1">Laporan Perkara Bulanan </span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white " href="./pages/billing.html">
+                    <a class="nav-link text-white " href="<?php echo base_url('PA_laper/triwulan'); ?>">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         </div>
                         <span class="nav-link-text ms-2">Laporan Perkara Triwulan</span>

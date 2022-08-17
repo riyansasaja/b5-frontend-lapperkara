@@ -16,4 +16,11 @@ $(document).ready(function () {
         $('#lap_pdf').html(lap_pdf);
     })
 
+    $('#triwulanPdf').on('show.bs.modal', function (e) {
+        let getdata = $(e.relatedTarget).data('id');
+        console.log(getdata);
+        let triwulan_pdf = `<embed src="${path}/laporan_triwulan/${getdata}" type="application/pdf" width="100%" height="100%">`
+        $('#triwulan_pdf').html(triwulan_pdf);
+    })
+
 });

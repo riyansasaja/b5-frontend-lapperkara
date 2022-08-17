@@ -21,7 +21,10 @@ class PA_laper extends CI_Controller
         $data['js'] = 'status.js';
         $data['laporan'] = $this->m_laper->get_data();
         $data['years'] = $this->m_laper->get_years();
+        $this->load->view('templates/header');
+        $this->load->view('templates/side');
         $this->load->view('PA/index', $data);
+        $this->load->view('templates/footer', $data);
     }
 
     public function laporan($year)
@@ -43,7 +46,10 @@ class PA_laper extends CI_Controller
         if ($this->session->userdata('id') != $data['laporan'][0]['id_user']) {
             redirect('PA_laper');
         } else {
+            $this->load->view('templates/header');
+            $this->load->view('templates/side');
             $this->load->view('PA/actionview', $data);
+            $this->load->view('templates/footer', $data);
         }
     }
 
@@ -208,5 +214,234 @@ class PA_laper extends CI_Controller
 
         $this->session->set_flashdata('flash', 'Upload file berhasil');
         redirect('PA_laper/');
+    }
+
+    public function triwulan()
+    {
+        $data['js'] = '';
+        $data['laporan'] = $this->m_laper->get_data_triwulan();
+
+
+        $this->load->view('templates/header');
+        $this->load->view('templates/side');
+        $this->load->view('PA/triwulan', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    public function add_lap_triwulan()
+    {
+        $year = '%Y';
+        $tahun = mdate($year);
+        $periode_triwulan = $this->input->post('lap_triwulan');
+
+        if ($periode_triwulan == "03") {
+            $berkas_laporan = "Triwulan I";
+        } elseif ($periode_triwulan == "06") {
+            $berkas_laporan = "Triwulan II";
+        } elseif ($periode_triwulan == "09") {
+            $berkas_laporan = "Triwulan III";
+        } else {
+            $berkas_laporan = "Triwulan IV";
+        }
+
+        $data = [
+            'id' => '',
+            'id_user' => $this->session->userdata('id'),
+            'periode_triwulan' => $periode_triwulan,
+            'periode_tahun' => $tahun,
+            'tgl_upload' => date('Y-m-d'),
+            'berkas_laporan' => $berkas_laporan,
+            'status_laporan' => "Belum Validasi"
+        ];
+
+        $this->db->insert('laporan_triwulan', $data);
+
+        redirect('PA_laper/triwulan/');
+    }
+
+    public function addTriwulan($id)
+    {
+        $data['js'] = '';
+        $data['laporan'] = $this->db->get_where('v_triwulan_laporan', ['id' => $id])->result_array();
+
+
+        $this->load->view('templates/header');
+        $this->load->view('templates/side');
+        $this->load->view('PA/add_triwulan', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    public function view_triwulan($id)
+    {
+        $data['js'] = 'modalpdf.js';
+        $data['triwulan'] = $this->db->get_where('v_triwulan_laporan', ['id' => $id])->result_array();
+        $data['laporan'] = $this->db->get_where('v_detail_triwulan', ['id' => $id])->result_array();
+        $data['catatan'] = $this->db->get('catatan_laporan')->result_array();
+
+
+        //user id tidak sesuai
+        if ($this->session->userdata('id') != $data['laporan'][0]['id_user']) {
+            redirect('PA_laper/triwulan');
+        } else {
+            $this->load->view('templates/header');
+            $this->load->view('templates/side');
+            $this->load->view('PA/triwulanview', $data);
+            $this->load->view('templates/footer', $data);
+        }
+    }
+
+    public function uploadLaporanTriwulan()
+    {
+        $id_lap_tri = $this->input->post('id', true);
+        $tgl_kirim = date('Y-m-d h:i:sa');
+        $triwulan = $this->input->post('berkas_laporan', true);
+        $tahun = $this->input->post('tahun', true);
+        $satker = $this->session->userdata('kode_pa');
+        $folder = "$satker $triwulan $tahun";
+        $path = "./laporan_triwulan/$folder/";
+
+        if (!file_exists($path)) {
+            mkdir($path);
+        }
+
+        $config['upload_path']          = "./laporan_triwulan/$folder/";
+        $config['allowed_types']        = 'pdf|xlsx';
+        $config['max_size']             = 5024;
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+
+        if (($_FILES['file1']['name'])) {
+            if ($this->upload->do_upload('file1')) {
+                $laper_pdf = $this->upload->data("file_name");
+            } else {
+                $this->session->set_flashdata('msg', 'Upload file gagal');
+                redirect('PA_laper/triwulan/');
+                // $error = array('error' => $this->upload->display_errors());
+                // $this->load->view('banding/uploadbundle', $error);
+            }
+        }
+
+        if (($_FILES['file2']['name'])) {
+            if ($this->upload->do_upload('file2')) {
+                $laper_xls = $this->upload->data("file_name");
+            } else {
+                $this->session->set_flashdata('msg', 'Upload file gagal');
+                redirect('PA_laper/triwulan');
+                // $error = array('error' => $this->upload->display_errors());
+                // $this->load->view('banding/uploadbundle', $error);
+            }
+        }
+
+        $data = [
+            'id' => '',
+            'id_lap_tri' => $id_lap_tri,
+            'nm_laporan' => $this->input->post('nm_laporan', true),
+            'lap_pdf' => $laper_pdf,
+            'lap_xls' => $laper_xls,
+            'tgl_kirim' => $tgl_kirim,
+            'status_validasi' => "Belum Validasi"
+        ];
+
+        $this->db->insert('lap_tri_detail', $data);
+
+        // $this->session->set_flashdata('flash', 'Upload file berhasil');
+        // redirect('PA_laper/triwulan/');
+    }
+
+    public function download_xls_triwulan($id)
+    {
+        $data['laporan'] = $this->db->get_where('v_detail_triwulan', ['id_triwulan' => $id])->result_array();
+
+        $satker = $this->session->userdata('kode_pa');
+        $periode = $data['laporan'][0]['berkas_laporan'];
+        $tahun = $data['laporan'][0]['periode_tahun'];
+        $folder = "$satker $periode $tahun";
+
+
+
+        if ($data['laporan'][0]['lap_xls'] != null) {
+            force_download("laporan_triwulan/$folder/" . $data['laporan'][0]['lap_xls'], null);
+        } else {
+            $this->session->set_flashdata('msg', 'Belum ada laporan');
+        }
+    }
+
+    public function zip_file_triwulan($id)
+    {
+        $data['laporan'] = $this->db->get_where('v_detail_triwulan', ['id_triwulan' => $id])->result_array();
+        $satker = $this->session->userdata('kode_pa');
+        $periode = $data['laporan'][0]['berkas_laporan'];
+        $tahun = $data['laporan'][0]['periode_tahun'];
+        $folder = "$satker $periode $tahun";
+
+        $path = "./laporan_triwulan/$folder/revisi/";
+
+        if (file_exists($path)) {
+            $this->zip->read_dir($path);
+
+            // Download the file to your desktop
+            $this->zip->download("$folder-revisi.zip");
+        } else {
+            $this->session->set_flashdata('msg', 'Tidak ada Revisi');
+        }
+    }
+
+    public function revisi_laporan_triwulan()
+    {
+
+        $triwulan_id = $this->input->post('id', true);
+        $tanggal = date('Y-m-d');
+        $periode = $this->input->post('berkas_laporan', true);
+        $tahun = $this->input->post('periode_tahun', true);
+        $satker = $this->session->userdata('kode_pa');
+        $folder = "$satker $periode $tahun";
+
+        $path = "./laporan_triwulan/$folder/revisi";
+
+        if (!file_exists($path)) {
+            mkdir($path);
+        }
+
+        $config['upload_path']          = "./laporan_triwulan/$folder/revisi/";
+        $config['allowed_types']        = 'pdf|xlsx';
+        $config['max_size']             = 5024;
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+
+        if (($_FILES['file1']['name'])) {
+            if ($this->upload->do_upload('file1')) {
+                $laper_pdf = $this->upload->data("file_name");
+            } else {
+                $this->session->set_flashdata('msg', 'Upload file gagal');
+                redirect('PA_laper/triwulan/');
+                // $error = array('error' => $this->upload->display_errors());
+                // $this->load->view('banding/uploadbundle', $error);
+            }
+        }
+
+        if (($_FILES['file2']['name'])) {
+            if ($this->upload->do_upload('file2')) {
+                $laper_xls = $this->upload->data("file_name");
+            } else {
+                $this->session->set_flashdata('msg', 'Upload file gagal');
+                redirect('PA_laper/triwulan/');
+                // $error = array('error' => $this->upload->display_errors());
+                // $this->load->view('banding/uploadbundle', $error);
+            }
+        }
+
+        $data = [
+            'rev_pdf' => $laper_pdf,
+            'rev_xls' => $laper_xls,
+            'tgl_revisi' => $tanggal
+        ];
+
+
+
+        $where = $this->db->where('id', $triwulan_id);
+        $this->db->update('lap_tri_detail', $data, $where);
+
+        $this->session->set_flashdata('flash', 'Upload file berhasil');
+        redirect('PA_laper/triwulan/');
     }
 }

@@ -118,72 +118,72 @@ class Admin extends CI_Controller
         }
     }
 
-    public function rekap_laporan()
-    {
-        $data['js'] = 'modalpdf.js';
-        $data['laporan'] = $this->db->get_where('v_rekap_laporan')->result_array();
-        $data['all'] = $this->m_laper->get_all_rekap();
+    // public function rekap_laporan()
+    // {
+    //     $data['js'] = 'modalpdf.js';
+    //     $data['laporan'] = $this->db->get_where('v_rekap_laporan')->result_array();
+    //     $data['all'] = $this->m_laper->get_all_rekap();
 
-        $this->load->view('templates/header');
-        $this->load->view('templates/sideadmin');
-        $this->load->view('admin_view/view_rekaplaper', $data);
-        $this->load->view('templates/footer', $data);
-    }
+    //     $this->load->view('templates/header');
+    //     $this->load->view('templates/sideadmin');
+    //     $this->load->view('admin_view/view_rekaplaper', $data);
+    //     $this->load->view('templates/footer', $data);
+    // }
 
-    public function add_rekap_laporan()
-    {
-        $periode = $this->input->post('periode', true);
-        $tanggal = date('Y-m-d');
-        $satker = $this->session->userdata('kode_pa');
-        $folder = "$satker $periode";
-        $path = "./files_laporan/$folder";
+    // public function add_rekap_laporan()
+    // {
+    //     $periode = $this->input->post('periode', true);
+    //     $tanggal = date('Y-m-d');
+    //     $satker = $this->session->userdata('kode_pa');
+    //     $folder = "$satker $periode";
+    //     $path = "./files_laporan/$folder";
 
-        if (!file_exists($path)) {
-            mkdir($path);
-        }
+    //     if (!file_exists($path)) {
+    //         mkdir($path);
+    //     }
 
 
 
-        $config['upload_path']          = "./files_laporan/$folder/";
-        $config['allowed_types']        = 'pdf|xlsx';
-        $config['max_size']             = 5024;
-        $this->load->library('upload', $config);
-        $this->upload->initialize($config);
+    //     $config['upload_path']          = "./files_laporan/$folder/";
+    //     $config['allowed_types']        = 'pdf|xlsx';
+    //     $config['max_size']             = 5024;
+    //     $this->load->library('upload', $config);
+    //     $this->upload->initialize($config);
 
-        if (($_FILES['file1']['name'])) {
-            if ($this->upload->do_upload('file1')) {
-                $rekap_pdf = $this->upload->data("file_name");
-            } else {
-                $this->session->set_flashdata('msg', 'Upload file gagal');
-                redirect('Admin/rekap_laporan/');
-                // $error = array('error' => $this->upload->display_errors());
-                // $this->load->view('banding/uploadbundle', $error);
-            }
-        }
+    //     if (($_FILES['file1']['name'])) {
+    //         if ($this->upload->do_upload('file1')) {
+    //             $rekap_pdf = $this->upload->data("file_name");
+    //         } else {
+    //             $this->session->set_flashdata('msg', 'Upload file gagal');
+    //             redirect('Admin/rekap_laporan/');
+    //             // $error = array('error' => $this->upload->display_errors());
+    //             // $this->load->view('banding/uploadbundle', $error);
+    //         }
+    //     }
 
-        if (($_FILES['file2']['name'])) {
-            if ($this->upload->do_upload('file2')) {
-                $rekap_xls = $this->upload->data("file_name");
-            } else {
-                $this->session->set_flashdata('msg', 'Upload file gagal');
-                redirect('Admin/rekap_laporan/');
-                // $error = array('error' => $this->upload->display_errors());
-                // $this->load->view('banding/uploadbundle', $error);
-            }
-        }
+    //     if (($_FILES['file2']['name'])) {
+    //         if ($this->upload->do_upload('file2')) {
+    //             $rekap_xls = $this->upload->data("file_name");
+    //         } else {
+    //             $this->session->set_flashdata('msg', 'Upload file gagal');
+    //             redirect('Admin/rekap_laporan/');
+    //             // $error = array('error' => $this->upload->display_errors());
+    //             // $this->load->view('banding/uploadbundle', $error);
+    //         }
+    //     }
 
-        $data = [
-            'id' => '',
-            'id_user' => $this->session->userdata('id'),
-            'tgl_upload' => $tanggal,
-            'periode' => $periode,
-            'rekap_pdf' => $rekap_pdf,
-            'rekap_xls' => $rekap_xls
-        ];
+    //     $data = [
+    //         'id' => '',
+    //         'id_user' => $this->session->userdata('id'),
+    //         'tgl_upload' => $tanggal,
+    //         'periode' => $periode,
+    //         'rekap_pdf' => $rekap_pdf,
+    //         'rekap_xls' => $rekap_xls
+    //     ];
 
-        $this->db->insert('rekap_laporan_perkara', $data);
-        $this->session->set_flashdata('flash', 'Upload file berhasil');
+    //     $this->db->insert('rekap_laporan_perkara', $data);
+    //     $this->session->set_flashdata('flash', 'Upload file berhasil');
 
-        redirect('admin/rekap_laporan/');
-    }
+    //     redirect('admin/rekap_laporan/');
+    // }
 }

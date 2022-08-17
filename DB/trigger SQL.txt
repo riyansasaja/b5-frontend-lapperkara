@@ -21,6 +21,7 @@ END
 //end
 
 ALTER TABLE revisi_laporan add FOREIGN KEY(laper_id) REFERENCES laporan_perkara(id);
+ALTER TABLE catatan_laporan add FOREIGN KEY(triwulan_id) REFERENCES lap_tri_detail(id);
 
 //create trigger for tgl_terakhir_rev
 DELIMITER $$
@@ -38,7 +39,7 @@ DELIMITER ;
 //table rekap laporan perkara
 
 CREATE TABLE rekap_laporan_perkara (
-	id int not null AUTO_INCREMENT,
+    id int not null AUTO_INCREMENT,
     id_user int(11),
     periode_bulan varchar(20),
     periode_tahun varchar(20),
@@ -56,3 +57,49 @@ CREATE TABLE rekap_laporan_perkara (
 CREATE VIEW v_rekap_laporan AS
 SELECT rekap_laporan_perkara.*, users.nama, users.kode_pa from rekap_laporan_perkara JOIN users ON rekap_laporan_perkara.id_user = users.id
 // end
+
+//create table laporan triwulan
+CREATE TABLE laporan_triwulan (
+	id int not null AUTO_INCREMENT,
+    id_user int(11),
+    berkas_laporan Varchar(50),
+    periode_triwulan varchar(20),
+    periode_tahun varchar(20),
+    tgl_upload date,
+    tgl_terakhir_revisi date,
+    status_laporan varchar(30),
+    
+    PRIMARY KEY(id),
+    FOREIGN KEY(id_user) REFERENCES users(id)
+)ENGINE=INNODB;
+//end
+
+//create table laporan triwulan detail
+create TABLE lap_tri_detail (
+	id int not null AUTO_INCREMENT,
+    id_lap_tri int(11),
+    nm_laporan varchar(25),
+    tgl_kirim date,
+    lap_pdf varchar(100),
+    lap_xls varchar(100),
+    rev_pdf varchar(100),
+    rev_xls varchar(100),
+    tgl_revisi date,
+    status_validasi varchar(25),
+    
+    PRIMARY KEY(id),
+    FOREIGN KEY(id_lap_tri) REFERENCES laporan_triwulan(id)
+
+)ENGINE=INNODB;
+// end
+
+//Create v_laporan_triwulan
+
+CREATE VIEW v_triwulan_laporan AS
+SELECT laporan_triwulan.*, users.nama, users.kode_pa FROM laporan_triwulan JOIN users ON laporan_triwulan.id_user = users.id
+//end
+
+//Create v_detail_triwulan
+CREATE VIEW v_detail_triwulan AS
+SELECT laporan_triwulan.*, lap_tri_detail.id as id_triwulan, lap_tri_detail.nm_laporan, lap_tri_detail.tgl_kirim, lap_tri_detail.lap_pdf, lap_tri_detail.lap_xls, lap_tri_detail.rev_pdf, lap_tri_detail.rev_xls, lap_tri_detail.tgl_revisi, lap_tri_detail.status_validasi, users.nama, users.kode_pa FROM laporan_triwulan JOIN lap_tri_detail on lap_tri_detail.id_lap_tri = laporan_triwulan.id JOIN users ON users.id = laporan_triwulan.id_user
+//end

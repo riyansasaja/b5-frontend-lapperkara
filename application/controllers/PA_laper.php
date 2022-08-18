@@ -293,18 +293,19 @@ class PA_laper extends CI_Controller
     public function uploadLaporanTriwulan()
     {
         $id_lap_tri = $this->input->post('id', true);
-        $tgl_kirim = date('Y-m-d h:i:sa');
+        $tgl_kirim = date('Y-m-d');
         $triwulan = $this->input->post('berkas_laporan', true);
         $tahun = $this->input->post('tahun', true);
+        $nm_laporan = $this->input->post('nm_laporan', true);
         $satker = $this->session->userdata('kode_pa');
         $folder = "$satker $triwulan $tahun";
-        $path = "./laporan_triwulan/$folder/";
+        $path = "./laporan_triwulan/$folder/$nm_laporan/";
 
         if (!file_exists($path)) {
             mkdir($path);
         }
 
-        $config['upload_path']          = "./laporan_triwulan/$folder/";
+        $config['upload_path']          = "./laporan_triwulan/$folder/$nm_laporan/";
         $config['allowed_types']        = 'pdf|xlsx';
         $config['max_size']             = 5024;
         $this->load->library('upload', $config);
@@ -335,7 +336,7 @@ class PA_laper extends CI_Controller
         $data = [
             'id' => '',
             'id_lap_tri' => $id_lap_tri,
-            'nm_laporan' => $this->input->post('nm_laporan', true),
+            'nm_laporan' => $nm_laporan,
             'lap_pdf' => $laper_pdf,
             'lap_xls' => $laper_xls,
             'tgl_kirim' => $tgl_kirim,
@@ -355,12 +356,13 @@ class PA_laper extends CI_Controller
         $satker = $this->session->userdata('kode_pa');
         $periode = $data['laporan'][0]['berkas_laporan'];
         $tahun = $data['laporan'][0]['periode_tahun'];
+        $nm_laporan = $data['laporan'][0]['nm_laporan'];
         $folder = "$satker $periode $tahun";
 
 
 
         if ($data['laporan'][0]['lap_xls'] != null) {
-            force_download("laporan_triwulan/$folder/" . $data['laporan'][0]['lap_xls'], null);
+            force_download("laporan_triwulan/$folder/$nm_laporan/" . $data['laporan'][0]['lap_xls'], null);
         } else {
             $this->session->set_flashdata('msg', 'Belum ada laporan');
         }
@@ -372,9 +374,10 @@ class PA_laper extends CI_Controller
         $satker = $this->session->userdata('kode_pa');
         $periode = $data['laporan'][0]['berkas_laporan'];
         $tahun = $data['laporan'][0]['periode_tahun'];
+        $nm_laporan = $data['laporan'][0]['nm_laporan'];
         $folder = "$satker $periode $tahun";
 
-        $path = "./laporan_triwulan/$folder/revisi/";
+        $path = "./laporan_triwulan/$folder/$nm_laporan/revisi/";
 
         if (file_exists($path)) {
             $this->zip->read_dir($path);
@@ -393,16 +396,17 @@ class PA_laper extends CI_Controller
         $tanggal = date('Y-m-d');
         $periode = $this->input->post('berkas_laporan', true);
         $tahun = $this->input->post('periode_tahun', true);
+        $nm_laporan = $this->input->post('nm_laporan', true);
         $satker = $this->session->userdata('kode_pa');
         $folder = "$satker $periode $tahun";
 
-        $path = "./laporan_triwulan/$folder/revisi";
+        $path = "./laporan_triwulan/$folder/$nm_laporan/revisi/";
 
         if (!file_exists($path)) {
             mkdir($path);
         }
 
-        $config['upload_path']          = "./laporan_triwulan/$folder/revisi/";
+        $config['upload_path']          = "./laporan_triwulan/$folder/$nm_laporan/revisi/";
         $config['allowed_types']        = 'pdf|xlsx';
         $config['max_size']             = 5024;
         $this->load->library('upload', $config);

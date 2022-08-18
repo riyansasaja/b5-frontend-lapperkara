@@ -98,4 +98,42 @@ class M_laper extends CI_model
         $query = $this->db->get()->result_array();
         return $query;
     }
+
+    public function get_triwulan_admin()
+    {
+        $this->db->select('*');
+        $this->db->select('day(`tgl_upload`) as tanggal');
+        $this->db->from('laporan_triwulan');
+        $query = $this->db->get()->result_array();
+        return $query;
+    }
+
+    public function get_rekap_triwulan()
+    {
+        $this->db->select('*');
+        $this->db->select('day(`tgl_upload`) as tanggal');
+        $this->db->from('rekap_triwulan');
+        $query = $this->db->get()->result_array();
+        return $query;
+    }
+
+    public function view_rekap_triwulan($id)
+    {
+        $this->db->select('*');
+        $this->db->select('day(`tgl_upload`) as tanggal');
+        $this->db->from('rekap_triwulan');
+        $this->db->where('id', $id);
+        $query = $this->db->get()->result_array();
+        return $query;
+    }
+
+    public function detail_rekap_triwulan($id)
+    {
+        $this->db->select('*');
+        $this->db->select('day(`tgl_upload`) as tanggal');
+        $this->db->from('rekap_triwulan');
+        $this->db->where('id', $id);
+        $query = $this->db->get()->result_array();
+        return $query;
+    }
 }

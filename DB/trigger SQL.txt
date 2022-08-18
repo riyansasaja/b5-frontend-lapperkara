@@ -103,3 +103,36 @@ SELECT laporan_triwulan.*, users.nama, users.kode_pa FROM laporan_triwulan JOIN 
 CREATE VIEW v_detail_triwulan AS
 SELECT laporan_triwulan.*, lap_tri_detail.id as id_triwulan, lap_tri_detail.nm_laporan, lap_tri_detail.tgl_kirim, lap_tri_detail.lap_pdf, lap_tri_detail.lap_xls, lap_tri_detail.rev_pdf, lap_tri_detail.rev_xls, lap_tri_detail.tgl_revisi, lap_tri_detail.status_validasi, users.nama, users.kode_pa FROM laporan_triwulan JOIN lap_tri_detail on lap_tri_detail.id_lap_tri = laporan_triwulan.id JOIN users ON users.id = laporan_triwulan.id_user
 //end
+
+//create table rekap triwulan
+CREATE TABLE rekap_triwulan (
+	id int not null AUTO_INCREMENT,
+    id_user int(11),
+    berkas_laporan Varchar(50),
+    periode_triwulan varchar(20),
+    periode_tahun varchar(20),
+    tgl_upload date,
+   
+    PRIMARY KEY(id),
+    FOREIGN KEY(id_user) REFERENCES users(id)
+)ENGINE=INNODB;
+//end
+
+//create table triwulan detail
+create TABLE rekap_tri_detail (
+	id int not null AUTO_INCREMENT,
+    id_rekap_tri int(11),
+    nm_laporan varchar(25),
+    tgl_kirim date,
+    lap_pdf varchar(100),
+    lap_xls varchar(100),
+    PRIMARY KEY(id),
+    FOREIGN KEY(id_rekap_tri) REFERENCES rekap_triwulan(id)
+
+)ENGINE=INNODB;
+//end
+
+//create v_rekap_triwulan
+CREATE VIEW v_rekap_triwulan AS
+select rekap_triwulan.*, rekap_tri_detail.id as id_triwulan, rekap_tri_detail.nm_laporan, rekap_tri_detail.tgl_kirim, rekap_tri_detail.lap_pdf, rekap_tri_detail.lap_xls FROM rekap_triwulan JOIN rekap_tri_detail ON rekap_tri_detail.id_rekap_tri = rekap_triwulan.id JOIN users ON users.id = rekap_triwulan.id_user
+//end

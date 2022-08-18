@@ -125,7 +125,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             <td class="align-middle text-center">
 
                                                 <span class="text-secondary text-xs font-weight-normal">
-                                                    <a href="#!" data-bs-toggle="modal" data-bs-target="#triwulanPdf" data-id="<?= $lhs['kode_pa'] ?> <?= $lhs['berkas_laporan'] ?> <?= $lhs['periode_tahun'] ?>/<?= $lhs['lap_pdf'] ?>" class="fas fa-file-pdf"></a> |
+                                                    <a href="#!" data-bs-toggle="modal" data-bs-target="#triwulanPdf" data-id="<?= $lhs['kode_pa'] ?> <?= $lhs['berkas_laporan'] ?> <?= $lhs['periode_tahun'] ?>/<?= $lhs['nm_laporan'] ?>/<?= $lhs['lap_pdf'] ?>" class="fas fa-file-pdf"></a> |
                                                     <a href="<?php echo base_url() ?>index.php/PA_laper/download_xls_triwulan/<?= $lhs['id_triwulan'] ?>" class="fas fa-file-excel"></a>
                                                 </span>
                                             </td>
@@ -247,6 +247,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                     <input type="hidden" class="form-controll" value="<?php echo $lhs['id_triwulan'] ?>" name="id">
                                     <input type="hidden" class="form-controll" value="<?php echo $lhs['berkas_laporan'] ?>" name="berkas_laporan">
                                     <input type="hidden" class="form-controll" value="<?php echo $lhs['periode_tahun'] ?>" name="periode_tahun">
+                                    <input type="hidden" class="form-controll" value="<?php echo $lhs['nm_laporan'] ?>" name="nm_laporan">
 
                                     <div class="input-group input-group-static my-3">
                                         <label for="upload-pdf">Upload file PDF</label>

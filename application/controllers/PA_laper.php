@@ -116,7 +116,7 @@ class PA_laper extends CI_Controller
 
 
         $config['upload_path']          = "./files_laporan/$folder/";
-        $config['allowed_types']        = 'pdf|xlsx';
+        $config['allowed_types']        = 'pdf|zip';
         $config['max_size']             = 5024;
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
@@ -175,7 +175,7 @@ class PA_laper extends CI_Controller
         }
 
         $config['upload_path']          = "./files_laporan/$folder/revisi/";
-        $config['allowed_types']        = 'pdf|xlsx';
+        $config['allowed_types']        = 'pdf|zip';
         $config['max_size']             = 5024;
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
@@ -306,7 +306,7 @@ class PA_laper extends CI_Controller
         }
 
         $config['upload_path']          = "./laporan_triwulan/$folder/$nm_laporan/";
-        $config['allowed_types']        = 'pdf|xlsx';
+        $config['allowed_types']        = 'pdf|zip';
         $config['max_size']             = 5024;
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
@@ -407,7 +407,7 @@ class PA_laper extends CI_Controller
         }
 
         $config['upload_path']          = "./laporan_triwulan/$folder/$nm_laporan/revisi/";
-        $config['allowed_types']        = 'pdf|xlsx';
+        $config['allowed_types']        = 'pdf|zip';
         $config['max_size']             = 5024;
         $this->load->library('upload', $config);
         $this->upload->initialize($config);

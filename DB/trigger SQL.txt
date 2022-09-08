@@ -134,5 +134,6 @@ create TABLE rekap_tri_detail (
 
 //create v_rekap_triwulan
 CREATE VIEW v_rekap_triwulan AS
-select rekap_triwulan.*, rekap_tri_detail.id as id_triwulan, rekap_tri_detail.nm_laporan, rekap_tri_detail.tgl_kirim, rekap_tri_detail.lap_pdf, rekap_tri_detail.lap_xls FROM rekap_triwulan JOIN rekap_tri_detail ON rekap_tri_detail.id_rekap_tri = rekap_triwulan.id JOIN users ON users.id = rekap_triwulan.id_user
+select rekap_triwulan.*, rekap_tri_detail.id as id_triwulan, rekap_tri_detail.nm_laporan, rekap_tri_detail.tgl_kirim, rekap_tri_detail.lap_pdf, rekap_tri_detail.lap_xls, users.kode_pa, users.nama FROM rekap_triwulan JOIN rekap_tri_detail ON rekap_tri_detail.id_rekap_tri = rekap_triwulan.id JOIN users ON users.id = rekap_triwulan.id_user
 //end
+

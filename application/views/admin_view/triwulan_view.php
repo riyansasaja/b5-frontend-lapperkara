@@ -31,7 +31,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
         <!-- contonet start -->
 
         <div class="container">
-            <?php foreach ($laporan as $lp) : ?>
+            <?php foreach ($triwulan as $lp) : ?>
                 <div class="row bg-gray-400 justify-content-start">
 
                     <div class="row mt-3">
@@ -47,13 +47,24 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     </div>
                     <div class="row mt-n3">
                         <div class="col-md-2">
-                            <p class="fw-bold">Periode Laporan</p>
+                            <p class="fw-bold">Laporan Triwulan</p>
                         </div>
                         <div class="col-md-auto">
                             <p>:</p>
                         </div>
                         <div class="col-md-auto">
-                            <p><?php echo $lp['periode']; ?></p>
+                            <p><?php echo $lp['berkas_laporan']; ?></p>
+                        </div>
+                    </div>
+                    <div class="row mt-n3">
+                        <div class="col-md-2">
+                            <p class="fw-bold">Tahun</p>
+                        </div>
+                        <div class="col-md-auto">
+                            <p>:</p>
+                        </div>
+                        <div class="col-md-auto">
+                            <p><?php echo $lp['periode_tahun']; ?></p>
                         </div>
                     </div>
                 </div>
@@ -100,45 +111,48 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                         <tr>
                                             <td>
                                                 <div class="d-flex flex-column justify-content-center">
-                                                    <p class="text-xs text-secondary mb-0 ms-3"><?php echo $i++; ?></p>
+                                                    <p class="text-xs text-secondary mb-0 ms-3"><?php echo $i++ ?></p>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="d-flex flex-column justify-content-center">
-                                                    <h6 class="mb-0 text-xs"><?php echo $lhs['periode']; ?></h6>
-                                                    <p class="text-xs text-secondary mb-0"><?php echo $lhs['berkas_laporan']; ?></p>
+                                                    <p class="text-xs text-secondary mb-0"><?php echo $lhs['nm_laporan']; ?></p>
                                                 </div>
                                             </td>
                                             <td class="align-middle text-center">
                                                 <span class="text-secondary text-xs font-weight-normal"><?php echo $lhs['tgl_upload']; ?></span>
                                             </td>
                                             <td class="align-middle text-center">
+
                                                 <span class="text-secondary text-xs font-weight-normal">
-                                                    <a href="#!" data-bs-toggle="modal" data-bs-target="#modalPdf" data-id="<?= $laporan['0']['kode_pa'] ?> <?= $laporan['0']['periode'] ?>/<?= $laporan['0']['laper_pdf'] ?>" class="fas fa-file-pdf"></a> |
-                                                    <a href="<?php echo base_url() ?>index.php/PA_laper/download_xls/<?= $laporan['0']['id'] ?>" class="fas fa-file-excel"></a>
+                                                    <a href="#!" data-bs-toggle="modal" data-bs-target="#triwulanPdf" data-id="<?= $lhs['kode_pa'] ?> <?= $lhs['berkas_laporan'] ?> <?= $lhs['periode_tahun'] ?>/<?= $lhs['nm_laporan'] ?>/<?= $lhs['lap_pdf'] ?>" class="fas fa-file-pdf"></a> |
+                                                    <a href="<?php echo base_url() ?>index.php/PA_laper/download_xls_triwulan/<?= $lhs['id_triwulan'] ?>" class="fas fa-file-excel"></a>
                                                 </span>
                                             </td>
+
                                             <td class="align-middle text-center">
+
                                                 <span class="text-success text-xs font-weight-normal">
-                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#catatanModal"><i class="fas fa-clipboard"></i></a>
-
-                                                </span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-normal">
-                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#revisiModal" class="fas fa-upload"></a> | <a href="<?php echo base_url() ?>index.php/PA_laper/zip_file/<?= $laporan['0']['id'] ?>" class="fas fa-download"></a>
+                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#catatanModal<?= $lhs['id_triwulan'] ?>"><i class="fas fa-clipboard"></i></a>
                                                 </span>
 
                                             </td>
+
                                             <td class="align-middle text-center">
                                                 <span class="text-secondary text-xs font-weight-normal">
-                                                    <?php echo $lhs['tgl_terakhir_rev']; ?>
+                                                    <a href="<?php echo base_url() ?>index.php/PA_laper/zip_file_triwulan/<?= $lhs['id_triwulan'] ?>" class="fas fa-download"></a>
+                                                </span>
+
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span class="text-secondary text-xs font-weight-normal">
+                                                    <?php echo $lhs['tgl_revisi']; ?>
                                                 </span>
                                             </td>
                                             <td class="align-middle text-center">
-                                                <?php if ($lhs['status'] == "Belum Validasi") : ?>
+                                                <?php if ($lhs['status_validasi'] == "Belum Validasi") : ?>
                                                     <span id="validate" class="text-white bg-gradient-danger text-xs font-weight-normal">
-                                                        <?php echo $lhs['status']; ?>
+                                                        <?php echo $lhs['status_validasi']; ?>
                                                     </span>
                                                 <?php elseif ($lhs['status'] == "Revisi") : ?>
                                                     <span id="validate" class="text-white bg-gradient-dark text-xs font-weight-normal">
@@ -146,7 +160,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                     </span>
                                                 <?php else : ?>
                                                     <span id="validate" class="text-white bg-gradient-success text-xs font-weight-normal">
-                                                        <?php echo $lhs['status']; ?>
+                                                        <?php echo $lhs['status_validasi']; ?>
                                                     </span>
                                                 <?php endif; ?>
                                             </td>
@@ -163,44 +177,55 @@ defined('BASEPATH') or exit('No direct script access allowed');
             </div>
 
             <!-- catatanModal start -->
-            <div class="modal fade" id="catatanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title font-weight-normal" id="exampleModalLabel">Catatan Perbaikan</h5>
-                            <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
+            <?php foreach ($catatan as $lhs) : ?>
+                <div class="modal fade" id="catatanModal<?= $lhs['id_triwulan'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title font-weight-normal" id="exampleModalLabel">Catatan Perbaikan</h5>
+                                <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="POST" action="<?php echo base_url('Admin/add_catatan_triwulan'); ?>" enctype="multipart/form-data">
 
-                            <?php foreach ($catatan as $ct) : ?>
-                                <div class="card card-frame mb-2">
-                                    <div class="card-body">
-                                        <h6><?php echo $ct['tgl_catatan']; ?></h6>
-                                        <p><?php echo $ct['catatan']; ?></p>
+                                    <div class="card card-frame mb-2">
+                                        <div class="card-body">
+                                            <h6><?php echo $lhs['tgl_catatan']; ?></h6>
+                                            <p><?php echo $lhs['catatan']; ?></p>
+                                        </div>
                                     </div>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+
+                                    <div class="container">
+                                        <div class="form-floating">
+                                            <input type="text" id="id_laper" name="id_triwulan" value="<?php echo $lhs['id_triwulan'] ?>" hidden>
+                                            <textarea class="form-control" name="catatan" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                                            <label for="floatingTextarea">Klik untuk membuat catatan</label>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn bg-gradient-primary">Simpan</button>
+                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
-            </div>
+            <?php endforeach; ?>
             <!-- catatan modal end -->
 
             <!-- //modal tampil pdf -->
 
-            <div class="modal fade" id="modalPdf" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="triwulanPdf" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-fullscreen" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Berkas Perkara</h5>
+                            <h5 class="modal-title">Laporan Triwulan</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body" id="tampil">
+                        <div class="modal-body" id="triwulan_pdf">
 
 
                         </div>
@@ -214,22 +239,25 @@ defined('BASEPATH') or exit('No direct script access allowed');
             <!-- end modal tampil pdf -->
 
             <!-- modal -->
-            <div class="modal fade" id="revisiModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title font-weight-normal" id="exampleModalLabel">Revisi Laporan Perkara</h5>
-                            <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <!-- form start -->
-                            <?php foreach ($laporan as $lp) : ?>
-                                <form method="POST" action="<?php echo base_url('PA_laper/revisi_laporan_perkara'); ?>" enctype="multipart/form-data">
+            <?php foreach ($laporan as $lhs) : ?>
+                <div class="modal fade" id="revisiModal<?= $lhs['id_triwulan'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title font-weight-normal" id="exampleModalLabel">Revisi Laporan Perkara</h5>
+                                <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- form start -->
 
-                                    <input type="hidden" class="form-controll" value="<?php echo $lp['id'] ?>" name="id">
-                                    <input type="hidden" class="form-controll" value="<?php echo $lp['periode'] ?>" name="periode">
+                                <form method="POST" action="<?php echo base_url('PA_laper/revisi_laporan_triwulan'); ?>" enctype="multipart/form-data">
+
+                                    <input type="hidden" class="form-controll" value="<?php echo $lhs['id_triwulan'] ?>" name="id">
+                                    <input type="hidden" class="form-controll" value="<?php echo $lhs['berkas_laporan'] ?>" name="berkas_laporan">
+                                    <input type="hidden" class="form-controll" value="<?php echo $lhs['periode_tahun'] ?>" name="periode_tahun">
+                                    <input type="hidden" class="form-controll" value="<?php echo $lhs['nm_laporan'] ?>" name="nm_laporan">
 
                                     <div class="input-group input-group-static my-3">
                                         <label for="upload-pdf">Upload file PDF</label>
@@ -240,17 +268,18 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                         <input id="upload-zip" type="file" name="file2" class="form-control">
                                     </div>
 
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Batal</button>
+                                <button type="submit" class="btn bg-gradient-primary">Simpan</button>
+                            </div>
+                            </form>
+
+                            <!-- form end -->
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Batal</button>
-                            <button type="submit" class="btn bg-gradient-primary">Simpan</button>
-                        </div>
-                        </form>
-                    <?php endforeach; ?>
-                    <!-- form end -->
                     </div>
                 </div>
-            </div>
+            <?php endforeach; ?>
             <!-- modal -->
 
         </div>

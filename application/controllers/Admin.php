@@ -40,8 +40,7 @@ class Admin extends CI_Controller
         } else {
             $this->load->view('templates/header');
             $this->load->view('templates/sideadmin');
-            $this->load->view('admin_vie
-            w/view_document', $data);
+            $this->load->view('admin_view/view_document', $data);
             $this->load->view('templates/footer', $data);
         }
 
@@ -131,7 +130,7 @@ class Admin extends CI_Controller
         } else {
             $this->load->view('templates/header');
             $this->load->view('templates/sideadmin');
-            $this->load->view('admin_view/view_document', $data);
+            $this->load->view('admin_view/triwulan', $data);
             $this->load->view('templates/footer', $data);
         }
     }
@@ -143,14 +142,13 @@ class Admin extends CI_Controller
         $data['laporan'] = $this->db->get_where('v_detail_triwulan', ['id' => $id])->result_array();
         $data['catatan'] = $this->db->get('catatan_laporan')->result_array();
 
-
         //user id tidak sesuai
         if ($this->session->userdata('role_id') != '1') {
             redirect('Admin');
         } else {
             $this->load->view('templates/header');
             $this->load->view('templates/sideadmin');
-            $this->load->view('admin_view/view_document', $data);
+            $this->load->view('admin_view/triwulan_view', $data);
             $this->load->view('templates/footer', $data);
         }
     }
@@ -229,9 +227,11 @@ class Admin extends CI_Controller
 
     public function rekap_laporan()
     {
-        $data['js'] = 'modalpdf.js';
-        $data['laporan'] = $this->db->get_where('v_rekap_laporan')->result_array();
+        $data['js'] = '';
+        // $data['laporan'] = $this->db->get_where('v_rekap_laporan')->result_array();
         $data['all'] = $this->m_laper->get_all_rekap();
+        $data['years'] = $this->m_laper->get_years_rekap();
+
 
         //user id tidak sesuai
         if ($this->session->userdata('role_id') != '1') {
@@ -242,6 +242,18 @@ class Admin extends CI_Controller
             $this->load->view('admin_view/view_rekaplaper', $data);
             $this->load->view('templates/footer', $data);
         }
+    }
+
+    public function rekap_search_year($year)
+    {
+        $data['js'] = 'status.js';
+        $data['all'] = $this->m_laper->get_year_rekap($year);
+        $data['years'] = $this->m_laper->get_years_rekap();
+
+        $this->load->view('templates/header');
+        $this->load->view('templates/sideadmin');
+        $this->load->view('admin_view/view_rekaplaper', $data);
+        $this->load->view('templates/footer', $data);
     }
 
     public function add_rekap_laporan()
@@ -301,18 +313,37 @@ class Admin extends CI_Controller
         redirect('admin/rekap_laporan/');
     }
 
-    public function download_xls_rekap($id)
+    // public function download_xls_rekap($id)
+    // {
+    //     $data['laporan'] = $this->db->get_where('v_rekap_laporan', ['id' => $id])->result_array();
+
+    //     $satker = $data['laporan'][0]['kode_pa'];
+    //     $periode = $data['laporan'][0]['periode'];
+    //     $folder = "$satker $periode";
+
+    //     if ($data['laporan'][0]['rekap_xls'] != null) {
+    //         force_download("files_laporan/$folder/" . $data['laporan'][0]['rekap_xls'], null);
+    //     } else {
+    //         $this->session->set_flashdata('msg', 'Belum ada laporan');
+    //     }
+    // }
+
+    public function zip_file_rekap($id)
     {
         $data['laporan'] = $this->db->get_where('v_rekap_laporan', ['id' => $id])->result_array();
-
         $satker = $data['laporan'][0]['kode_pa'];
         $periode = $data['laporan'][0]['periode'];
         $folder = "$satker $periode";
 
-        if ($data['laporan'][0]['rekap_xls'] != null) {
-            force_download("files_laporan/$folder/" . $data['laporan'][0]['rekap_xls'], null);
+        $path = "./files_laporan/$folder/";
+
+        if (file_exists($path)) {
+            $this->zip->read_dir($path);
+
+            // Download the file to your desktop
+            $this->zip->download("$folder.zip");
         } else {
-            $this->session->set_flashdata('msg', 'Belum ada laporan');
+            $this->session->set_flashdata('msg', 'Tidak ada Laporan');
         }
     }
 
@@ -320,6 +351,7 @@ class Admin extends CI_Controller
     {
         $data['js'] = '';
         $data['all'] = $this->m_laper->get_rekap_triwulan();
+        $data['years'] = $this->m_laper->years_rekap_triwulan();
 
         //user id tidak sesuai
         if ($this->session->userdata('role_id') != '1') {
@@ -327,15 +359,29 @@ class Admin extends CI_Controller
         } else {
             $this->load->view('templates/header');
             $this->load->view('templates/sideadmin');
-            $this->load->view('admin_view/view_document', $data);
+            $this->load->view('admin_view/rekaptriwulan', $data);
             $this->load->view('templates/footer', $data);
         }
     }
 
+    public function rekap_triwulan_year($year)
+    {
+
+        $data['js'] = 'status.js';
+        $data['all'] = $this->m_laper->year_rekap_triwulan($year);
+        $data['years'] = $this->m_laper->years_rekap_triwulan();
+
+        $this->load->view('templates/header');
+        $this->load->view('templates/sideadmin');
+        $this->load->view('admin_view/rekaptriwulan', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
     public function view_rekap_tri($id)
     {
+
         $data['js'] = 'modalpdf.js';
-        $data['triwulan'] = $this->m_laper->view_rekap_triwulan();
+        $data['triwulan'] = $this->db->get_where('rekap_triwulan', ['id' => $id])->result_array();
         $data['laporan'] = $this->db->get_where('v_rekap_triwulan', ['id' => $id])->result_array();
 
 
@@ -345,7 +391,7 @@ class Admin extends CI_Controller
         } else {
             $this->load->view('templates/header');
             $this->load->view('templates/sideadmin');
-            $this->load->view('admin_view/view_document', $data);
+            $this->load->view('admin_view/view_rekaptriwulan', $data);
             $this->load->view('templates/footer', $data);
         }
     }
@@ -377,22 +423,57 @@ class Admin extends CI_Controller
 
         $this->db->insert('rekap_triwulan', $data);
 
-        redirect('PA_laper/rekap_triwulan/');
+        $last_id = $this->db->insert_id();
+
+        $keuangan = [
+            'id' => '',
+            'id_rekap_tri' => $last_id,
+            'nm_laporan' => 'Keuangan',
+        ];
+        $this->db->insert('rekap_tri_detail', $keuangan);
+
+        $meja_informasi = [
+            'id' => '',
+            'id_rekap_tri' => $last_id,
+            'nm_laporan' => 'Meja Informasi',
+        ];
+        $this->db->insert('rekap_tri_detail', $meja_informasi);
+
+        $pengaduan = [
+            'id' => '',
+            'id_rekap_tri' => $last_id,
+            'nm_laporan' => 'Pengaduan',
+        ];
+        $this->db->insert('rekap_tri_detail', $pengaduan);
+
+        $penilaian_banding = [
+            'id' => '',
+            'id_rekap_tri' => $last_id,
+            'nm_laporan' => 'Penilaian Banding',
+        ];
+        $this->db->insert('rekap_tri_detail', $penilaian_banding);
+
+
+        redirect('Admin/rekap_triwulan/');
     }
 
-    public function uploadRekapTriwulan()
+    public function lap_RekapTriwulan()
     {
-        $id_rekap_tri = $this->input->post('id', true);
-        $tgl_kirim = date('Y-m-d');
         $triwulan = $this->input->post('berkas_laporan', true);
         $tahun = $this->input->post('tahun', true);
         $nm_laporan = $this->input->post('nm_laporan', true);
         $satker = $this->session->userdata('kode_pa');
         $folder = "$satker $triwulan $tahun";
-        $path = "./laporan_triwulan/$folder/$nm_laporan/";
+        $path = "./laporan_triwulan/$folder";
 
         if (!file_exists($path)) {
             mkdir($path);
+        }
+
+        $path_triwulan = "$path/$nm_laporan";
+
+        if (!file_exists($path_triwulan)) {
+            mkdir($path_triwulan);
         }
 
         $config['upload_path']          = "./laporan_triwulan/$folder/$nm_laporan/";
@@ -401,56 +482,81 @@ class Admin extends CI_Controller
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
 
-        if (($_FILES['file1']['name'])) {
-            if ($this->upload->do_upload('file1')) {
-                $laper_pdf = $this->upload->data("file_name");
+        if (($_FILES['file_pdf']['name'] != null)) {
+            if ($this->upload->do_upload('file_pdf')) {
+                $lap_pdf = $this->upload->data("file_name");
+                $this->db->set('lap_pdf', $lap_pdf);
             } else {
                 $this->session->set_flashdata('msg', 'Upload file gagal');
-                redirect('PA_laper/triwulan/');
+                redirect('Admin/rekap_laporan/');
                 // $error = array('error' => $this->upload->display_errors());
                 // $this->load->view('banding/uploadbundle', $error);
             }
+        } else {
+            $this->session->set_flashdata('msg', 'Tidak ada file yang di upload');
+            redirect('Admin/rekap_triwulan');
         }
 
-        if (($_FILES['file2']['name'])) {
-            if ($this->upload->do_upload('file2')) {
-                $laper_xls = $this->upload->data("file_name");
+        if (($_FILES['file_excel']['name'] != null)) {
+            if ($this->upload->do_upload('file_excel')) {
+                $lap_xls = $this->upload->data("file_name");
+                $this->db->set('lap_xls', $lap_xls);
             } else {
                 $this->session->set_flashdata('msg', 'Upload file gagal');
-                redirect('PA_laper/triwulan');
+                redirect('Admin/rekap_laporan');
                 // $error = array('error' => $this->upload->display_errors());
                 // $this->load->view('banding/uploadbundle', $error);
             }
+        } else {
+            $this->session->set_flashdata('msg', 'Tidak ada file yang di upload');
+            redirect('Admin/rekap_triwulan');
         }
 
-        $data = [
-            'id' => '',
-            'id_rekap_tri' => $id_rekap_tri,
-            'nm_laporan' => $nm_laporan,
-            'lap_pdf' => $laper_pdf,
-            'lap_xls' => $laper_xls,
-            'tgl_kirim' => $tgl_kirim
-        ];
+        $id_rekap_tri = $this->input->post('id_triwulan', true);
+        $tgl_kirim = date('Y-m-d');
+        $this->db->set('tgl_kirim', $tgl_kirim);
 
-        $this->db->insert('rekap_tri_detail', $data);
+        $this->db->where('id', $id_rekap_tri);
+        $this->db->update('rekap_tri_detail');
 
-        // $this->session->set_flashdata('flash', 'Upload file berhasil');
-        // redirect('PA_laper/triwulan/');
+        $this->session->set_flashdata('flash', 'Upload file berhasil');
+
+        redirect('Admin/rekap_triwulan/');
     }
 
     public function download_xls_rekap_tri($id)
     {
-        $data['laporan'] = $this->db->get_where('v_detail_triwulan', ['id_triwulan' => $id])->result_array();
-
+        $data['laporan'] = $this->db->get_where('v_rekap_triwulan', ['id_triwulan' => $id])->result_array();
         $satker = $data['laporan'][0]['kode_pa'];
-        $periode = $data['laporan'][0]['periode_triwulan'];
+        $triwulan = $data['laporan'][0]['berkas_laporan'];
+        $periode = $data['laporan'][0]['periode_tahun'];
         $nm_laporan = $data['laporan'][0]['nm_laporan'];
-        $folder = "$satker $periode";
+        $folder = "$satker $triwulan $periode";
 
         if ($data['laporan'][0]['lap_xls'] != null) {
-            force_download("files_laporan/$folder/$nm_laporan/" . $data['laporan'][0]['lap_xls'], null);
+            force_download("laporan_triwulan/$folder/$nm_laporan/" . $data['laporan'][0]['lap_xls'], null);
         } else {
             $this->session->set_flashdata('msg', 'Belum ada laporan');
+        }
+    }
+
+    public function zip_rekap_triwulan($id)
+    {
+        $data['laporan'] = $this->db->get_where('v_rekap_triwulan', ['id' => $id])->result_array();
+        $satker = $data['laporan'][0]['kode_pa'];
+        $triwulan = $data['laporan'][0]['berkas_laporan'];
+        $periode = $data['laporan'][0]['periode_tahun'];
+        $folder = "$satker $triwulan $periode";
+
+        $path = "./laporan_triwulan/$folder/";
+
+        if (file_exists($path)) {
+            $this->zip->read_dir($path);
+
+            // Download the file to your desktop
+            $this->zip->download("$folder.zip");
+        } else {
+            $this->session->set_flashdata('msg', 'Tidak ada Laporan');
         }
     }
 }

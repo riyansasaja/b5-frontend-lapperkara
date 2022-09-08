@@ -147,7 +147,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                     </a>
                                                 <?php elseif ($lhs['status'] == "Revisi") : ?>
                                                     <a href="#" data-bs-toggle="modal" data-bs-target="#validasiModal">
-                                                        <span class="text-white bg-gradient-warning text-xs font-weight-normal rounded p-1">
+                                                        <span class="text-white bg-gradient-dark text-xs font-weight-normal rounded p-1">
                                                             <?php echo $lhs['status']; ?>
                                                         </span>
                                                     </a>

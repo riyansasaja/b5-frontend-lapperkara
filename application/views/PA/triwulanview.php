@@ -111,7 +111,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                         <tr>
                                             <td>
                                                 <div class="d-flex flex-column justify-content-center">
-                                                    <p class="text-xs text-secondary mb-0 ms-3"><?php echo $lhs['id_triwulan'] ?></p>
+                                                    <p class="text-xs text-secondary mb-0 ms-3"><?php echo $i++ ?></p>
                                                 </div>
                                             </td>
                                             <td>
@@ -154,7 +154,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                         <?php echo $lhs['status_validasi']; ?>
                                                     </span>
                                                 <?php elseif ($lhs['status'] == "Revisi") : ?>
-                                                    <span id="validate" class="text-white bg-gradient-warning text-xs font-weight-normal">
+                                                    <span id="validate" class="text-white bg-gradient-dark text-xs font-weight-normal">
                                                         <?php echo $lhs['status']; ?>
                                                     </span>
                                                 <?php else : ?>

@@ -37,17 +37,23 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col text-center">
-                <h6 class="d-block">Rekap Laporan Perkara <br> Tahun 2022</h6>
+                <h6 class="d-block">Rekap Laporan Perkara <br> Tahun <script>
+                        document.write(new Date().getFullYear())
+                    </script>
+                </h6>
                 <!-- dropdown start -->
                 <div class="d-flex justify-content-center">
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                             Pilih Tahun
                         </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="#">2022</a></li>
-                            <li><a class="dropdown-item" href="#">2023</a></li>
-                            <li><a class="dropdown-item" href="#">2024</a></li>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" id="tahun">
+                            <?php foreach ($years as $y) : ?>
+
+                                <li><a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Admin/rekap_search_year/<?php echo $y['year'];  ?>" value="1"><?php echo $y['year']; ?></a></li>
+
+
+                            <?php endforeach; ?>
                         </ul>
                     </div>
                 </div>
@@ -59,7 +65,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
         <div class="row">
             <div class="col">
                 <!-- button -->
-                <button type="button" class="btn bg-gradient-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button type="button" class="btn bg-gradient-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Tambah Rekap Laporan Perkara
                 </button>
 
@@ -68,7 +74,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title font-weight-normal" id="exampleModalLabel">Tambah Laporan Perkara</h5>
+                                <h5 class="modal-title font-weight-normal" id="exampleModalLabel">Tambah Rekap Laporan Perkara</h5>
                                 <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -132,76 +138,136 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         <tr>
                             <td>
                                 <?php foreach ($all as $one) : ?>
-                                    <?php if ($one['periode'] == '2022-01') : ?>
-                                        <div class="d-flex flex-column justify-content-center px-3">
-                                            <a href="#!" data-bs-toggle="modal" data-bs-target="#viewdocumentModal" data-id="<?= $laporan['0']['kode_pa'] ?> <?= $laporan['0']['periode'] ?>/<?= $laporan['0']['rekap_pdf'] ?>">
+                                    <?php if (date('Y', strtotime($one['periode'])) == date('Y', strtotime('now')) and date('m', strtotime($one['periode'])) == '01') : ?>
+                                        <div class="d-flex flex-column justifxy-content-center px-3">
+                                            <a href="<?php echo base_url() ?>index.php/Admin/zip_file_rekap/<?= $one['id'] ?>">
                                                 <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
                                         </div>
-                                    <?php else : ?>
-                                        <div class="d-flex flex-column justify-content-center px-3">
-                                            <p class="text-xs text-center bg-primary rounded text-white mb-0">&nbsp;</p>
+
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </td>
+                            <td>
+                                <?php foreach ($all as $one) : ?>
+                                    <?php if (date('Y', strtotime($one['periode'])) == date('Y', strtotime('now')) and date('m', strtotime($one['periode'])) == '02') : ?>
+                                        <div class="d-flex flex-column justifxy-content-center px-3">
+                                            <a href="<?php echo base_url() ?>index.php/Admin/zip_file_rekap/<?= $one['id'] ?>">
+                                                <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
                                         </div>
+
                                     <?php endif; ?>
                                 <?php endforeach; ?>
 
+                            </td>
+                            <td>
+                                <?php foreach ($all as $one) : ?>
+                                    <?php if (date('Y', strtotime($one['periode'])) == date('Y', strtotime('now')) and date('m', strtotime($one['periode'])) == '03') : ?>
+                                        <div class="d-flex flex-column justifxy-content-center px-3">
+                                            <a href="<?php echo base_url() ?>index.php/Admin/zip_file_rekap/<?= $one['id'] ?>">
+                                                <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
+                                        </div>
 
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
                             </td>
                             <td>
+                                <?php foreach ($all as $one) : ?>
+                                    <?php if (date('Y', strtotime($one['periode'])) == date('Y', strtotime('now')) and date('m', strtotime($one['periode'])) == '04') : ?>
+                                        <div class="d-flex flex-column justifxy-content-center px-3">
+                                            <a href="<?php echo base_url() ?>index.php/Admin/zip_file_rekap/<?= $one['id'] ?>">
+                                                <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
+                                        </div>
 
-                                <div class="d-flex flex-column justify-content-center px-3">
-                                    <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
-                                </div>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </td>
+                            <td>
+                                <?php foreach ($all as $one) : ?>
+                                    <?php if (date('Y', strtotime($one['periode'])) == date('Y', strtotime('now')) and date('m', strtotime($one['periode'])) == '05') : ?>
+                                        <div class="d-flex flex-column justifxy-content-center px-3">
+                                            <a href="<?php echo base_url() ?>index.php/Admin/zip_file_rekap/<?= $one['id'] ?>">
+                                                <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
+                                        </div>
 
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
                             </td>
                             <td>
-                                <div class="d-flex flex-column justify-content-center px-3">
-                                    <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
-                                </div>
+                                <?php foreach ($all as $one) : ?>
+                                    <?php if (date('Y', strtotime($one['periode'])) == date('Y', strtotime('now')) and date('m', strtotime($one['periode'])) == '06') : ?>
+                                        <div class="d-flex flex-column justifxy-content-center px-3">
+                                            <a href="<?php echo base_url() ?>index.php/Admin/zip_file_rekap/<?= $one['id'] ?>">
+                                                <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
+                                        </div>
+
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
                             </td>
                             <td>
-                                <div class="d-flex flex-column justify-content-center px-3">
-                                    <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
-                                </div>
+                                <?php foreach ($all as $one) : ?>
+                                    <?php if (date('Y', strtotime($one['periode'])) == date('Y', strtotime('now')) and date('m', strtotime($one['periode'])) == '07') : ?>
+                                        <div class="d-flex flex-column justifxy-content-center px-3">
+                                            <a href="<?php echo base_url() ?>index.php/Admin/zip_file_rekap/<?= $one['id'] ?>">
+                                                <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
+                                        </div>
+
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
                             </td>
                             <td>
-                                <div class="d-flex flex-column justify-content-center px-3">
-                                    <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
-                                </div>
+                                <?php foreach ($all as $one) : ?>
+                                    <?php if (date('Y', strtotime($one['periode'])) == date('Y', strtotime('now')) and date('m', strtotime($one['periode'])) == '08') : ?>
+                                        <div class="d-flex flex-column justifxy-content-center px-3">
+                                            <a href="<?php echo base_url() ?>index.php/Admin/zip_file_rekap/<?= $one['id'] ?>">
+                                                <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
+                                        </div>
+
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
                             </td>
                             <td>
-                                <div class="d-flex flex-column justify-content-center px-3">
-                                    <p class="text-xs text-center bg-primary rounded text-white mb-0">&nbsp;</p>
-                                </div>
+                                <?php foreach ($all as $one) : ?>
+                                    <?php if (date('Y', strtotime($one['periode'])) == date('Y', strtotime('now')) and date('m', strtotime($one['periode'])) == '09') : ?>
+                                        <div class="d-flex flex-column justifxy-content-center px-3">
+                                            <a href="<?php echo base_url() ?>index.php/Admin/zip_file_rekap/<?= $one['id'] ?>">
+                                                <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
+                                        </div>
+
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
                             </td>
                             <td>
-                                <div class="d-flex flex-column justify-content-center px-3">
-                                    <p class="text-xs text-center bg-primary rounded text-white mb-0">&nbsp;</p>
-                                </div>
+                                <?php foreach ($all as $one) : ?>
+                                    <?php if (date('Y', strtotime($one['periode'])) == date('Y', strtotime('now')) and date('m', strtotime($one['periode'])) == '10') : ?>
+                                        <div class="d-flex flex-column justifxy-content-center px-3">
+                                            <a href="<?php echo base_url() ?>index.php/Admin/zip_file_rekap/<?= $one['id'] ?>">
+                                                <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
+                                        </div>
+
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
                             </td>
                             <td>
-                                <div class="d-flex flex-column justify-content-center px-3">
-                                    <p class="text-xs text-center bg-primary rounded text-white mb-0">&nbsp;</p>
-                                </div>
+                                <?php foreach ($all as $one) : ?>
+                                    <?php if (date('Y', strtotime($one['periode'])) == date('Y', strtotime('now')) and date('m', strtotime($one['periode'])) == '11') : ?>
+                                        <div class="d-flex flex-column justifxy-content-center px-3">
+                                            <a href="<?php echo base_url() ?>index.php/Admin/zip_file_rekap/<?= $one['id'] ?>">
+                                                <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
+                                        </div>
+
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
                             </td>
                             <td>
-                                <div class="d-flex flex-column justify-content-center px-3">
-                                    <p class="text-xs text-center bg-primary rounded text-white mb-0">&nbsp;</p>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="d-flex flex-column justify-content-center px-3">
-                                    <p class="text-xs text-center bg-primary rounded text-white mb-0">&nbsp;</p>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="d-flex flex-column justify-content-center px-3">
-                                    <p class="text-xs text-center bg-primary rounded text-white mb-0">&nbsp;</p>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="d-flex flex-column justify-content-center px-3">
-                                    <p class="text-xs text-center bg-primary rounded text-white mb-0">&nbsp;</p>
-                                </div>
+                                <?php foreach ($all as $one) : ?>
+                                    <?php if (date('Y', strtotime($one['periode'])) == date('Y', strtotime('now')) and date('m', strtotime($one['periode'])) == '12') : ?>
+                                        <div class="d-flex flex-column justifxy-content-center px-3">
+                                            <a href="<?php echo base_url() ?>index.php/Admin/zip_file_rekap/<?= $one['id'] ?>">
+                                                <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
+                                        </div>
+
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
                             </td>
                         </tr>
 
@@ -227,28 +293,33 @@ defined('BASEPATH') or exit('No direct script access allowed');
         </div>
 
         <!-- viewdocument Modal start -->
-        <div class="modal fade" id="viewdocumentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-fullscreen" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title font-weight-normal" id="exampleModalLabel">View Document</h5>
-                        <!-- <button type="button" class="btn bg-gradient-success">
+        <?php foreach ($all as $one) : ?>
+            <div class="modal fade" id="viewdocumentModal<?= $one['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-fullscreen" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title font-weight-normal" id="exampleModalLabel">View Document</h5>
+                            <!-- <button type="button" class="btn bg-gradient-success">
                             Download Excel
                         </button> -->
-                        <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
+                            <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
 
-                    <div class="modal-body" id="lap_pdf">
+                        <div class="modal-body" id="lap_pdf">
+
+
+                        </div>
+                        <div class="modal-footer">
+
+                            <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Tutup</button>
+                            <a href="<?php echo base_url() ?>index.php/Admin/download_xls_rekap/<?= $one['id'] ?>" class="text-white btn btn-primary active" role="button">Download Excel <i class="fas fa-file-excel"></i><?= $one['id'] ?></a>
+
+                        </div>
 
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Tutup</button>
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#catatanModal" class="text-white btn btn-primary active" role="button">Buat Catatan</a>
-                    </div>
-
                 </div>
             </div>
-        </div>
+        <?php endforeach; ?>
         <!-- viewdocument modal end -->

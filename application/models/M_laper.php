@@ -23,7 +23,15 @@ class M_laper extends CI_model
     }
     public function get_all_rekap()
     {
-        return $this->db->get('rekap_laporan_perkara')->result_array();
+        // $year = '%Y';
+        // $periode_tahun = mdate($year);
+        $this->db->select('*');
+        // $this->db->select('month(`tgl_upload`) as bulan');
+        $this->db->from('v_rekap_laporan');
+        // $this->db->join('users', 'users.id = rekap_laporan_perkara.id_user');
+        // $this->db->where('tahun', $periode_tahun);
+        $query = $this->db->get()->result_array();
+        return $query;
     }
 
 
@@ -73,6 +81,54 @@ class M_laper extends CI_model
         return $query;
     }
 
+    public function get_years_rekap()
+    {
+        $id = $this->session->userdata('id');
+        $this->db->select('YEAR(`tgl_upload`) as year');
+        $this->db->distinct();
+        $this->db->from('rekap_laporan_perkara');
+        $this->db->order_by('tgl_upload', 'ASC');
+        $this->db->where('id_user', $id);
+        $query = $this->db->get()->result_array();
+        return $query;
+    }
+
+    public function get_year_rekap($year)
+    {
+        $id = $this->session->userdata('id');
+        $this->db->select('*');
+        $this->db->from('rekap_laporan_perkara');
+        $this->db->order_by('tgl_upload', 'ASC');
+        $multiple = array('id_user' => $id, 'YEAR(`tgl_upload`)' => $year);
+        $this->db->where($multiple);
+        $query = $this->db->get()->result_array();
+        return $query;
+    }
+
+    public function years_rekap_triwulan()
+    {
+        $id = $this->session->userdata('id');
+        $this->db->select('periode_tahun');
+        $this->db->distinct();
+        $this->db->from('rekap_triwulan');
+        $this->db->order_by('tgl_upload', 'ASC');
+        $this->db->where('id_user', $id);
+        $query = $this->db->get()->result_array();
+        return $query;
+    }
+
+    public function year_rekap_triwulan($year)
+    {
+        $id = $this->session->userdata('id');
+        $this->db->select('*');
+        $this->db->from('rekap_triwulan');
+        $this->db->order_by('tgl_upload', 'ASC');
+        $multiple = array('id_user' => $id, 'periode_tahun' => $year);
+        $this->db->where($multiple);
+        $query = $this->db->get()->result_array();
+        return $query;
+    }
+
     public function get_nama_user()
     {
 
@@ -101,39 +157,35 @@ class M_laper extends CI_model
 
     public function get_triwulan_admin()
     {
+        $year = '%Y';
+        $periode_tahun = mdate($year);
         $this->db->select('*');
         $this->db->select('day(`tgl_upload`) as tanggal');
         $this->db->from('laporan_triwulan');
+        $this->db->where('periode_tahun', $periode_tahun);
         $query = $this->db->get()->result_array();
         return $query;
     }
 
     public function get_rekap_triwulan()
     {
+        $year = '%Y';
+        $tahun = mdate($year);
         $this->db->select('*');
-        $this->db->select('day(`tgl_upload`) as tanggal');
+        // $this->db->select('day(`tgl_upload`) as tanggal');
         $this->db->from('rekap_triwulan');
+        $this->db->where('Periode_tahun', $tahun);
         $query = $this->db->get()->result_array();
         return $query;
     }
 
-    public function view_rekap_triwulan($id)
-    {
-        $this->db->select('*');
-        $this->db->select('day(`tgl_upload`) as tanggal');
-        $this->db->from('rekap_triwulan');
-        $this->db->where('id', $id);
-        $query = $this->db->get()->result_array();
-        return $query;
-    }
-
-    public function detail_rekap_triwulan($id)
-    {
-        $this->db->select('*');
-        $this->db->select('day(`tgl_upload`) as tanggal');
-        $this->db->from('rekap_triwulan');
-        $this->db->where('id', $id);
-        $query = $this->db->get()->result_array();
-        return $query;
-    }
+    // public function view_rekap_triwulan()
+    // {
+    //     $this->db->select('*');
+    //     $this->db->select('day(`tgl_upload`) as tanggal');
+    //     $this->db->from('rekap_triwulan');
+    //     $this->db->where('id', $id);
+    //     $query = $this->db->get()->result_array();
+    //     return $query;
+    // }
 }

@@ -21,6 +21,20 @@ class Admin extends CI_Controller
         $data['js'] = '';
         $data['nama_user'] = $this->m_laper->get_nama_user();
         $data['all'] = $this->m_laper->get_all_data();
+        $data['years'] = $this->m_laper->get_years_laper();
+
+        $this->load->view('templates/header');
+        $this->load->view('templates/sideadmin');
+        $this->load->view('admin_view/index', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    public function laper_search_year($year)
+    {
+        $data['js'] = 'status.js';
+        $data['nama_user'] = $this->m_laper->get_nama_user();
+        $data['all'] = $this->m_laper->get_year_laper($year);
+        $data['years'] = $this->m_laper->get_years_laper();
 
         $this->load->view('templates/header');
         $this->load->view('templates/sideadmin');
@@ -123,6 +137,7 @@ class Admin extends CI_Controller
         $data['js'] = '';
         $data['nama_user'] = $this->m_laper->get_nama_user();
         $data['all'] = $this->m_laper->get_triwulan_admin();
+        $data['years'] = $this->m_laper->get_years_triwulan();
 
         //user id tidak sesuai
         if ($this->session->userdata('role_id') != '1') {
@@ -135,12 +150,29 @@ class Admin extends CI_Controller
         }
     }
 
+    public function triwulan_search_year($year)
+    {
+        $data['js'] = 'status.js';
+        $data['nama_user'] = $this->m_laper->get_nama_user();
+        $data['all'] = $this->m_laper->get_year_triwulan($year);
+        $data['years'] = $this->m_laper->get_years_triwulan();
+
+        $this->load->view('templates/header');
+        $this->load->view('templates/sideadmin');
+        $this->load->view('admin_view/triwulan', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
     public function view_triwulan($id)
     {
+
+        $coba = '2';
         $data['js'] = 'modalpdf.js';
         $data['triwulan'] = $this->db->get_where('v_triwulan_laporan', ['id' => $id])->result_array();
         $data['laporan'] = $this->db->get_where('v_detail_triwulan', ['id' => $id])->result_array();
         $data['catatan'] = $this->db->get('catatan_laporan')->result_array();
+        // var_dump($data);
+        // die;
 
         //user id tidak sesuai
         if ($this->session->userdata('role_id') != '1') {
@@ -190,6 +222,7 @@ class Admin extends CI_Controller
             $this->zip->download("$folder-revisi.zip");
         } else {
             $this->session->set_flashdata('msg', 'Tidak ada Revisi');
+            redirect('admin/triwulan');
         }
     }
 

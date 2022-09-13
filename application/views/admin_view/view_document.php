@@ -53,7 +53,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             <p>:</p>
                         </div>
                         <div class="col-md-auto">
-                            <p><?php echo $lp['periode']; ?></p>
+                            <p><?php echo date('M Y', strtotime($lp['periode'])); ?></p>
                         </div>
                     </div>
                 </div>
@@ -104,7 +104,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             </td>
                                             <td>
                                                 <div class="d-flex flex-column justify-content-center">
-                                                    <h6 class="mb-0 text-xs"><?php echo $lhs['periode']; ?></h6>
+                                                    <h6 class="mb-0 text-xs"><?php echo date('M Y', strtotime($lhs['periode'])); ?></h6>
                                                     <p class="text-xs text-secondary mb-0"><?php echo $lhs['berkas_laporan']; ?></p>
                                                 </div>
                                             </td>
@@ -113,10 +113,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             </td>
                                             <td class="align-middle text-center">
                                                 <span class="text-secondary text-xs font-weight-normal">
-                                                    <a href="#!" data-bs-toggle="modal" data-bs-target="#viewdocumentModal" data-id="<?= $laporan['0']['kode_pa'] ?> <?= $laporan['0']['periode'] ?>/<?= $laporan['0']['laper_pdf'] ?>">
+                                                    <a href="#!" data-bs-toggle="modal" data-bs-target="#viewdocumentModal" data-id="<?= $lhs['kode_pa'] ?> <?= $lhs['periode'] ?>/<?= $lhs['laper_pdf'] ?>">
                                                         <i class="fas fa-file-pdf"></i> |
                                                     </a>
-                                                    <a href="<?php echo base_url() ?>index.php/Admin/download_xls/<?= $laporan['0']['id'] ?>">
+                                                    <a href="<?php echo base_url() ?>index.php/Admin/download_xls/<?= $lhs['id'] ?>">
                                                         <i class="fas fa-file-excel"></i>
                                                     </a>
                                                 </span>
@@ -129,7 +129,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             </td>
                                             <td class="align-middle text-center">
                                                 <span class="text-secondary text-xs font-weight-normal">
-                                                    <a href="<?php echo base_url() ?>index.php/Admin/zip_file/<?= $laporan['0']['id'] ?>" class="fas fa-download"></a>
+                                                    <a href="<?php echo base_url() ?>index.php/Admin/zip_file/<?= $lhs['id'] ?>" class="fas fa-download"></a>
                                                 </span>
 
                                             </td>

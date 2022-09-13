@@ -236,7 +236,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                         <input id="upload-pdf" type="file" name="file1" class="form-control">
                                     </div>
                                     <div class="input-group input-group-static my-3">
-                                        <label for="upload-zip">Upload file XLS</label>
+                                        <label for="upload-zip">Upload file ZIP/XLS</label>
                                         <input id="upload-zip" type="file" name="file2" class="form-control">
                                     </div>
 

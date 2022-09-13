@@ -32,7 +32,10 @@ class PA_laper extends CI_Controller
         $data['js'] = 'status.js';
         $data['laporan'] = $this->m_laper->get_year($year);
         $data['years'] = $this->m_laper->get_years();
+        $this->load->view('templates/header');
+        $this->load->view('templates/side');
         $this->load->view('PA/index', $data);
+        $this->load->view('templates/footer', $data);
     }
 
     public function view_laporan($id)
@@ -164,7 +167,7 @@ class PA_laper extends CI_Controller
     {
 
         $laper_id = $this->input->post('id', true);
-        $tanggal = date('Y-m-d');
+        // $tanggal = date('Y-m-d');
         $periode = $this->input->post('periode', true);
         $satker = $this->session->userdata('kode_pa');
         $folder = "$satker $periode";
@@ -175,7 +178,7 @@ class PA_laper extends CI_Controller
         }
 
         $config['upload_path']          = "./files_laporan/$folder/revisi/";
-        $config['allowed_types']        = 'pdf|zip';
+        $config['allowed_types']        = 'pdf|zip|xls';
         $config['max_size']             = 5024;
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
@@ -220,7 +223,21 @@ class PA_laper extends CI_Controller
     {
         $data['js'] = '';
         $data['laporan'] = $this->m_laper->get_data_triwulan();
+        $data['years'] = $this->m_laper->get_years_triwulan();
 
+
+        $this->load->view('templates/header');
+        $this->load->view('templates/side');
+        $this->load->view('PA/triwulan', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    public function triwulan_search_year($year)
+    {
+        $data['js'] = 'status.js';
+        $data['nama_user'] = $this->m_laper->get_nama_user();
+        $data['laporan'] = $this->m_laper->year_data_triwulan($year);
+        $data['years'] = $this->m_laper->get_years_triwulan();
 
         $this->load->view('templates/header');
         $this->load->view('templates/side');
@@ -306,7 +323,7 @@ class PA_laper extends CI_Controller
         }
 
         $config['upload_path']          = "./laporan_triwulan/$folder/$nm_laporan/";
-        $config['allowed_types']        = 'pdf|zip';
+        $config['allowed_types']        = 'pdf|xls';
         $config['max_size']             = 5024;
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
@@ -345,8 +362,8 @@ class PA_laper extends CI_Controller
 
         $this->db->insert('lap_tri_detail', $data);
 
-        // $this->session->set_flashdata('flash', 'Upload file berhasil');
-        // redirect('PA_laper/triwulan/');
+        $this->session->set_flashdata('flash', 'Upload file berhasil');
+        redirect('PA_laper/triwulan/');
     }
 
     public function download_xls_triwulan($id)
@@ -407,7 +424,7 @@ class PA_laper extends CI_Controller
         }
 
         $config['upload_path']          = "./laporan_triwulan/$folder/$nm_laporan/revisi/";
-        $config['allowed_types']        = 'pdf|zip';
+        $config['allowed_types']        = 'pdf|xls';
         $config['max_size']             = 5024;
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
@@ -439,8 +456,6 @@ class PA_laper extends CI_Controller
             'rev_xls' => $laper_xls,
             'tgl_revisi' => $tanggal
         ];
-
-
 
         $where = $this->db->where('id', $triwulan_id);
         $this->db->update('lap_tri_detail', $data, $where);

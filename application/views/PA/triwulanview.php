@@ -153,9 +153,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                     <span id="validate" class="text-white bg-gradient-danger text-xs font-weight-normal">
                                                         <?php echo $lhs['status_validasi']; ?>
                                                     </span>
-                                                <?php elseif ($lhs['status'] == "Revisi") : ?>
+                                                <?php elseif ($lhs['status_validasi'] == "Revisi") : ?>
                                                     <span id="validate" class="text-white bg-gradient-dark text-xs font-weight-normal">
-                                                        <?php echo $lhs['status']; ?>
+                                                        <?php echo $lhs['status_validasi']; ?>
                                                     </span>
                                                 <?php else : ?>
                                                     <span id="validate" class="text-white bg-gradient-success text-xs font-weight-normal">

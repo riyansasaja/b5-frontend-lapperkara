@@ -50,7 +50,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <?php foreach ($years as $y) : ?>
 
-                                <li><a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Admin/triwulan_search_year/<?php echo $y['year'];  ?>" value="1"><?php echo $y['year']; ?></a></li>
+                                <li><a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Pta_user/triwulan_search_year/<?php echo $y['year'];  ?>" value="1"><?php echo $y['year']; ?></a></li>
 
 
                             <?php endforeach; ?>
@@ -105,7 +105,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                 } ?>     -->
                                         <?php if ($nm['id'] == $one['id_user'] and $one['periode_triwulan'] == '03' and $one['tanggal'] <= '5' and $one['status_laporan'] != 'Revisi') : ?>
                                             <div class="d-flex flex-column justify-content-center">
-                                                <a href="<?= base_url('admin/view_triwulan/') . $one['id'] ?>">
+                                                <a href="<?= base_url('Pta_user/view_triwulan/') . $one['id'] ?>">
                                                     <p class="text-xs text-white mb-0 rounded bg-success">
                                                         √
                                                     </p>
@@ -113,7 +113,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             </div>
                                         <?php elseif ($nm['id'] == $one['id_user'] and $one['periode_triwulan'] == '03' and $one['tanggal'] > '5' and $one['tanggal'] <= '10' and $one['status_laporan'] != 'Revisi') : ?>
                                             <div class="d-flex flex-column justify-content-center">
-                                                <a href="<?= base_url('admin/view_triwulan/') . $one['id'] ?>">
+                                                <a href="<?= base_url('Pta_user/view_triwulan/') . $one['id'] ?>">
                                                     <p class="text-xs text-white mb-0 rounded bg-warning">
                                                         √
                                                     </p>
@@ -121,7 +121,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             </div>
                                         <?php elseif ($nm['id'] == $one['id_user'] and $one['periode_triwulan'] == '03' and $one['tanggal'] > '10' and $one['status_laporan'] != 'Revisi') : ?>
                                             <div class="d-flex flex-column justify-content-center">
-                                                <a href="<?= base_url('admin/view_triwulan/') . $one['id'] ?>">
+                                                <a href="<?= base_url('Pta_user/view_triwulan/') . $one['id'] ?>">
                                                     <p class="text-xs text-white mb-0 rounded bg-danger">
                                                         √
                                                     </p>
@@ -129,7 +129,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             </div>
                                         <?php elseif ($nm['id'] == $one['id_user'] and $one['periode_triwulan'] == '03' and $one['tanggal'] >= '1' and $one['status_laporan'] == 'Revisi') : ?>
                                             <div class="d-flex flex-column justify-content-center">
-                                                <a href="<?= base_url('admin/view_triwulan/') . $one['id'] ?>">
+                                                <a href="<?= base_url('Pta_user/view_triwulan/') . $one['id'] ?>">
                                                     <p class="text-xs text-white mb-0 rounded bg-dark  ">
                                                         R
                                                     </p>
@@ -145,7 +145,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                 } ?>     -->
                                         <?php if ($nm['id'] == $one['id_user'] and $one['periode_triwulan'] == '06' and $one['tanggal'] <= '5' and $one['status_laporan'] != 'Revisi') : ?>
                                             <div class="d-flex flex-column justify-content-center">
-                                                <a href="<?= base_url('admin/view_triwulan/') . $one['id'] ?>">
+                                                <a href="<?= base_url('Pta_user/view_triwulan/') . $one['id'] ?>">
                                                     <p class="text-xs text-white mb-0 rounded bg-success">
                                                         √
                                                     </p>
@@ -153,7 +153,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             </div>
                                         <?php elseif ($nm['id'] == $one['id_user'] and $one['periode_triwulan'] == '06' and $one['tanggal'] > '5' and $one['tanggal'] <= '10' and $one['status_laporan'] != 'Revisi') : ?>
                                             <div class="d-flex flex-column justify-content-center">
-                                                <a href="<?= base_url('admin/view_triwulan/') . $one['id'] ?>">
+                                                <a href="<?= base_url('Pta_user/view_triwulan/') . $one['id'] ?>">
                                                     <p class="text-xs text-white mb-0 rounded bg-warning">
                                                         √
                                                     </p>
@@ -161,7 +161,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             </div>
                                         <?php elseif ($nm['id'] == $one['id_user'] and $one['periode_triwulan'] == '06' and $one['tanggal'] > '10' and $one['status_laporan'] != 'Revisi') : ?>
                                             <div class="d-flex flex-column justify-content-center">
-                                                <a href="<?= base_url('admin/view_triwulan/') . $one['id'] ?>">
+                                                <a href="<?= base_url('Pta_user/view_triwulan/') . $one['id'] ?>">
                                                     <p class="text-xs text-white mb-0 rounded bg-danger">
                                                         √
                                                     </p>
@@ -169,7 +169,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             </div>
                                         <?php elseif ($nm['id'] == $one['id_user'] and $one['periode_triwulan'] == '06' and $one['tanggal'] >= '1' and $one['status_laporan'] == 'Revisi') : ?>
                                             <div class="d-flex flex-column justify-content-center">
-                                                <a href="<?= base_url('admin/view_triwulan/') . $one['id'] ?>">
+                                                <a href="<?= base_url('Pta_user/view_triwulan/') . $one['id'] ?>">
                                                     <p class="text-xs text-white mb-0 rounded bg-dark  ">
                                                         R
                                                     </p>
@@ -185,7 +185,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                 } ?>     -->
                                         <?php if ($nm['id'] == $one['id_user'] and $one['periode_triwulan'] == '09' and $one['tanggal'] <= '5' and $one['status_laporan'] != 'Revisi') : ?>
                                             <div class="d-flex flex-column justify-content-center">
-                                                <a href="<?= base_url('admin/view_triwulan/') . $one['id'] ?>">
+                                                <a href="<?= base_url('Pta_user/view_triwulan/') . $one['id'] ?>">
                                                     <p class="text-xs text-white mb-0 rounded bg-success">
                                                         √
                                                     </p>
@@ -193,7 +193,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             </div>
                                         <?php elseif ($nm['id'] == $one['id_user'] and $one['periode_triwulan'] == '09' and $one['tanggal'] > '5' and $one['tanggal'] <= '10' and $one['status_laporan'] != 'Revisi') : ?>
                                             <div class="d-flex flex-column justify-content-center">
-                                                <a href="<?= base_url('admin/view_triwulan/') . $one['id'] ?>">
+                                                <a href="<?= base_url('Pta_user/view_triwulan/') . $one['id'] ?>">
                                                     <p class="text-xs text-white mb-0 rounded bg-warning">
                                                         √
                                                     </p>
@@ -201,7 +201,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             </div>
                                         <?php elseif ($nm['id'] == $one['id_user'] and $one['periode_triwulan'] == '09' and $one['tanggal'] > '10' and $one['status_laporan'] != 'Revisi') : ?>
                                             <div class="d-flex flex-column justify-content-center">
-                                                <a href="<?= base_url('admin/view_triwulan/') . $one['id'] ?>">
+                                                <a href="<?= base_url('Pta_user/view_triwulan/') . $one['id'] ?>">
                                                     <p class="text-xs text-white mb-0 rounded bg-danger">
                                                         √
                                                     </p>
@@ -209,7 +209,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             </div>
                                         <?php elseif ($nm['id'] == $one['id_user'] and $one['periode_triwulan'] == '09' and $one['tanggal'] >= '1' and $one['status_laporan'] == 'Revisi') : ?>
                                             <div class="d-flex flex-column justify-content-center">
-                                                <a href="<?= base_url('admin/view_triwulan/') . $one['id'] ?>">
+                                                <a href="<?= base_url('Pta_user/view_triwulan/') . $one['id'] ?>">
                                                     <p class="text-xs text-white mb-0 rounded bg-dark  ">
                                                         R
                                                     </p>
@@ -225,7 +225,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                 } ?>     -->
                                         <?php if ($nm['id'] == $one['id_user'] and $one['periode_triwulan'] == '12' and $one['tanggal'] <= '5' and $one['status_laporan'] != 'Revisi') : ?>
                                             <div class="d-flex flex-column justify-content-center">
-                                                <a href="<?= base_url('admin/view_triwulan/') . $one['id'] ?>">
+                                                <a href="<?= base_url('Pta_user/view_triwulan/') . $one['id'] ?>">
                                                     <p class="text-xs text-white mb-0 rounded bg-success">
                                                         √
                                                     </p>
@@ -233,7 +233,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             </div>
                                         <?php elseif ($nm['id'] == $one['id_user'] and $one['periode_triwulan'] == '12' and $one['tanggal'] > '5' and $one['tanggal'] <= '10' and $one['status_laporan'] != 'Revisi') : ?>
                                             <div class="d-flex flex-column justify-content-center">
-                                                <a href="<?= base_url('admin/view_triwulan/') . $one['id'] ?>">
+                                                <a href="<?= base_url('Pta_user/view_triwulan/') . $one['id'] ?>">
                                                     <p class="text-xs text-white mb-0 rounded bg-warning">
                                                         √
                                                     </p>
@@ -241,7 +241,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             </div>
                                         <?php elseif ($nm['id'] == $one['id_user'] and $one['periode_triwulan'] == '12' and $one['tanggal'] > '10' and $one['status_laporan'] != 'Revisi') : ?>
                                             <div class="d-flex flex-column justify-content-center">
-                                                <a href="<?= base_url('admin/view_triwulan/') . $one['id'] ?>">
+                                                <a href="<?= base_url('Pta_user/view_triwulan/') . $one['id'] ?>">
                                                     <p class="text-xs text-white mb-0 rounded bg-danger">
                                                         √
                                                     </p>
@@ -249,7 +249,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             </div>
                                         <?php elseif ($nm['id'] == $one['id_user'] and $one['periode_triwulan'] == '12' and $one['tanggal'] >= '1' and $one['status_laporan'] == 'Revisi') : ?>
                                             <div class="d-flex flex-column justify-content-center">
-                                                <a href="<?= base_url('admin/view_triwulan/') . $one['id'] ?>">
+                                                <a href="<?= base_url('Pta_user/view_triwulan/') . $one['id'] ?>">
                                                     <p class="text-xs text-white mb-0 rounded bg-dark  ">
                                                         R
                                                     </p>

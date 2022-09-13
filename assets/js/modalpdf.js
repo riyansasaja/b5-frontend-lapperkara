@@ -9,7 +9,7 @@ $(document).ready(function () {
         $('#tampil').html(tampil);
     })
 
-    $('#viewdocumentModal3').on('show.bs.modal', function (e) {
+    $('#viewdocumentModal').on('show.bs.modal', function (e) {
         let getdata = $(e.relatedTarget).data('id');
         console.log(getdata);
         let lap_pdf = `<embed src="${path}/files_laporan/${getdata}" type="application/pdf" width="100%" height="100%">`

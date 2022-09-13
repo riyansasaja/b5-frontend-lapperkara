@@ -126,7 +126,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
                                                 <span class="text-secondary text-xs font-weight-normal">
                                                     <a href="#!" data-bs-toggle="modal" data-bs-target="#triwulanPdf" data-id="<?= $lhs['kode_pa'] ?> <?= $lhs['berkas_laporan'] ?> <?= $lhs['periode_tahun'] ?>/<?= $lhs['nm_laporan'] ?>/<?= $lhs['lap_pdf'] ?>" class="fas fa-file-pdf"></a> |
-                                                    <a href="<?php echo base_url() ?>index.php/Admin/download_xls_triwulan/<?= $lhs['id_triwulan'] ?>" class="fas fa-file-excel"></a>
+                                                    <a href="<?php echo base_url() ?>index.php/Pta_user/download_xls_triwulan/<?= $lhs['id_triwulan'] ?>" class="fas fa-file-excel"></a>
                                                 </span>
                                             </td>
 
@@ -140,7 +140,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
                                             <td class="align-middle text-center">
                                                 <span class="text-secondary text-xs font-weight-normal">
-                                                    <a href="<?php echo base_url() ?>index.php/Admin/zip_file_triwulan/<?= $lhs['id_triwulan'] ?>" class="fas fa-download"></a>
+                                                    <a href="<?php echo base_url() ?>index.php/Pta_user/zip_file_triwulan/<?= $lhs['id_triwulan'] ?>" class="fas fa-download"></a>
                                                 </span>
 
                                             </td>
@@ -197,7 +197,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form method="POST" action="<?php echo base_url('Admin/add_catatan_triwulan'); ?>" enctype="multipart/form-data">
+                                <form method="POST" action="<?php echo base_url('Pta_user/add_catatan_triwulan'); ?>" enctype="multipart/form-data">
 
                                     <div class="container">
                                         <?php foreach ($catatan as $ct) : ?>
@@ -260,7 +260,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         <div class="modal-content">
 
                             <div class="modal-body">
-                                <form method="POST" action="<?php echo base_url('Admin/add_validasi_triwulan'); ?>" enctype="multipart/form-data">
+                                <form method="POST" action="<?php echo base_url('Pta_user/add_validasi_triwulan'); ?>" enctype="multipart/form-data">
 
                                     <input type="text" id="id_laper" name="id_triwulan" value="<?php echo $lhs['id_triwulan'] ?>" hidden>
 

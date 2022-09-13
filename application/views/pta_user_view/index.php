@@ -10,7 +10,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="true">
         <div class="container-fluid py-1 px-3">
             <nav aria-label="breadcrumb">
-                <h3 class="font-weight-bolder mb-0">Dashboard Rekap Laporan Perkara</h3>
+                <h3 class="font-weight-bolder mb-0">Dashboard Laporan Perkara</h3>
             </nav>
             <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                 <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -37,7 +37,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col text-center">
-                <h6 class="d-block">Rekap Laporan Perkara <br> Tahun 2022</h6>
+                <h6 class="d-block">Laporan Perkara Tahun <script>
+                        document.write(new Date().getFullYear())
+                    </script>
+                </h6>
                 <!-- dropdown start -->
                 <div class="d-flex justify-content-center">
                     <div class="dropdown">
@@ -45,9 +48,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             Pilih Tahun
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="#">2022</a></li>
-                            <li><a class="dropdown-item" href="#">2023</a></li>
-                            <li><a class="dropdown-item" href="#">2024</a></li>
+                            <?php foreach ($years as $y) : ?>
+
+                                <li><a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Pta_user/laper_search_year/<?php echo $y['year'];  ?>" value="1"><?php echo $y['year']; ?></a></li>
+
+
+                            <?php endforeach; ?>
                         </ul>
                     </div>
                 </div>
@@ -55,114 +61,583 @@ defined('BASEPATH') or exit('No direct script access allowed');
             </div>
         </div>
 
-
         <!-- table start -->
         <div class="card">
             <div class="table-responsive">
-                <table class="table align-items-center mb-3">
+                <table class="table align-items-center mb-0">
                     <thead>
                         <tr>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jan</th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Feb</th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mar</th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Apr</th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mei</th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jun</th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jul</th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Agu</th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Sep</th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Okt</th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nov</th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Des</th>
-
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Satker</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jan
+                            </th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Feb
+                            </th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mar
+                            </th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Apr
+                            </th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mei
+                            </th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jun
+                            </th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jul
+                            </th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Agu
+                            </th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Sept
+                            </th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Okt
+                            </th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nov
+                            </th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Des
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
+                        <!-- looping data start -->
 
-                        <tr>
-                            <td>
+                        <?php $i = 1; ?>
+                        <?php foreach ($nama_user as $nm) : ?>
 
-                                <div class="d-flex flex-column justify-content-center px-3">
-                                    <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
-                                </div>
+                            <tr class="text-center">
+                                <td>
+                                    <div class="d-flex flex-column justify-content-center">
+                                        <p class="text-xs text-secondary mb-0 ms-3"><?php echo $i++; ?></p>
+                                    </div>
+                                </td>
 
-                            </td>
-                            <td>
+                                <td>
+                                    <div class="d-flex flex-column justify-content-center">
+                                        <p class="text-xs text-secondary mb-0"><?php echo $nm['nama']; ?></p>
+                                    </div>
+                                </td>
 
-                                <div class="d-flex flex-column justify-content-center px-3">
-                                    <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
-                                </div>
+                                <td>
+                                    <?php foreach ($all as $one) : ?>
+                                        <!-- <?php if ($nm['id'] == $one['id_user'] and $one['periode'] == '2022-01') {
+                                                    echo "√";
+                                                } ?>     -->
+                                        <?php if ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '01' and $one['tanggal'] <= '5' and $one['status'] != 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-success">
+                                                        √
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php elseif ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '01' and $one['tanggal'] > '5' and $one['tanggal'] <= '10' and $one['status'] != 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-warning">
+                                                        √
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php elseif ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '01' and $one['tanggal'] > '10' and $one['status'] != 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-danger">
+                                                        √
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php elseif ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '01' and $one['tanggal'] >= '1' and $one['status'] == 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-dark  ">
+                                                        R
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </td>
+                                <td>
+                                    <?php foreach ($all as $one) : ?>
+                                        <!-- <?php if ($nm['id'] == $one['id_user'] and $one['periode'] == '2022-02') {
+                                                    echo "√";
+                                                } ?>     -->
+                                        <?php if ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '02' and $one['tanggal'] <= '5' and $one['status'] != 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-success">
+                                                        √
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php elseif ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '02' and $one['tanggal'] > '5' and $one['tanggal'] <= '10' and $one['status'] != 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-warning">
+                                                        √
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php elseif ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '02' and $one['tanggal'] > '10' and $one['status'] != 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-danger">
+                                                        √
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php elseif ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '02' and $one['tanggal'] >= '1' and $one['status'] == 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-dark  ">
+                                                        R
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </td>
+                                <td>
+                                    <?php foreach ($all as $one) : ?>
+                                        <!-- <?php if ($nm['id'] == $one['id_user'] and $one['periode'] == '2022-03') {
+                                                    echo "√";
+                                                } ?>     -->
+                                        <?php if ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '03' and $one['tanggal'] <= '5' and $one['status'] != 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-success">
+                                                        √
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php elseif ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '03' and $one['tanggal'] > '5' and $one['tanggal'] <= '10' and $one['status'] != 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-warning">
+                                                        √
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php elseif ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '03' and $one['tanggal'] > '10' and $one['status'] != 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-danger">
+                                                        √
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php elseif ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '03' and $one['tanggal'] >= '1' and $one['status'] == 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-dark  ">
+                                                        R
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </td>
+                                <td>
+                                    <?php foreach ($all as $one) : ?>
+                                        <!-- <?php if ($nm['id'] == $one['id_user'] and $one['periode'] == '2022-04') {
+                                                    echo "√";
+                                                } ?>     -->
+                                        <?php if ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '04' and $one['tanggal'] <= '5' and $one['status'] != 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-success">
+                                                        √
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php elseif ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '04' and $one['tanggal'] > '5' and $one['tanggal'] <= '10' and $one['status'] != 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-warning">
+                                                        √
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php elseif ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '04' and $one['tanggal'] > '10' and $one['status'] != 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-danger">
+                                                        √
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php elseif ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '04' and $one['tanggal'] >= '1' and $one['status'] == 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-dark  ">
+                                                        R
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </td>
+                                <td>
+                                    <?php foreach ($all as $one) : ?>
+                                        <!-- <?php if ($nm['id'] == $one['id_user'] and $one['periode'] == '2022-05') {
+                                                    echo "√";
+                                                } ?>     -->
+                                        <?php if ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '05' and $one['tanggal'] <= '5' and $one['status'] != 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-success">
+                                                        √
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php elseif ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '05' and $one['tanggal'] > '5' and $one['tanggal'] <= '10' and $one['status'] != 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-warning">
+                                                        √
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php elseif ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '05' and $one['tanggal'] > '10' and $one['status'] != 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-danger">
+                                                        √
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php elseif ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '05' and $one['tanggal'] >= '1' and $one['status'] == 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-dark  ">
+                                                        R
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </td>
+                                <td>
+                                    <?php foreach ($all as $one) : ?>
+                                        <!-- <?php if ($nm['id'] == $one['id_user'] and $one['periode'] == '2022-06') {
+                                                    echo "√";
+                                                } ?>     -->
+                                        <?php if ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '06' and $one['tanggal'] <= '5' and $one['status'] != 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-success">
+                                                        √
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php elseif ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '06' and $one['tanggal'] > '5' and $one['tanggal'] <= '10' and $one['status'] != 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-warning">
+                                                        √
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php elseif ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '06' and $one['tanggal'] > '10' and $one['status'] != 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-danger">
+                                                        √
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php elseif ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '06' and $one['tanggal'] >= '1' and $one['status'] == 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-dark  ">
+                                                        R
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </td>
+                                <td>
+                                    <?php foreach ($all as $one) : ?>
+                                        <!-- <?php if ($nm['id'] == $one['id_user'] and $one['periode'] == '2022-07') {
+                                                    echo "√";
+                                                } ?>     -->
+                                        <?php if ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '07' and $one['tanggal'] <= '5' and $one['status'] != 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-success">
+                                                        √
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php elseif ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '07' and $one['tanggal'] > '5' and $one['tanggal'] <= '10' and $one['status'] != 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-warning">
+                                                        √
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php elseif ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '07' and $one['tanggal'] > '10' and $one['status'] != 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-danger">
+                                                        √
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php elseif ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '07' and $one['tanggal'] >= '1' and $one['status'] == 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-dark  ">
+                                                        R
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </td>
+                                <td>
+                                    <?php foreach ($all as $one) : ?>
+                                        <!-- <?php if ($nm['id'] == $one['id_user'] and $one['periode'] == '2022-08') {
+                                                    echo "√";
+                                                } ?>     -->
+                                        <?php if ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '08' and $one['tanggal'] <= '5' and $one['status'] != 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-success">
+                                                        √
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php elseif ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '08' and $one['tanggal'] > '5' and $one['tanggal'] <= '10' and $one['status'] != 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-warning">
+                                                        √
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php elseif ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '08' and $one['tanggal'] > '10' and $one['status'] != 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-danger">
+                                                        √
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php elseif ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '08' and $one['tanggal'] >= '1' and $one['status'] == 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-dark  ">
+                                                        R
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </td>
+                                <td>
+                                    <?php foreach ($all as $one) : ?>
+                                        <!-- <?php if ($nm['id'] == $one['id_user'] and $one['periode'] == '2022-09') {
+                                                    echo "√";
+                                                } ?>     -->
+                                        <?php if ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '09' and $one['tanggal'] <= '5' and $one['status'] != 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-success">
+                                                        √
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php elseif ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '09' and $one['tanggal'] > '5' and $one['tanggal'] <= '10' and $one['status'] != 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-warning">
+                                                        √
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php elseif ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '09' and $one['tanggal'] > '10' and $one['status'] != 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-danger">
+                                                        √
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php elseif ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '09' and $one['tanggal'] >= '1' and $one['status'] == 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-dark  ">
+                                                        R
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </td>
+                                <td>
+                                    <?php foreach ($all as $one) : ?>
+                                        <!-- <?php if ($nm['id'] == $one['id_user'] and $one['periode'] == '2022-10') {
+                                                    echo "√";
+                                                } ?>     -->
+                                        <?php if ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '10' and $one['tanggal'] <= '5' and $one['status'] != 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-success">
+                                                        √
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php elseif ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '10' and $one['tanggal'] > '5' and $one['tanggal'] <= '10' and $one['status'] != 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-warning">
+                                                        √
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php elseif ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '10' and $one['tanggal'] > '10' and $one['status'] != 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-danger">
+                                                        √
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php elseif ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '10' and $one['tanggal'] >= '1' and $one['status'] == 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-dark  ">
+                                                        R
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </td>
+                                <td>
+                                    <?php foreach ($all as $one) : ?>
+                                        <!-- <?php if ($nm['id'] == $one['id_user'] and $one['periode'] == '2022-11') {
+                                                    echo "√";
+                                                } ?>     -->
+                                        <?php if ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '11' and $one['tanggal'] <= '5' and $one['status'] != 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-success">
+                                                        √
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php elseif ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '11' and $one['tanggal'] > '5' and $one['tanggal'] <= '10' and $one['status'] != 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-warning">
+                                                        √
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php elseif ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '11' and $one['tanggal'] > '10' and $one['status'] != 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-danger">
+                                                        √
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php elseif ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '11' and $one['tanggal'] >= '1' and $one['status'] == 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-dark  ">
+                                                        R
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </td>
+                                <td>
+                                    <?php foreach ($all as $one) : ?>
+                                        <!-- <?php if ($nm['id'] == $one['id_user'] and $one['periode'] == '2022-12') {
+                                                    echo "√";
+                                                } ?>     -->
+                                        <?php if ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '12' and $one['tanggal'] <= '5' and $one['status'] != 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-success">
+                                                        √
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php elseif ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '12' and $one['tanggal'] > '5' and $one['tanggal'] <= '10' and $one['status'] != 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-warning">
+                                                        √
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php elseif ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '12' and $one['tanggal'] > '10' and $one['status'] != 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-danger">
+                                                        √
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php elseif ($nm['id'] == $one['id_user'] and date('m', strtotime($one['periode'])) == '12' and $one['tanggal'] >= '1' and $one['status'] == 'Revisi') : ?>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <a href="<?= base_url('Pta_user/view_document/') . $one['id'] ?>">
+                                                    <p class="text-xs text-white mb-0 rounded bg-dark  ">
+                                                        R
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </td>
 
-                            </td>
-                            <td>
-                                <div class="d-flex flex-column justify-content-center px-3">
-                                    <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="d-flex flex-column justify-content-center px-3">
-                                    <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="d-flex flex-column justify-content-center px-3">
-                                    <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="d-flex flex-column justify-content-center px-3">
-                                    <p class="text-xs text-center bg-primary rounded text-white mb-0">&nbsp;</p>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="d-flex flex-column justify-content-center px-3">
-                                    <p class="text-xs text-center bg-primary rounded text-white mb-0">&nbsp;</p>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="d-flex flex-column justify-content-center px-3">
-                                    <p class="text-xs text-center bg-primary rounded text-white mb-0">&nbsp;</p>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="d-flex flex-column justify-content-center px-3">
-                                    <p class="text-xs text-center bg-primary rounded text-white mb-0">&nbsp;</p>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="d-flex flex-column justify-content-center px-3">
-                                    <p class="text-xs text-center bg-primary rounded text-white mb-0">&nbsp;</p>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="d-flex flex-column justify-content-center px-3">
-                                    <p class="text-xs text-center bg-primary rounded text-white mb-0">&nbsp;</p>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="d-flex flex-column justify-content-center px-3">
-                                    <p class="text-xs text-center bg-primary rounded text-white mb-0">&nbsp;</p>
-                                </div>
-                            </td>
-                        </tr>
+                            </tr>
+                        <?php endforeach; ?>
+
+
+
+
+                        <!-- looping data end -->
 
                     </tbody>
                 </table>
+
             </div>
         </div>
         <!-- table end -->
 
-        <div class="row mt-4">
-            <div class="col">
-                <div class="card card-frame">
-                    <div class="card-body">
-                        <h6 class="text-center">
-                            GRAFIK REKAP KECAPATAN & KETEPATAN <br>PENGIRIMAN PELAPORAN PERKARA
-                        </h6>
-                        <div>
-                            <canvas id="chart_satu"></canvas>
-                        </div>
-                    </div>
-                </div>
+        <div class="row mb-5">
+            <div class="col mt-2">
+                <h6>Keterangan</h6>
+                <table>
+                    <tr>
+                        <td class=>
+                            <span class="bg-success px-2 text-center">&nbsp;</span>
+                        </td>
+                        <td class="ps-2">: Pengiriman data < tgl 5</td>
+                    </tr>
+                    <tr>
+                        <td class=>
+                            <span class="bg-warning px-2 text-center">&nbsp;</span>
+                        </td>
+                        <td class="ps-2">: PENGIRIMAN DATA > TANGGAL 5 DAN <= TANGGAL 10</td>
+                    </tr>
+                    <tr>
+                        <td class=>
+                            <span class="bg-danger px-2 text-center">&nbsp;</span>
+                        </td>
+                        <td class="ps-2">: PENGIRIMAN DATA > TANGGAL 10</td>
+                    </tr>
+                    <tr>
+                        <td class=>
+                            <span class="bg-dark px-2 text-white text-center">R</span>
+                        </td>
+                        <td class="ps-2">: MASIH ADA YANG PERLU DI REVISI</td>
+                    </tr>
+
+                </table>
             </div>
-        </div>

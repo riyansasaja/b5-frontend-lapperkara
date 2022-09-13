@@ -138,7 +138,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         <tr>
                             <td>
                                 <?php foreach ($all as $one) : ?>
-                                    <?php if (date('Y', strtotime($one['periode'])) == date('Y', strtotime('now')) and date('m', strtotime($one['periode'])) == '01') : ?>
+                                    <?php if (date('m', strtotime($one['periode'])) == '01') : ?>
                                         <div class="d-flex flex-column justifxy-content-center px-3">
                                             <a href="<?php echo base_url() ?>index.php/Admin/zip_file_rekap/<?= $one['id'] ?>">
                                                 <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
@@ -149,7 +149,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             </td>
                             <td>
                                 <?php foreach ($all as $one) : ?>
-                                    <?php if (date('Y', strtotime($one['periode'])) == date('Y', strtotime('now')) and date('m', strtotime($one['periode'])) == '02') : ?>
+                                    <?php if (date('m', strtotime($one['periode'])) == '02') : ?>
                                         <div class="d-flex flex-column justifxy-content-center px-3">
                                             <a href="<?php echo base_url() ?>index.php/Admin/zip_file_rekap/<?= $one['id'] ?>">
                                                 <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
@@ -161,7 +161,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             </td>
                             <td>
                                 <?php foreach ($all as $one) : ?>
-                                    <?php if (date('Y', strtotime($one['periode'])) == date('Y', strtotime('now')) and date('m', strtotime($one['periode'])) == '03') : ?>
+                                    <?php if (date('m', strtotime($one['periode'])) == '03') : ?>
                                         <div class="d-flex flex-column justifxy-content-center px-3">
                                             <a href="<?php echo base_url() ?>index.php/Admin/zip_file_rekap/<?= $one['id'] ?>">
                                                 <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
@@ -172,7 +172,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             </td>
                             <td>
                                 <?php foreach ($all as $one) : ?>
-                                    <?php if (date('Y', strtotime($one['periode'])) == date('Y', strtotime('now')) and date('m', strtotime($one['periode'])) == '04') : ?>
+                                    <?php if (date('m', strtotime($one['periode'])) == '04') : ?>
                                         <div class="d-flex flex-column justifxy-content-center px-3">
                                             <a href="<?php echo base_url() ?>index.php/Admin/zip_file_rekap/<?= $one['id'] ?>">
                                                 <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
@@ -183,7 +183,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             </td>
                             <td>
                                 <?php foreach ($all as $one) : ?>
-                                    <?php if (date('Y', strtotime($one['periode'])) == date('Y', strtotime('now')) and date('m', strtotime($one['periode'])) == '05') : ?>
+                                    <?php if (date('m', strtotime($one['periode'])) == '05') : ?>
                                         <div class="d-flex flex-column justifxy-content-center px-3">
                                             <a href="<?php echo base_url() ?>index.php/Admin/zip_file_rekap/<?= $one['id'] ?>">
                                                 <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
@@ -194,7 +194,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             </td>
                             <td>
                                 <?php foreach ($all as $one) : ?>
-                                    <?php if (date('Y', strtotime($one['periode'])) == date('Y', strtotime('now')) and date('m', strtotime($one['periode'])) == '06') : ?>
+                                    <?php if (date('m', strtotime($one['periode'])) == '06') : ?>
                                         <div class="d-flex flex-column justifxy-content-center px-3">
                                             <a href="<?php echo base_url() ?>index.php/Admin/zip_file_rekap/<?= $one['id'] ?>">
                                                 <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
@@ -205,7 +205,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             </td>
                             <td>
                                 <?php foreach ($all as $one) : ?>
-                                    <?php if (date('Y', strtotime($one['periode'])) == date('Y', strtotime('now')) and date('m', strtotime($one['periode'])) == '07') : ?>
+                                    <?php if (date('m', strtotime($one['periode'])) == '07') : ?>
                                         <div class="d-flex flex-column justifxy-content-center px-3">
                                             <a href="<?php echo base_url() ?>index.php/Admin/zip_file_rekap/<?= $one['id'] ?>">
                                                 <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
@@ -216,7 +216,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             </td>
                             <td>
                                 <?php foreach ($all as $one) : ?>
-                                    <?php if (date('Y', strtotime($one['periode'])) == date('Y', strtotime('now')) and date('m', strtotime($one['periode'])) == '08') : ?>
+                                    <?php if (date('m', strtotime($one['periode'])) == '08') : ?>
                                         <div class="d-flex flex-column justifxy-content-center px-3">
                                             <a href="<?php echo base_url() ?>index.php/Admin/zip_file_rekap/<?= $one['id'] ?>">
                                                 <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
@@ -227,7 +227,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             </td>
                             <td>
                                 <?php foreach ($all as $one) : ?>
-                                    <?php if (date('Y', strtotime($one['periode'])) == date('Y', strtotime('now')) and date('m', strtotime($one['periode'])) == '09') : ?>
+                                    <?php if (date('m', strtotime($one['periode'])) == '09') : ?>
                                         <div class="d-flex flex-column justifxy-content-center px-3">
                                             <a href="<?php echo base_url() ?>index.php/Admin/zip_file_rekap/<?= $one['id'] ?>">
                                                 <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
@@ -238,7 +238,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             </td>
                             <td>
                                 <?php foreach ($all as $one) : ?>
-                                    <?php if (date('Y', strtotime($one['periode'])) == date('Y', strtotime('now')) and date('m', strtotime($one['periode'])) == '10') : ?>
+                                    <?php if (date('m', strtotime($one['periode'])) == '10') : ?>
                                         <div class="d-flex flex-column justifxy-content-center px-3">
                                             <a href="<?php echo base_url() ?>index.php/Admin/zip_file_rekap/<?= $one['id'] ?>">
                                                 <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
@@ -249,7 +249,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             </td>
                             <td>
                                 <?php foreach ($all as $one) : ?>
-                                    <?php if (date('Y', strtotime($one['periode'])) == date('Y', strtotime('now')) and date('m', strtotime($one['periode'])) == '11') : ?>
+                                    <?php if (date('m', strtotime($one['periode'])) == '11') : ?>
                                         <div class="d-flex flex-column justifxy-content-center px-3">
                                             <a href="<?php echo base_url() ?>index.php/Admin/zip_file_rekap/<?= $one['id'] ?>">
                                                 <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>
@@ -260,7 +260,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             </td>
                             <td>
                                 <?php foreach ($all as $one) : ?>
-                                    <?php if (date('Y', strtotime($one['periode'])) == date('Y', strtotime('now')) and date('m', strtotime($one['periode'])) == '12') : ?>
+                                    <?php if (date('m', strtotime($one['periode'])) == '12') : ?>
                                         <div class="d-flex flex-column justifxy-content-center px-3">
                                             <a href="<?php echo base_url() ?>index.php/Admin/zip_file_rekap/<?= $one['id'] ?>">
                                                 <p class="text-xs text-center bg-success rounded text-white mb-0">√</p>

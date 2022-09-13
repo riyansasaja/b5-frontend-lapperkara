@@ -45,9 +45,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             Pilih Tahun
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="#">2022</a></li>
-                            <li><a class="dropdown-item" href="#">2023</a></li>
-                            <li><a class="dropdown-item" href="#">2024</a></li>
+                            <?php foreach ($years as $y) : ?>
+
+                                <li><a class="dropdown-item" href="<?php echo base_url(); ?>index.php/PA_laper/triwulan_search_year/<?php echo $y['year'];  ?>" value="1"><?php echo $y['year']; ?></a></li>
+
+
+                            <?php endforeach; ?>
                         </ul>
                     </div>
                 </div>

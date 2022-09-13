@@ -52,7 +52,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" id="tahun">
               <?php foreach ($years as $y) : ?>
 
-                <li><a class="dropdown-item" href="<?php echo base_url(); ?>laporan/<?php echo $y['year'];  ?>" value="1"><?php echo $y['year']; ?></a></li>
+                <li><a class="dropdown-item" href="<?php echo base_url(); ?>index.php/PA_laper/laporan/<?php echo $y['year'];  ?>" value="1"><?php echo $y['year']; ?></a></li>
 
 
               <?php endforeach; ?>
@@ -93,7 +93,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     <input id="upload-pdf" type="file" name="file1" class="form-control">
                   </div>
                   <div class="input-group input-group-static my-3">
-                    <label for="upload-zip">Upload file XLS</label>
+                    <label for="upload-zip">Upload file ZIP</label>
                     <input id="upload-zip" type="file" name="file2" class="form-control">
                   </div>
 

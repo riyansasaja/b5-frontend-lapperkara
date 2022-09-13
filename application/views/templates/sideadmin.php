@@ -18,17 +18,17 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link text-white " href="<?= base_url('admin/rekap_laporan/') ?>">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        </div>
+                        <span class="nav-link-text ms-2">Rekap Pelaporan Perkara</span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link text-white " href="<?= base_url('admin/triwulan/') ?>">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         </div>
                         <span class="nav-link-text ms-2">Laporan Triwulan</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white " href="<?= base_url('admin/rekap_laporan/') ?>">
-                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        </div>
-                        <span class="nav-link-text ms-2">Rekap Laporan Perkara</span>
                     </a>
                 </li>
                 <li class="nav-item">

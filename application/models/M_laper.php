@@ -250,4 +250,5 @@ class M_laper extends CI_model
     //     $query = $this->db->get()->result_array();
     //     return $query;
     // }
+
 }

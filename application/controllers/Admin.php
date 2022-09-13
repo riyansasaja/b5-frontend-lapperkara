@@ -255,7 +255,7 @@ class Admin extends CI_Controller
         $this->db->update('lap_tri_detail', $data, $where);
         $this->session->set_flashdata('flash', 'Validasi Laporan Berhasil');
 
-        redirect('Admin/triwulan');
+        redirect('Admin/triwulan/');
     }
 
     public function rekap_laporan()

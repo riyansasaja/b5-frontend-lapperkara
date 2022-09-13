@@ -149,3 +149,30 @@ END$$
 DELIMITER ;
 //end
 
+//create status laporan triwulan revisi
+DELIMITER $$
+CREATE TRIGGER status_laporan_triwulan
+    AFTER UPDATE 
+    ON lap_tri_detail
+    FOR EACH ROW 
+BEGIN
+	IF new.status_validasi = 'Revisi' THEN BEGIN
+    update laporan_triwulan set status_laporan = 'Revisi' where id = new.id_lap_tri;
+    END; END IF;
+END$$
+DELIMITER ;
+//end
+
+//create status laporan triwulan validasi
+DELIMITER $$
+CREATE TRIGGER status_laporan_triwulan_validasi
+    AFTER UPDATE 
+    ON lap_tri_detail
+    FOR EACH ROW 
+BEGIN
+	IF new.status_validasi = 'Validasi' AND old.status_validasi = 'Revisi' THEN BEGIN
+    update laporan_triwulan set status_laporan = 'Validasi' where id = new.id_lap_tri;
+    END; END IF;
+END$$
+DELIMITER ;
+//end

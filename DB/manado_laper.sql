@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 13, 2022 at 04:28 AM
+-- Generation Time: Sep 13, 2022 at 09:46 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.25
 
@@ -99,7 +99,7 @@ CREATE TABLE `laporan_triwulan` (
 --
 
 INSERT INTO `laporan_triwulan` (`id`, `id_user`, `berkas_laporan`, `periode_triwulan`, `periode_tahun`, `tgl_upload`, `tgl_terakhir_revisi`, `status_laporan`) VALUES
-(3, 3, 'Triwulan I', '03', '2022', '2022-08-15', '2022-09-12', NULL),
+(3, 3, 'Triwulan I', '03', '2022', '2022-08-15', '2022-09-13', 'Validasi'),
 (4, 3, 'Triwulan II', '06', '2023', '2022-08-07', NULL, 'Belum Validasi');
 
 -- --------------------------------------------------------
@@ -126,15 +126,31 @@ CREATE TABLE `lap_tri_detail` (
 --
 
 INSERT INTO `lap_tri_detail` (`id`, `id_lap_tri`, `nm_laporan`, `tgl_kirim`, `lap_pdf`, `lap_xls`, `rev_pdf`, `rev_xls`, `tgl_revisi`, `status_validasi`) VALUES
-(2, 3, 'Meja Informasi', '2022-08-15', 'Data_Absen_Harian_-_12_Aug_2022_202208151.pdf', 'REGISTER_PONEK_VK11.xlsx', '34852585-95cd-4b5e-943a-85eacbf64e75-June.pdf', 'Progress_Eksaminasi_(1).xlsx', '2022-08-16', 'Revisi'),
+(2, 3, 'Meja Informasi', '2022-08-15', 'Data_Absen_Harian_-_12_Aug_2022_202208151.pdf', 'REGISTER_PONEK_VK11.xlsx', '34852585-95cd-4b5e-943a-85eacbf64e75-June.pdf', 'Progress_Eksaminasi_(1).xlsx', '2022-08-16', 'Validasi'),
 (3, 3, 'Keuangan', '2022-08-15', 'Data_Absen_Bulanan_-_July_2022_20220727.pdf', 'REGISTER_PONEK_VK12.xlsx', NULL, NULL, NULL, 'Validasi'),
-(4, 3, 'Laporan Pengaduan', '2022-08-15', 'Daftar_Peserta_GOL_PROA_B3_2.pdf', 'REGISTER_PONEK_VK13.xlsx', NULL, NULL, NULL, 'Belum Validasi'),
+(4, 3, 'Laporan Pengaduan', '2022-08-15', 'Daftar_Peserta_GOL_PROA_B3_2.pdf', 'REGISTER_PONEK_VK13.xlsx', NULL, NULL, NULL, 'Revisi'),
 (5, 4, 'Keuangan', '2022-08-16', 'april_2022.pdf', 'Progress_Eksaminasi_(1).xlsx', NULL, NULL, NULL, 'Belum Validasi'),
 (6, 4, 'Meja Informasi', '2022-08-16', 'Sertifikat_Diklat.pdf', 'Progress_Eksaminasi_(1)1.xlsx', NULL, NULL, NULL, 'Belum Validasi');
 
 --
 -- Triggers `lap_tri_detail`
 --
+DELIMITER $$
+CREATE TRIGGER `status_laporan_triwulan` AFTER UPDATE ON `lap_tri_detail` FOR EACH ROW BEGIN
+	IF new.status_validasi = 'Revisi' THEN BEGIN
+    update laporan_triwulan set status_laporan = 'Revisi' where id = new.id_lap_tri;
+    END; END IF;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `status_laporan_triwulan_validasi` AFTER UPDATE ON `lap_tri_detail` FOR EACH ROW BEGIN
+	IF new.status_validasi = 'Validasi' AND old.status_validasi = 'Revisi' THEN BEGIN
+    update laporan_triwulan set status_laporan = 'Validasi' where id = new.id_lap_tri;
+    END; END IF;
+END
+$$
+DELIMITER ;
 DELIMITER $$
 CREATE TRIGGER `tgl_rev_triwulan` AFTER UPDATE ON `lap_tri_detail` FOR EACH ROW BEGIN
     update laporan_triwulan set tgl_terakhir_revisi = CURDATE() where id = new.id_lap_tri;
